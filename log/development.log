@@ -3298,3 +3298,721 @@ Completed 200 OK in 15ms (Views: 5.4ms | ActiveRecord: 1.5ms)
   [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206030931')[0m
   [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206035714')
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeleteUsers (20151206135859)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (3.3ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206135859"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to DeleteUsers (20151206135859)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddConfirmableToDevise (20151206134750)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206134750"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to DeviseTokenAuthCreateUsers (20151206140817)
+  [1m[36m (0.3ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/timi/gigster-locent-api/db/migrate/20151206140817_devise_token_auth_create_users.rb:44)
+  [1m[35m (1.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206140817"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:02:50 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [POST] "/dashboard/auth"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (92.1ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:03:08 +0100
+
+ActionController::RoutingError (uninitialized constant ApplicationController::Authenitcable):
+  app/controllers/application_controller.rb:3:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (107.6ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:03:18 +0100
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]"}
+Unpermitted parameters: first_name, last_name, format
+Unpermitted parameters: first_name, last_name, format
+Unpermitted parameters: first_name, last_name, format
+Completed 403 Forbidden in 123ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:18:23 +0100
+
+SyntaxError (/Users/timi/gigster-locent-api/app/controllers/application_controller.rb:8: syntax error, unexpected ',', expecting keyword_end
+...r.for(:sign_up) << :first_name, :last_name
+...                               ^):
+  app/controllers/application_controller.rb:8: syntax error, unexpected ',', expecting keyword_end
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.9ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:18:39 +0100
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]"}
+Unpermitted parameter: format
+Unpermitted parameter: format
+Unpermitted parameter: format
+Completed 403 Forbidden in 108ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:26:52 +0100
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]", "confirm_success_url"=>"http://helloworld.ng"}
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "9a24645a85bea7013483105aa5e16e81591623882558ab05baa5028b7032b844"]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "first_name", "last_name", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$hDUO1Dked5eU1GvQkfcGYejn82JbQGyzC.ZGvh7glo7DM1ID6Q3qC"], ["first_name", "timi"], ["last_name", "badman"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-06 16:26:52.381119"], ["updated_at", "2015-12-06 16:26:52.381119"], ["confirmation_token", "wsbvjECHhyPeLsY42c4y"], ["confirmation_sent_at", "2015-12-06 16:26:52.607132"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise_token_auth-0.1.36/app/views/devise/mailer/confirmation_instructions.html.erb (195.0ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 221.0ms
+Completed 500 Internal Server Error in 608ms (ActiveRecord: 3.2ms)
+
+ActionView::Template::Error (undefined method `user_confirmation_url' for #<ActionDispatch::Routing::RoutesProxy:0x007f9929e2c600>):
+    2: 
+    3: <p>You can confirm your account email through the link below:</p>
+    4: 
+    5: <p><%= link_to 'Confirm my account', confirmation_url(@resource, {confirmation_token: @token, config: message['client-config'].to_s, redirect_url: message['redirect-url']}).html_safe %></p>
+  actionpack (4.2.4) lib/action_dispatch/routing/routes_proxy.rb:36:in `method_missing'
+  devise (3.5.2) lib/devise/controllers/url_helpers.rb:51:in `block (4 levels) in generate_helpers!'
+  devise_token_auth (0.1.36) app/views/devise/mailer/confirmation_instructions.html.erb:5:in `___sers_timi__rbenv_versions_______lib_ruby_gems_______gems_devise_token_auth________app_views_devise_mailer_confirmation_instructions_html_erb__2768693436604136750_70147904764620'
+  actionview (4.2.4) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.4) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.4) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.4) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.4) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.4) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.4) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.4) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.4) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.4) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.4) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:918:in `each'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:829:in `mail'
+  devise (3.5.2) lib/devise/mailers/helpers.rb:16:in `devise_mail'
+  devise (3.5.2) app/mailers/devise/mailer.rb:7:in `confirmation_instructions'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:25:in `new'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  devise (3.5.2) lib/devise/models/authenticatable.rb:170:in `send_devise_notification'
+  devise_token_auth (0.1.36) app/models/devise_token_auth/concerns/user.rb:71:in `send_confirmation_instructions'
+  devise_token_auth (0.1.36) app/controllers/devise_token_auth/registrations_controller.rb:45:in `create'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (66.0ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:35:13 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]", "confirm_success_url"=>"http://helloworld.ng"}
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (2.1ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "a95a6f084e6633a31add012b050b7cb63976edcfac9096537527a8989f3c0d65"]]
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "first_name", "last_name", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$3klR7GvP.ietwGLnNVupYeDwiZJTtq8rsIvg4GMe.a3u3nIVi3/AC"], ["first_name", "timi"], ["last_name", "badman"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-06 16:35:13.359605"], ["updated_at", "2015-12-06 16:35:13.359605"], ["confirmation_token", "H5ZXcXGzwhUJEMmxkzyi"], ["confirmation_sent_at", "2015-12-06 16:35:13.588088"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise_token_auth-0.1.36/app/views/devise/mailer/confirmation_instructions.html.erb (10.4ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 44.6ms
+Completed 500 Internal Server Error in 443ms (ActiveRecord: 7.8ms)
+
+ActionView::Template::Error (Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true):
+    2: 
+    3: <p>You can confirm your account email through the link below:</p>
+    4: 
+    5: <p><%= link_to 'Confirm my account', confirmation_url(@resource, {confirmation_token: @token, config: message['client-config'].to_s, redirect_url: message['redirect-url']}).html_safe %></p>
+  actionpack (4.2.4) lib/action_dispatch/http/url.rb:45:in `full_url_for'
+  actionpack (4.2.4) lib/action_dispatch/http/url.rb:35:in `url_for'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:356:in `block in <class:RouteSet>'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:815:in `url_for'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:282:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:225:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:347:in `block (2 levels) in define_url_helper'
+  actionpack (4.2.4) lib/action_dispatch/routing/routes_proxy.rb:31:in `dashboard_user_confirmation_url'
+  actionpack (4.2.4) lib/action_dispatch/routing/routes_proxy.rb:34:in `method_missing'
+  devise (3.5.2) lib/devise/controllers/url_helpers.rb:51:in `block (4 levels) in generate_helpers!'
+  devise_token_auth (0.1.36) app/views/devise/mailer/confirmation_instructions.html.erb:5:in `___sers_timi__rbenv_versions_______lib_ruby_gems_______gems_devise_token_auth________app_views_devise_mailer_confirmation_instructions_html_erb__799640083616958976_70166789847140'
+  actionview (4.2.4) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.4) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.4) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.4) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.4) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.4) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.4) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.4) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.4) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.4) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.4) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.4) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:918:in `each'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:829:in `mail'
+  devise (3.5.2) lib/devise/mailers/helpers.rb:16:in `devise_mail'
+  devise (3.5.2) app/mailers/devise/mailer.rb:7:in `confirmation_instructions'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.4) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:25:in `new'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.4) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  devise (3.5.2) lib/devise/models/authenticatable.rb:170:in `send_devise_notification'
+  devise_token_auth (0.1.36) app/models/devise_token_auth/concerns/user.rb:71:in `send_confirmation_instructions'
+  devise_token_auth (0.1.36) app/controllers/devise_token_auth/registrations_controller.rb:45:in `create'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/mapper.rb:49:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (56.1ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 17:38:31 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]", "confirm_success_url"=>"http://helloworld.ng"}
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+Unpermitted parameters: confirm_success_url, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "d77cabf9345a60681b2fe3c338a1a7985e9a238ff0b1a33f5d5036335bd09ac8"]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "first_name", "last_name", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$1xtFU3XTHHh5HbH.Wu3kvuNyIlbvaY1Af/fR98z2kGV7w4Ac4BF4W"], ["first_name", "timi"], ["last_name", "badman"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-06 16:38:31.747039"], ["updated_at", "2015-12-06 16:38:31.747039"], ["confirmation_token", "tk7-KVdLB6FoWsiv66jW"], ["confirmation_sent_at", "2015-12-06 16:38:31.967659"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise_token_auth-0.1.36/app/views/devise/mailer/confirmation_instructions.html.erb (5.4ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 215.9ms
+
+Sent mail to timi@ordertolagos.com (17.5ms)
+Date: Sun, 06 Dec 2015 17:38:32 +0100
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: timi@ordertolagos.com
+Message-ID: <5664648832dd8_17a13fd8d5bbc4dc4867c@Timis-MacBook-Pro.local.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+redirect-url: http://helloworld.ng
+
+<p>Welcome timi@ordertolagos.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/dashboard/auth/confirmation?config=default&confirmation_token=tk7-KVdLB6FoWsiv66jW&redirect_url=http%3A%2F%2Fhelloworld.ng">Confirm my account</a></p>
+
+Completed 200 OK in 610ms (Views: 0.6ms | ActiveRecord: 3.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddOrganisationIdToUser (20151206164658)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "organisation_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206164658"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-06 17:47:49 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"OrderToLagos", "email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "phone"=>"08028618180"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organisation_name, phone, format
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `build_primary_user' for #<Organisation:0x007fb1ab6da9e8>):
+  app/controllers/dashboard/v1/organisations_controller.rb:37:in `create_primary_user_account'
+  app/controllers/dashboard/v1/organisations_controller.rb:17:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.6ms)
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-06 17:48:08 +0100
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"OrderToLagos", "email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "phone"=>"08028618180"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organisation_name, phone, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "9c1d25cc1a7af67e2701cdac58f200771de15e65b3b5b44884bd11c766ea3a94"]]
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "encrypted_password", "is_primary", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "timi"], ["last_name", "badman"], ["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$TupCDq4hKz0lmRXxaRf1k.htwt3XblKu24J1zsm9MGKUKfE9d89.e"], ["is_primary", "t"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-06 16:48:08.775017"], ["updated_at", "2015-12-06 16:48:08.775017"], ["confirmation_token", "cUuQxWkGRgxUGxcdshsi"], ["confirmation_sent_at", "2015-12-06 16:48:08.778608"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mOrganisation Exists (0.1ms)[0m  SELECT  1 AS one FROM "organisations" WHERE "organisations"."organisation_name" = 'OrderToLagos' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "organisations" ("organisation_name", "email", "phone", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["organisation_name", "OrderToLagos"], ["email", "timi@ordertolagos.com"], ["phone", "08028618180"], ["created_at", "2015-12-06 16:48:08.801931"], ["updated_at", "2015-12-06 16:48:08.801931"]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "organisation_id" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["organisation_id", 1], ["updated_at", "2015-12-06 16:48:08.803723"], ["id", 4]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 159ms (Views: 8.3ms | ActiveRecord: 6.1ms)
+
+
+Started POST "/dashboard/auth" for ::1 at 2015-12-06 18:45:41 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DeviseTokenAuth::RegistrationsController#create as JSON
+  Parameters: {"email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "password_confirmation"=>"[FILTERED]"}
+Unpermitted parameter: format
+Unpermitted parameter: format
+Unpermitted parameter: format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (1.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "d96d293b5312b373f8bb3fbc7e9b661c6c744b465dceff47d5343be6db91c90a"]]
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "first_name", "last_name", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$naLrhxhJiTjRuUcLdpXNq.dkg08gCdYTa99CUz36gxdk3iFrbRufO"], ["first_name", "timi"], ["last_name", "badman"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-06 17:45:42.084232"], ["updated_at", "2015-12-06 17:45:42.084232"], ["confirmation_token", "uDqdqy-fCGjXrUMqe5TN"], ["confirmation_sent_at", "2015-12-06 17:45:42.315459"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise_token_auth-0.1.36/app/views/devise/mailer/confirmation_instructions.html.erb (5.0ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 235.6ms
+
+Sent mail to timi@ordertolagos.com (17.3ms)
+Date: Sun, 06 Dec 2015 18:45:42 +0100
+From: test@locent.com
+Reply-To: test@locent.com
+To: timi@ordertolagos.com
+Message-ID: <566474468d26b_1b3e3fd7318a3b2463976@Timis-MacBook-Pro.local.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+redirect-url: http://google.com
+
+<p>Welcome timi@ordertolagos.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/dashboard/auth/confirmation?config=default&confirmation_token=uDqdqy-fCGjXrUMqe5TN&redirect_url=http%3A%2F%2Fgoogle.com">Confirm my account</a></p>
+
+Completed 200 OK in 694ms (Views: 1.0ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/dashboard/auth/confirmation?config=default&confirmation_token=uDqdqy-fCGjXrUMqe5TN&redirect_url=http%3A%2F%2Fgoogle.com" for ::1 at 2015-12-06 18:52:22 +0100
+Processing by DeviseTokenAuth::ConfirmationsController#show as JSON
+  Parameters: {"config"=>"default", "confirmation_token"=>"uDqdqy-fCGjXrUMqe5TN", "redirect_url"=>"http://google.com"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["confirmation_token", "uDqdqy-fCGjXrUMqe5TN"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "confirmed_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["confirmed_at", "2015-12-06 17:52:22.022281"], ["updated_at", "2015-12-06 17:52:22.023178"], ["id", 5]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "tokens" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["tokens", "{\"yHfj3941gAclVdZNOzhxkQ\":{\"token\":\"$2a$10$eWznHlgjUI7HmvksT6d5AO9Dot0xyYxaVNzDJo9ZlHiz/RMF7WTiC\",\"expiry\":1449683542}}"], ["updated_at", "2015-12-06 17:52:22.104616"], ["id", 5]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://google.com?account_confirmation_success=true&client_id=yHfj3941gAclVdZNOzhxkQ&config=default&expiry=&token=EO3BbckI5nsiy-uxSYrtjA&uid=timi%40ordertolagos.com
+Completed 302 Found in 93ms (ActiveRecord: 4.5ms)
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-06 18:55:14 +0100
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman", "phone"=>"08028618180", "organisation_name"=>"Ordertolagos"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: phone, organisation_name, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@devcenter.co"]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "e23109b90a976a03039b48df3d52627e75cc707336290b9f4936c0944e588052"]]
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "encrypted_password", "is_primary", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "timi"], ["last_name", "badman"], ["email", "timi@devcenter.co"], ["encrypted_password", "$2a$10$dcO5oJpgUHbYHVS1iRGVG.4GEmYfV8LsjAquVo.fFD81FF5428kwK"], ["is_primary", "t"], ["tokens", "{}"], ["uid", "timi@devcenter.co"], ["created_at", "2015-12-06 17:55:14.680211"], ["updated_at", "2015-12-06 17:55:14.680211"], ["confirmation_token", "8Gw-rLXybX3r7pkazWuW"], ["confirmation_sent_at", "2015-12-06 17:55:14.682942"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mOrganisation Exists (0.3ms)[0m  SELECT  1 AS one FROM "organisations" WHERE "organisations"."organisation_name" = 'Ordertolagos' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "organisations" ("organisation_name", "email", "phone", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["organisation_name", "Ordertolagos"], ["email", "timi@devcenter.co"], ["phone", "08028618180"], ["created_at", "2015-12-06 17:55:14.714561"], ["updated_at", "2015-12-06 17:55:14.714561"]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "organisation_id" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["organisation_id", 2], ["updated_at", "2015-12-06 17:55:14.718469"], ["id", 6]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 204ms (Views: 11.5ms | ActiveRecord: 6.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProducts (20151206182109)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206182109"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-06 18:25:27.430096"], ["updated_at", "2015-12-06 18:25:27.430096"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-06 18:25:27.436091"], ["updated_at", "2015-12-06 18:25:27.436091"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Safetext"], ["created_at", "2015-12-06 18:25:27.438804"], ["updated_at", "2015-12-06 18:25:27.438804"]]
+  [1m[35m (1.0ms)[0m  commit transaction

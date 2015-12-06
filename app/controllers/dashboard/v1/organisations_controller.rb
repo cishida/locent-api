@@ -12,8 +12,6 @@ class Dashboard::V1::OrganisationsController < ActionController::API
 
   def create
     @organisation = Organisation.new(organisation_params)
-
-
     if create_primary_user_account && @organisation.save
       render json: @organisation, status: 201, location: [:dashboard, @organisation]
     else
@@ -25,7 +23,6 @@ class Dashboard::V1::OrganisationsController < ActionController::API
   def update
     @organisation = Organisation.find(params[:id])
     @organisation.update(organisation_params)
-
     if @organisation.update(organisation_params)
       render json: @organisation, status: 201, location: [:dashboard, @organisation]
     else
