@@ -1,4 +1,4 @@
-class User < ParanoidModel
+class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   acts_as_paranoid
   devise :database_authenticatable, :registerable,
