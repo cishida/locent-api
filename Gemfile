@@ -10,6 +10,7 @@ gem 'devise_token_auth'
 gem 'responders'
 gem 'paranoia', '~> 2.0'
 gem 'active_model_serializers', '~> 0.8.0'
+#gem 'activerecord-import'
 
 
 

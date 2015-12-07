@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organisation_id: 1
+  product_id: 1
+  short_code: 1
+
+two:
+  organisation_id: 1
+  product_id: 1
+  short_code: 1

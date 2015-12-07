@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206182109) do
+ActiveRecord::Schema.define(version: 20151207085210) do
+
+  create_table "clearcart_options", force: :cascade do |t|
+    t.text     "opt_in_message"
+    t.text     "opt_in_refusal_message"
+    t.text     "welcome_message"
+    t.text     "intial_cart_abandonment_message"
+    t.text     "follow_up_message"
+    t.text     "cancellation_message"
+    t.text     "confirmation_message"
+    t.integer  "number_of_times_to_message"
+    t.integer  "time_interval_between_messages"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "keyword_options", force: :cascade do |t|
+    t.text     "opt_in_message"
+    t.text     "opt_in_refusal_message"
+    t.text     "welcome_message"
+    t.text     "transactional_message"
+    t.text     "cancellation_message"
+    t.text     "confirmation_message"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "keyword_options", ["deleted_at"], name: "index_keyword_options_on_deleted_at"
 
   create_table "organisations", force: :cascade do |t|
     t.string   "organisation_name"
@@ -30,7 +59,35 @@ ActiveRecord::Schema.define(version: 20151206182109) do
     t.boolean  "has_items",  default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
+
+  create_table "safetext_options", force: :cascade do |t|
+    t.text     "opt_in_message"
+    t.text     "opt_in_refusal_message"
+    t.text     "welcome_message"
+    t.text     "transactional_message"
+    t.text     "cancellation_message"
+    t.text     "confirmation_message"
+    t.datetime "deleted_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "organisation_id"
+    t.integer  "product_id"
+    t.integer  "short_code"
+    t.string   "option_id"
+    t.string   "option_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false

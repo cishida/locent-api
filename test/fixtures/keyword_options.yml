@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opt_in_message: MyText
+  opt_in_refusal_message: MyText
+  welcome_message: MyText
+  transactional_message: MyText
+  cancellation_message: MyText
+  confirmation_message: MyText
+
+two:
+  opt_in_message: MyText
+  opt_in_refusal_message: MyText
+  welcome_message: MyText
+  transactional_message: MyText
+  cancellation_message: MyText
+  confirmation_message: MyText
