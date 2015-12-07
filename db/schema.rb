@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207085210) do
+ActiveRecord::Schema.define(version: 20151207222316) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
     t.text     "opt_in_refusal_message"
     t.text     "welcome_message"
-    t.text     "intial_cart_abandonment_message"
+    t.text     "initial_cart_abandonment_message"
     t.text     "follow_up_message"
     t.text     "cancellation_message"
     t.text     "confirmation_message"
     t.integer  "number_of_times_to_message"
     t.integer  "time_interval_between_messages"
     t.datetime "deleted_at"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "keyword_options", force: :cascade do |t|
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20151207085210) do
     t.integer  "organisation_id"
     t.integer  "product_id"
     t.integer  "short_code"
-    t.string   "option_id"
-    t.string   "option_type"
+    t.string   "options_id"
+    t.string   "options_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.datetime "deleted_at"

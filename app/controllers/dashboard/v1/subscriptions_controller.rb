@@ -10,7 +10,7 @@ class Dashboard::V1::SubscriptionsController < ActionController::API
       product_name = Product.find(product_id).name.capitalize
       corresponding_options_model = create_options_with_defaults product_name
       subscription = Subscription.create(organisation_id: params[:organisation_id], product_id: product_id)
-      subscription.option = corresponding_options_model
+      subscription.options = corresponding_options_model
       subscription.save
       subscriptions << subscription
     end

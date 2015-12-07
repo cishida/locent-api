@@ -1,6 +1,6 @@
 class KeywordOptions < ActiveRecord::Base
   acts_as_paranoid
-  has_one  :subscription, as: :option, dependent: :destroy
+  has_one  :subscription, as: :options, dependent: :destroy
 
 
   def self.defaults
