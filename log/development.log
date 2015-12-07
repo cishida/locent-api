@@ -5991,3 +5991,1123 @@ Migrating to CreateSafeTextOptions (20151207085210)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 [0m
+
+
+Started POST "/dashboard/subscriptions" for ::1 at 2015-12-07 10:17:29 +0100
+Processing by Dashboard::V1::SubscriptionsController#create as JSON
+  Parameters: {"organisation_id"=>"1", "product_ids"=>"1,2,3"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 1]]
+Completed 404 Not Found in 7ms (ActiveRecord: 0.4ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=1 [WHERE "products"."deleted_at" IS NULL]):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:10:in `block in create'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:9:in `each'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:9:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-07 09:18:02.939612"], ["updated_at", "2015-12-07 09:18:02.939612"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-07 09:18:02.946598"], ["updated_at", "2015-12-07 09:18:02.946598"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Safetext"], ["created_at", "2015-12-07 09:18:02.949911"], ["updated_at", "2015-12-07 09:18:02.949911"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+
+
+Started POST "/dashboard/subscriptions" for ::1 at 2015-12-07 10:18:19 +0100
+Processing by Dashboard::V1::SubscriptionsController#create as JSON
+  Parameters: {"organisation_id"=>"1", "product_ids"=>"1,2,3"}
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.3ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35mProduct Load (0.1ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.2ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 2) LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 2) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 3) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.3ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 3) LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+Completed 201 Created in 110ms (Views: 3.4ms | ActiveRecord: 4.6ms)
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (2.2ms)[0m  CREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.9ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime, "organisation_id" integer, "is_primary" boolean DEFAULT 'f') 
+  [1m[36m (1.1ms)[0m  [1mCREATE  INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (2.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (2.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151207085210')
+  [1m[36m (2.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151204154935')[0m
+  [1m[35m (3.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151204163514')
+  [1m[36m (3.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151205114111')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151205133938')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206030525')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206030931')
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206035714')[0m
+  [1m[35m (2.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206112033')
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206134750')[0m
+  [1m[35m (2.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206135859')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206140817')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206164658')
+  [1m[36m (1.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206182109')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206190416')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151207063309')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151207081957')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151207083656')[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")[0m
+  [1m[35m (1.8ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (2.7ms)[0m  [1mCREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (1.9ms)[0m  CREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")
+  [1m[36m (2.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime, "organisation_id" integer, "is_primary" boolean DEFAULT 'f') [0m
+  [1m[35m (1.9ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.5ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (2.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (1.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151207085210')[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151204154935')
+  [1m[36m (1.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151204163514')[0m
+  [1m[35m (1.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151205114111')
+  [1m[36m (2.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151205133938')[0m
+  [1m[35m (2.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206030525')
+  [1m[36m (1.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206030931')[0m
+  [1m[35m (2.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206035714')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206112033')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206134750')
+  [1m[36m (1.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206135859')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206140817')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206164658')[0m
+  [1m[35m (1.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151206182109')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151206190416')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151207063309')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151207081957')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151207083656')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-07 09:24:13.195160"], ["updated_at", "2015-12-07 09:24:13.195160"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-07 09:24:13.198878"], ["updated_at", "2015-12-07 09:24:13.198878"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Safetext"], ["created_at", "2015-12-07 09:24:13.202195"], ["updated_at", "2015-12-07 09:24:13.202195"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36m (2.0ms)[0m  [1mDROP TABLE "clearcart_options"[0m
+  [1m[35m (1.9ms)[0m  CREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.6ms)[0m  [1mDROP TABLE "keyword_options"[0m
+  [1m[35m (1.6ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")
+  [1m[36m (1.7ms)[0m  [1mDROP TABLE "organisations"[0m
+  [1m[35m (2.1ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.8ms)[0m  [1mCREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")[0m
+  [1m[35m (3.3ms)[0m  DROP TABLE "products"
+  [1m[36m (2.3ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (2.4ms)[0m  CREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")
+  [1m[36m (1.9ms)[0m  [1mDROP TABLE "safetext_options"[0m
+  [1m[35m (2.4ms)[0m  CREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.9ms)[0m  [1mDROP TABLE "subscriptions"[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.3ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (3.1ms)[0m  DROP TABLE "users"
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime, "organisation_id" integer, "is_primary" boolean DEFAULT 'f') [0m
+  [1m[35m (3.0ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (1.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.9ms)[0m  [1mDROP TABLE "clearcart_options"[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (2.5ms)[0m  [1mDROP TABLE "keyword_options"[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  CREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")
+  [1m[36m (2.7ms)[0m  [1mDROP TABLE "organisations"[0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.7ms)[0m  [1mCREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")[0m
+  [1m[35m (1.2ms)[0m  DROP TABLE "products"
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")
+  [1m[36m (1.6ms)[0m  [1mDROP TABLE "safetext_options"[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.8ms)[0m  [1mDROP TABLE "subscriptions"[0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (1.9ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (1.9ms)[0m  DROP TABLE "users"
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime, "organisation_id" integer, "is_primary" boolean DEFAULT 'f') [0m
+  [1m[35m (1.8ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (2.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")[0m
+  [1m[35m (0.2ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-07 09:24:21.825716"], ["updated_at", "2015-12-07 09:24:21.825716"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-07 09:24:21.829432"], ["updated_at", "2015-12-07 09:24:21.829432"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Safetext"], ["created_at", "2015-12-07 09:24:21.832576"], ["updated_at", "2015-12-07 09:24:21.832576"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-07 09:24:33.326689"], ["updated_at", "2015-12-07 09:24:33.326689"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-07 09:24:33.332432"], ["updated_at", "2015-12-07 09:24:33.332432"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Safetext"], ["created_at", "2015-12-07 09:24:33.337641"], ["updated_at", "2015-12-07 09:24:33.337641"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-07 10:26:43 +0100
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"OrderToLagos", "email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organisation_name, format
+Completed 500 Internal Server Error in 121ms (ActiveRecord: 0.4ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'deleted_at' for User.):
+  app/controllers/dashboard/v1/organisations_controller.rb:34:in `create_primary_user_account'
+  app/controllers/dashboard/v1/organisations_controller.rb:15:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-07 10:27:40 +0100
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"OrderToLagos", "email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organisation_name, format
+Completed 500 Internal Server Error in 103ms (ActiveRecord: 0.4ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'deleted_at' for User.):
+  app/controllers/dashboard/v1/organisations_controller.rb:34:in `create_primary_user_account'
+  app/controllers/dashboard/v1/organisations_controller.rb:15:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (60.6ms)
+  [1m[36m (2.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrganisations (20151204154935)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151204154935"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20151204163514)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "first_name" varchar, "last_name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151204163514"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to ChangePrimaryUserToPrimaryUserId (20151205114111)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TEMPORARY TABLE "aorganisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "organisations"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "organisations"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "aorganisations"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "aorganisations"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205114111"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to AddOrganisationIdToUsers (20151205133938)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "organisation_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205133938"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to AddDeletedAtToOrganisationsAndUsers (20151206030525)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "organisations" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "deleted_at" datetime
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_users_on_deleted_at" ON "users" ("deleted_at")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206030525"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexesToOrganisationsAndUsers (20151206030931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m  CREATE  INDEX "index_users_on_organisation_id" ON "users" ("organisation_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE  INDEX "index_organisations_on_primary_user_id" ON "organisations" ("primary_user_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206030931"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to AddAuthenticationTokenToUsers (20151206035714)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "users" ADD "auth_token" varchar DEFAULT ''
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_organisation_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_organisation_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_auth_token" ON "users" ("auth_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206035714"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddIsPrimaryToUserAndRemovePrimaryUserIdFromOrganisation (20151206112033)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "aorganisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_aorganisations_on_primary_user_id" ON "aorganisations" ("primary_user_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_aorganisations_on_deleted_at" ON "aorganisations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "organisations"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "organisations"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganisations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganisations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aorganisations"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "aorganisations"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206112033"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to AddConfirmableToDevise (20151206134750)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206134750"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to DeleteUsers (20151206135859)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206135859"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+Migrating to DeviseTokenAuthCreateUsers (20151206140817)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/timi/gigster-locent-api/db/migrate/20151206140817_devise_token_auth_create_users.rb:44)
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "tokens" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206140817"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddOrganisationIdToUser (20151206164658)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "organisation_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206164658"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateProducts (20151206182109)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206182109"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to CreateSubscriptions (20151206190416)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206190416"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateKeyWordOptions (20151207063309)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151207063309"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to AddDeletedAtToProductsSubscriptionsAndKeyWordOptions (20151207081957)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "subscriptions" ADD "deleted_at" datetime
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "keyword_options" ADD "deleted_at" datetime
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207081957"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateClearCartOptions (20151207083656)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207083656"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSafeTextOptions (20151207085210)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207085210"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrganisations (20151204154935)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151204154935"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20151204163514)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "first_name" varchar, "last_name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151204163514"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+Migrating to ChangePrimaryUserToPrimaryUserId (20151205114111)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "aorganisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "organisations"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "organisations"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aorganisations"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "aorganisations"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205114111"]]
+  [1m[35m (2.1ms)[0m  commit transaction
+Migrating to AddOrganisationIdToUsers (20151205133938)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "users" ADD "organisation_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205133938"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to AddDeletedAtToOrganisationsAndUsers (20151206030525)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "organisations" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "users" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_users_on_deleted_at" ON "users" ("deleted_at")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206030525"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexesToOrganisationsAndUsers (20151206030931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE  INDEX "index_users_on_organisation_id" ON "users" ("organisation_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_organisations_on_primary_user_id" ON "organisations" ("primary_user_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206030931"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to AddAuthenticationTokenToUsers (20151206035714)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "auth_token" varchar DEFAULT ''
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_organisation_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_organisation_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_auth_token" ON "users" ("auth_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206035714"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddIsPrimaryToUserAndRemovePrimaryUserIdFromOrganisation (20151206112033)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "aorganisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_aorganisations_on_primary_user_id" ON "aorganisations" ("primary_user_id")[0m
+  [1m[35m (0.3ms)[0m  CREATE  INDEX "tindex_aorganisations_on_deleted_at" ON "aorganisations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "organisations"[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "organisations"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "organisations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganisations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganisations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_organisations_on_deleted_at" ON "organisations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aorganisations"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aorganisations"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206112033"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to AddConfirmableToDevise (20151206134750)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206134750"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to DeleteUsers (20151206135859)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206135859"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to DeviseTokenAuthCreateUsers (20151206140817)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/timi/gigster-locent-api/db/migrate/20151206140817_devise_token_auth_create_users.rb:45)
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "deleted_at" datetime, "tokens" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206140817"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddOrganisationIdToUser (20151206164658)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" ADD "organisation_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206164658"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateProducts (20151206182109)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206182109"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateSubscriptions (20151206190416)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organisation_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206190416"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to CreateKeyWordOptions (20151207063309)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151207063309"]]
+  [1m[35m (9.6ms)[0m  commit transaction
+Migrating to AddDeletedAtToProductsSubscriptionsAndKeyWordOptions (20151207081957)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "products" ADD "deleted_at" datetime
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "subscriptions" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "keyword_options" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207081957"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateClearCartOptions (20151207083656)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207083656"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSafeTextOptions (20151207085210)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207085210"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organisations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Keyword' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-07 09:39:19.376709"], ["updated_at", "2015-12-07 09:39:19.376709"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Clearcart' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-07 09:39:19.380978"], ["updated_at", "2015-12-07 09:39:19.380978"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Safetext' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Safetext"], ["created_at", "2015-12-07 09:39:19.385076"], ["updated_at", "2015-12-07 09:39:19.385076"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Keyword' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mProduct Exists (0.1ms)[0m  SELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Clearcart' AND "products"."deleted_at" IS NULL) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Safetext' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-07 10:40:49 +0100
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"OrderToLagos", "email"=>"timi@ordertolagos.com", "password"=>"[FILTERED]", "first_name"=>"timi", "last_name"=>"badman"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organisation_name, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@ordertolagos.com"]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["confirmation_token", "ac043bb10659a93828c5a356ef76e6289a174926bbee111130e1b430b5898368"]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("first_name", "last_name", "email", "encrypted_password", "is_primary", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "timi"], ["last_name", "badman"], ["email", "timi@ordertolagos.com"], ["encrypted_password", "$2a$10$PYvvoDh7EK0//imuzJ1xq.65q1Rxx4.k09i/Q47LSLY8d7qTxUcD2"], ["is_primary", "t"], ["tokens", "{}"], ["uid", "timi@ordertolagos.com"], ["created_at", "2015-12-07 09:40:49.427937"], ["updated_at", "2015-12-07 09:40:49.427937"], ["confirmation_token", "wQVgVaFuxWo2vrCedVfk"], ["confirmation_sent_at", "2015-12-07 09:40:49.639723"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mOrganisation Exists (0.2ms)[0m  SELECT  1 AS one FROM "organisations" WHERE ("organisations"."organisation_name" = 'OrderToLagos' AND "organisations"."deleted_at" IS NULL) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "organisations" ("organisation_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["organisation_name", "OrderToLagos"], ["email", "timi@ordertolagos.com"], ["created_at", "2015-12-07 09:40:49.648004"], ["updated_at", "2015-12-07 09:40:49.648004"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "organisation_id" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["organisation_id", 1], ["updated_at", "2015-12-07 09:40:49.649811"], ["id", 1]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 336ms (Views: 12.0ms | ActiveRecord: 5.7ms)
+
+
+Started POST "/dashboard/subscriptions" for ::1 at 2015-12-07 10:41:00 +0100
+Processing by Dashboard::V1::SubscriptionsController#create as JSON
+  Parameters: {"organisation_id"=>"1", "product_ids"=>"1,2,3"}
+  [1m[35mProduct Load (0.1ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.4ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "subscriptions" ("organisation_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["organisation_id", 1], ["product_id", 1], ["created_at", "2015-12-07 09:41:00.648257"], ["updated_at", "2015-12-07 09:41:00.648257"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.1ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 1 AND "subscriptions"."product_id" = 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "keyword_options" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-12-07 09:41:00.653787"], ["updated_at", "2015-12-07 09:41:00.653787"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "subscriptions" SET "option_type" = ?, "option_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?  [["option_type", "KeywordOptions"], ["option_id", "1"], ["updated_at", "2015-12-07 09:41:00.655252"], ["id", 1]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mProduct Load (0.1ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.3ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 2) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "subscriptions" ("organisation_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["organisation_id", 1], ["product_id", 2], ["created_at", "2015-12-07 09:41:00.680388"], ["updated_at", "2015-12-07 09:41:00.680388"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.1ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 2 AND "subscriptions"."product_id" = 2) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "clearcart_options" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-12-07 09:41:00.688450"], ["updated_at", "2015-12-07 09:41:00.688450"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "subscriptions" SET "option_type" = ?, "option_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?  [["option_type", "ClearcartOptions"], ["option_id", "1"], ["updated_at", "2015-12-07 09:41:00.689661"], ["id", 2]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mProduct Load (0.1ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.1ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 3) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "subscriptions" ("organisation_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["organisation_id", 1], ["product_id", 3], ["created_at", "2015-12-07 09:41:00.708037"], ["updated_at", "2015-12-07 09:41:00.708037"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.2ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organisation_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 3 AND "subscriptions"."product_id" = 3) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "safetext_options" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2015-12-07 09:41:00.712708"], ["updated_at", "2015-12-07 09:41:00.712708"]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "subscriptions" SET "option_type" = ?, "option_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?  [["option_type", "SafetextOptions"], ["option_id", "1"], ["updated_at", "2015-12-07 09:41:00.716396"], ["id", 3]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 119ms (Views: 3.4ms | ActiveRecord: 16.6ms)

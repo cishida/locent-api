@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20151207085210) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
+    t.datetime "deleted_at"
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
