@@ -1,4 +1,4 @@
-class SafetextOptions < ActiveRecord::Base
+class SafetextOptions < ParanoidModel
   acts_as_paranoid
   has_one  :subscription, as: :option, dependent: :destroy
 

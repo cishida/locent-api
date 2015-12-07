@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Product < ParanoidModel
   acts_as_paranoid
 
   validates_presence_of :name

@@ -7111,3 +7111,36 @@ Processing by Dashboard::V1::SubscriptionsController#create as JSON
   [1m[35mSQL (0.2ms)[0m  UPDATE "subscriptions" SET "option_type" = ?, "option_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?  [["option_type", "SafetextOptions"], ["option_id", "1"], ["updated_at", "2015-12-07 09:41:00.716396"], ["id", 3]]
   [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
 Completed 201 Created in 119ms (Views: 3.4ms | ActiveRecord: 16.6ms)
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-07 10:54:26 +0100
+
+NameError (uninitialized constant ParanoidModel):
+  app/models/user.rb:1:in `<top (required)>'
+  config/routes.rb:9:in `block (3 levels) in <top (required)>'
+  config/routes.rb:8:in `block (2 levels) in <top (required)>'
+  config/routes.rb:7:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (47.0ms)
+
+
+Started POST "/dashboard/organisations" for ::1 at 2015-12-07 10:55:42 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::OrganisationsController#create as JSON
+  Parameters: {"organisation_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Unpermitted parameters: password, first_name, last_name, format
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.1ms)
+
+ActiveRecord::StatementInvalid (Could not find table 'paranoid_models'):
+  app/controllers/dashboard/v1/organisations_controller.rb:14:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.4ms)

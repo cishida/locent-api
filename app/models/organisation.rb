@@ -1,4 +1,4 @@
-class Organisation < ActiveRecord::Base
+class Organisation < ParanoidModel
   acts_as_paranoid
 
   has_many :users, dependent: :destroy
