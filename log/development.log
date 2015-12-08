@@ -576,3 +576,1061 @@ Started GET "/dashboard/products" for ::1 at 2015-12-08 17:30:58 +0100
 Processing by Dashboard::V1::ProductsController#index as JSON
   [1m[36mProduct Load (0.2ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL[0m
 Completed 200 OK in 17ms (Views: 5.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/dashboard/subscriptions1" for ::1 at 2015-12-08 17:39:48 +0100
+
+ActionController::RoutingError (No route matches [POST] "/dashboard/subscriptions1"):
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/timi/.rbenv/versions/2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (75.4ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 17:40:18 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 25ms (Views: 3.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 17:40:28 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007ffb70210570>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (51.4ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 17:42:50 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007ffb6f50e610>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.0ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:13:15 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `read_attribute_for_serialization' for #<Hash:0x007ffb6f19b6b8>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.7ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:28:42 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007ffb6f8eb918>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (55.0ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:29:10 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007ffb6dbaed28>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (56.1ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:29:30 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 0.7ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fd55fe1fcd0>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (65.9ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:32:15 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.3ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fd55ff66cd8>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.8ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:33:16 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.6ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 62ms (ActiveRecord: 1.2ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4da4239c0>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.7ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.9ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:33:34 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.2ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4da4a9ae8>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.2ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:34:56 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.5ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4de8b1330>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.7ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:37:22 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4da3fbd08>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (45.5ms)
+  [1m[36m (7.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (2.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateOrganizations (20151204154935)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "organizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_name" varchar, "primary_user" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151204154935"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20151204163514)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "first_name" varchar, "last_name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151204163514"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to ChangePrimaryUserToPrimaryUserId (20151205114111)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TEMPORARY TABLE "aorganizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "organizations"
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "organizations"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "organizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aorganizations"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "aorganizations"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205114111"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to AddOrganizationIdToUsers (20151205133938)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "organization_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151205133938"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to AddDeletedAtToOrganizationsAndUsers (20151206030525)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "organizations" ADD "deleted_at" datetime
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_organizations_on_deleted_at" ON "organizations" ("deleted_at")[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_users_on_deleted_at" ON "users" ("deleted_at")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206030525"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddIndexesToOrganizationsAndUsers (20151206030931)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m  CREATE  INDEX "index_users_on_organization_id" ON "users" ("organization_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_organizations_on_primary_user_id" ON "organizations" ("primary_user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206030931"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Migrating to AddAuthenticationTokenToUsers (20151206035714)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "auth_token" varchar DEFAULT ''
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_organization_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_organization_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_auth_token" ON "users" ("auth_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206035714"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddIsPrimaryToUserAndRemovePrimaryUserIdFromOrganization (20151206112033)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "aorganizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_name" varchar, "primary_user_id" integer, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organizations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organizations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_aorganizations_on_primary_user_id" ON "aorganizations" ("primary_user_id")[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_aorganizations_on_deleted_at" ON "aorganizations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "organizations"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "organizations"
+  [1m[36m (0.1ms)[0m  [1mCREATE TABLE "organizations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_name" varchar, "email" varchar, "client_key" varchar, "phone" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganizations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganizations_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_aorganizations_on_primary_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_aorganizations_on_primary_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_organizations_on_deleted_at" ON "organizations" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aorganizations"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "aorganizations"
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206112033"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to AddConfirmableToDevise (20151206134750)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206134750"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to DeleteUsers (20151206135859)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206135859"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to DeviseTokenAuthCreateUsers (20151206140817)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/timi/gigster-locent-api/db/migrate/20151206140817_devise_token_auth_create_users.rb:45)
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "provider" varchar DEFAULT 'email' NOT NULL, "uid" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "confirmation_token" varchar, "confirmed_at" datetime, "confirmation_sent_at" datetime, "unconfirmed_email" varchar, "first_name" varchar, "last_name" varchar, "email" varchar, "deleted_at" datetime, "tokens" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_uid_and_provider" ON "users" ("uid", "provider")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151206140817"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddOrganizationIdToUser (20151206164658)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "users" ADD "organization_id" integer[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "is_primary" boolean DEFAULT 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206164658"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateProducts (20151206182109)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "has_items" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206182109"]]
+  [1m[35m (1.8ms)[0m  commit transaction
+Migrating to CreateSubscriptions (20151206190416)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_id" integer, "product_id" integer, "short_code" integer, "option_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151206190416"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to CreateKeyWordOptions (20151207063309)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "keyword_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151207063309"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to AddDeletedAtToProductsSubscriptionsAndKeyWordOptions (20151207081957)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "products" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_products_on_deleted_at" ON "products" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "subscriptions" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "keyword_options" ADD "deleted_at" datetime
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_keyword_options_on_deleted_at" ON "keyword_options" ("deleted_at")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207081957"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateClearCartOptions (20151207083656)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "intial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207083656"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSafeTextOptions (20151207085210)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "safetext_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "transactional_message" text, "cancellation_message" text, "confirmation_message" text, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151207085210"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to ChangeOptionIdAndOptionTypeForSubscriptions (20151207222316)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mCREATE TEMPORARY TABLE "asubscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_id" integer, "product_id" integer, "short_code" integer, "options_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_asubscriptions_on_deleted_at" ON "asubscriptions" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "subscriptions"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "subscriptions"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_id" integer, "product_id" integer, "short_code" integer, "options_id" varchar, "option_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_asubscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_asubscriptions_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "asubscriptions"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "asubscriptions"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m  CREATE TEMPORARY TABLE "asubscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_id" integer, "product_id" integer, "short_code" integer, "options_id" varchar, "options_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "tindex_asubscriptions_on_deleted_at" ON "asubscriptions" ("deleted_at")
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "subscriptions"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "subscriptions"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "organization_id" integer, "product_id" integer, "short_code" integer, "options_id" varchar, "options_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "deleted_at" datetime) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_asubscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_asubscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_subscriptions_on_deleted_at" ON "subscriptions" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "asubscriptions"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "asubscriptions"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE TEMPORARY TABLE "aclearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "initial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "clearcart_options"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "clearcart_options"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "clearcart_options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "opt_in_message" text, "opt_in_refusal_message" text, "welcome_message" text, "initial_cart_abandonment_message" text, "follow_up_message" text, "cancellation_message" text, "confirmation_message" text, "number_of_times_to_message" integer, "time_interval_between_messages" integer, "deleted_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "aclearcart_options"[0m
+  [1m[35m (0.1ms)[0m  DROP TABLE "aclearcart_options"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151207222316"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_keyword_options_on_deleted_at' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_organizations_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_deleted_at' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_deleted_at' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_uid_and_provider' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (1.2ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Keyword' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "products" ("name", "has_items", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Keyword"], ["has_items", "t"], ["created_at", "2015-12-08 17:42:15.165635"], ["updated_at", "2015-12-08 17:42:15.165635"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Clearcart' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Clearcart"], ["created_at", "2015-12-08 17:42:15.171469"], ["updated_at", "2015-12-08 17:42:15.171469"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mProduct Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "products" WHERE ("products"."name" = 'Safetext' AND "products"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Safetext"], ["created_at", "2015-12-08 17:42:15.175263"], ["updated_at", "2015-12-08 17:42:15.175263"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/dashboard/products" for ::1 at 2015-12-08 18:42:18 +0100
+Processing by Dashboard::V1::ProductsController#index as JSON
+  [1m[35mProduct Load (0.1ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+Completed 200 OK in 16ms (Views: 5.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-08 18:42:24 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organization_name, format
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."confirmation_token" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["confirmation_token", "5e6b1e7437a6e20184b709209c094cff27395113e444ae9b46b6da2385c012ef"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("first_name", "last_name", "email", "encrypted_password", "is_primary", "tokens", "uid", "created_at", "updated_at", "confirmation_token", "confirmation_sent_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["first_name", "Timi"], ["last_name", "Ajiboye"], ["email", "timi@helloworld.ng"], ["encrypted_password", "$2a$10$YpUJX6pL0I83.uLg.zPEYer5sKGIp2GjZ6Pzi6J0TiHPuCyr6Y01i"], ["is_primary", "t"], ["tokens", "{}"], ["uid", "timi@helloworld.ng"], ["created_at", "2015-12-08 17:42:24.854857"], ["updated_at", "2015-12-08 17:42:24.854857"], ["confirmation_token", "yT3wdAsqjACxgy2JANHy"], ["confirmation_sent_at", "2015-12-08 17:42:25.083348"]]
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/devise_token_auth-0.1.36/app/views/devise/mailer/confirmation_instructions.html.erb (3.8ms)
+
+Devise::Mailer#confirmation_instructions: processed outbound mail in 278.8ms
+
+Sent mail to timi@helloworld.ng (16.2ms)
+Date: Tue, 08 Dec 2015 18:42:25 +0100
+From: test@locent.com
+Reply-To: test@locent.com
+To: timi@helloworld.ng
+Message-ID: <566716815e4f3_61093fda6f43450c764f4@Timis-MacBook-Pro.local.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+client-config: default
+
+<p>Welcome timi@helloworld.ng!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/dashboard/auth/confirmation?config=default&confirmation_token=yT3wdAsqjACxgy2JANHy">Confirm my account</a></p>
+
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mOrganization Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "organizations" WHERE ("organizations"."organization_name" = 'Helloworld.ng' AND "organizations"."deleted_at" IS NULL) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "organizations" ("organization_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["organization_name", "Helloworld.ng"], ["email", "timi@helloworld.ng"], ["created_at", "2015-12-08 17:42:25.411436"], ["updated_at", "2015-12-08 17:42:25.411436"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "organization_id" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["organization_id", 1], ["updated_at", "2015-12-08 17:42:25.413551"], ["id", 1]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Completed 201 Created in 700ms (Views: 7.0ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/dashboard/subscriptions" for ::1 at 2015-12-08 18:42:31 +0100
+Processing by Dashboard::V1::SubscriptionsController#create as JSON
+  Parameters: {"organization_id"=>"1", "product_ids"=>"1,2,3"}
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "subscriptions" ("organization_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["organization_id", 1], ["product_id", 1], ["created_at", "2015-12-08 17:42:31.966509"], ["updated_at", "2015-12-08 17:42:31.966509"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 1 AND "subscriptions"."product_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "keyword_options" ("opt_in_message", "opt_in_refusal_message", "welcome_message", "transactional_message", "confirmation_message", "cancellation_message", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to cancel opt-in."], ["opt_in_refusal_message", "You have successfully cancelled opt-in to Keyword."], ["welcome_message", "Welcome to Keyword. You can now buy items by sending us a text with only a keyword."], ["transactional_message", "You just placed an order for {ITEM}. Your order is processing and we will send you a confirmation SMS soon."], ["confirmation_message", "Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}."], ["cancellation_message", "Your order for {ITEM} has been cancelled due to {ERROR}"], ["created_at", "2015-12-08 17:42:31.980415"], ["updated_at", "2015-12-08 17:42:31.980415"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "subscriptions" SET "options_type" = ?, "options_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?[0m  [["options_type", "KeywordOptions"], ["options_id", "1"], ["updated_at", "2015-12-08 17:42:31.982242"], ["id", 1]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "subscriptions" ("organization_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["organization_id", 1], ["product_id", 2], ["created_at", "2015-12-08 17:42:32.003609"], ["updated_at", "2015-12-08 17:42:32.003609"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 2 AND "subscriptions"."product_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "clearcart_options" ("opt_in_message", "opt_in_refusal_message", "welcome_message", "initial_cart_abandonment_message", "follow_up_message", "confirmation_message", "number_of_times_to_message", "time_interval_between_messages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["opt_in_message", "Text YES to complete opt-in to Clearcart or NO to cancel opt-in."], ["opt_in_refusal_message", "You have successfully cancelled opt-in to Clearcart."], ["welcome_message", "Welcome to Clearcart. You will receive SMS notifications when there are deals on items in your cart."], ["initial_cart_abandonment_message", "The {ITEM} in your cart is now {DISCOUNT} off. Text YES to buy it now!"], ["follow_up_message", "{ITEM} is {DISCOUNT} still off and is still in your cart. Reply with YES to buy it now!"], ["confirmation_message", "Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}"], ["number_of_times_to_message", 3], ["time_interval_between_messages", 72], ["created_at", "2015-12-08 17:42:32.007626"], ["updated_at", "2015-12-08 17:42:32.007626"]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "subscriptions" SET "options_type" = ?, "options_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?[0m  [["options_type", "ClearcartOptions"], ["options_id", "1"], ["updated_at", "2015-12-08 17:42:32.010974"], ["id", 2]]
+  [1m[35m (2.5ms)[0m  commit transaction
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "subscriptions" ("organization_id", "product_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["organization_id", 1], ["product_id", 3], ["created_at", "2015-12-08 17:42:32.032374"], ["updated_at", "2015-12-08 17:42:32.032374"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" != 3 AND "subscriptions"."product_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "safetext_options" ("opt_in_message", "opt_in_refusal_message", "welcome_message", "transactional_message", "cancellation_message", "confirmation_message", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["opt_in_message", "Text YES to complete opt-in to Safetext or NO to cancel opt-in."], ["opt_in_refusal_message", "You have successfully cancelled opt-in to Safetext."], ["welcome_message", "Welcome to Safetext. You will receive an SMS to confirm every purchase that is attempted with your account"], ["transactional_message", "An {PRICE} order for {ITEM} has been placed with your account. Reply YES to confirm order or NO to cancel"], ["cancellation_message", "You have cancelled the {PRICE} order for {ITEM}"], ["confirmation_message", "Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}"], ["created_at", "2015-12-08 17:42:32.037147"], ["updated_at", "2015-12-08 17:42:32.037147"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "subscriptions" SET "options_type" = ?, "options_id" = ?, "updated_at" = ? WHERE "subscriptions"."id" = ?[0m  [["options_type", "SafetextOptions"], ["options_id", "1"], ["updated_at", "2015-12-08 17:42:32.038436"], ["id", 3]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Completed 500 Internal Server Error in 112ms (ActiveRecord: 16.1ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4db067678>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:17:in `create'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.0ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:45:22 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.2ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4d9e7c7d8>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.4ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:49:11 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.1ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `keyword_options' for #<Subscription:0x007fb4dee54c10>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.7ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.5ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:50:15 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.2ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.8ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4df999698>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.3ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 18:50:35 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.1ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 15ms (Views: 1.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/dashboard/options/1" for ::1 at 2015-12-08 19:46:27 +0100
+Processing by Dashboard::V1::OptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mKeywordOptions Load (0.4ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 23ms (Views: 3.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/dashboard/options/1" for ::1 at 2015-12-08 19:46:52 +0100
+Processing by Dashboard::V1::OptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mClearcartOptions Load (1.7ms)[0m  SELECT  "clearcart_options".* FROM "clearcart_options" WHERE "clearcart_options"."deleted_at" IS NULL AND "clearcart_options"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 52ms (Views: 2.5ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/dashboard/options/1" for ::1 at 2015-12-08 19:46:58 +0100
+Processing by Dashboard::V1::OptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSafetextOptions Load (1.2ms)[0m  [1mSELECT  "safetext_options".* FROM "safetext_options" WHERE "safetext_options"."deleted_at" IS NULL AND "safetext_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 1.4ms)
+
+SyntaxError (/Users/timi/gigster-locent-api/app/serializers/safetext_options_serializer.rb:8: syntax error, unexpected keyword_end):
+  app/serializers/safetext_options_serializer.rb:8: syntax error, unexpected keyword_end
+  app/controllers/dashboard/v1/options_controller.rb:7:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.9ms)
+
+
+Started GET "/dashboard/options/1" for ::1 at 2015-12-08 19:47:17 +0100
+Processing by Dashboard::V1::OptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSafetextOptions Load (1.1ms)[0m  SELECT  "safetext_options".* FROM "safetext_options" WHERE "safetext_options"."deleted_at" IS NULL AND "safetext_options"."id" = ? LIMIT 1  [["id", 1]]
+Completed 200 OK in 16ms (Views: 1.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 19:47:41 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 17ms (Views: 3.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 19:48:14 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.7ms)
+
+NoMethodError (undefined method `belongs_to' for SubscriptionSerializer:Class):
+  app/serializers/subscription_serializer.rb:3:in `<class:SubscriptionSerializer>'
+  app/serializers/subscription_serializer.rb:1:in `<top (required)>'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (50.7ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 19:48:28 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4df809710>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.7ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.6ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 19:48:43 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.1ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `option' for #<Subscription:0x007fb4da78a208>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.6ms)
+
+
+Started GET "/dashboard/subscriptions/1" for ::1 at 2015-12-08 19:48:48 +0100
+Processing by Dashboard::V1::SubscriptionsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `serializable_hash' for #<Hash:0x007fb4df818b48>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:21:in `show'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.3ms)
+
+
+Started GET "/dashboard/subscriptions/1/options" for ::1 at 2015-12-08 19:56:44 +0100
+Processing by Dashboard::V1::SubscriptionsController#options as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKeywordOptions Load (0.2ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 50ms (Views: 4.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/dashboard/subscriptions/1/options" for ::1 at 2015-12-08 19:57:38 +0100
+Processing by Dashboard::V1::SubscriptionsController#options as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKeywordOptions Load (0.2ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 11ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:05:42 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[35mProduct Load (1.4ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.9ms)
+
+NoMethodError (undefined method `product' for nil:NilClass):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:56:in `block in options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:55:in `options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:30:in `update_options'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.0ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:06:17 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[36mSubscription Load (0.3ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKeywordOptions Load (0.2ms)[0m  SELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProduct Load (1.2ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL[0m
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 2.8ms)
+
+NoMethodError (undefined method `snake_case' for "KeywordOptionsParams":String):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:57:in `block in options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:55:in `options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:30:in `update_options'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.1ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:08:43 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKeywordOptions Load (0.2ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProduct Load (1.4ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 75ms (ActiveRecord: 2.8ms)
+
+NoMethodError (undefined method `snake_case' for "KeywordOptionsParams":String):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:57:in `block in options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:55:in `options_params'
+  app/controllers/dashboard/v1/subscriptions_controller.rb:30:in `update_options'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.5ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:13:39 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKeywordOptions Load (0.1ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProduct Load (1.2ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: format, id
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "keyword_options" SET "opt_in_message" = ?, "updated_at" = ? WHERE "keyword_options"."id" = ?[0m  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to refuse opt-in."], ["updated_at", "2015-12-08 21:13:39.318044"], ["id", 1]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Completed 500 Internal Server Error in 102ms (ActiveRecord: 5.1ms)
+
+NoMethodError (undefined method `dashboard_keyword_option_url' for #<Dashboard::V1::SubscriptionsController:0x007fed87d62cd0>):
+  app/controllers/dashboard/v1/subscriptions_controller.rb:31:in `update_options'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (59.6ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:14:13 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKeywordOptions Load (0.2ms)[0m  SELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL[0m
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameters: format, id
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Completed 201 Created in 56ms (Views: 4.0ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:14:25 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to cancel opt-in.", "id"=>"1"}
+  [1m[36mSubscription Load (0.1ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mKeywordOptions Load (0.1ms)[0m  SELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL[0m
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 1]]
+Unpermitted parameters: format, id
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "keyword_options" SET "opt_in_message" = ?, "updated_at" = ? WHERE "keyword_options"."id" = ?  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to cancel opt-in."], ["updated_at", "2015-12-08 21:14:25.815046"], ["id", 1]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 20ms (Views: 0.9ms | ActiveRecord: 3.7ms)
+
+
+Started PUT "/dashboard/subscriptions/1/update_options" for ::1 at 2015-12-08 22:14:58 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"1"}
+  [1m[35mSubscription Load (1.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mKeywordOptions Load (0.1ms)[0m  [1mSELECT  "keyword_options".* FROM "keyword_options" WHERE "keyword_options"."deleted_at" IS NULL AND "keyword_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProduct Load (0.6ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+  [1m[36mProduct Load (0.1ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+Unpermitted parameters: format, id
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (1.3ms)[0m  [1mUPDATE "keyword_options" SET "opt_in_message" = ?, "updated_at" = ? WHERE "keyword_options"."id" = ?[0m  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to refuse opt-in."], ["updated_at", "2015-12-08 21:14:58.292817"], ["id", 1]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Completed 201 Created in 18ms (Views: 0.6ms | ActiveRecord: 4.9ms)
+
+
+Started PUT "/dashboard/subscriptions/2/update_options" for ::1 at 2015-12-08 22:15:04 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to refuse opt-in.", "id"=>"2"}
+  [1m[36mSubscription Load (0.2ms)[0m  [1mSELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mClearcartOptions Load (0.3ms)[0m  SELECT  "clearcart_options".* FROM "clearcart_options" WHERE "clearcart_options"."deleted_at" IS NULL AND "clearcart_options"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL[0m
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1  [["id", 2]]
+Unpermitted parameters: format, id
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "clearcart_options" SET "opt_in_message" = ?, "updated_at" = ? WHERE "clearcart_options"."id" = ?  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to refuse opt-in."], ["updated_at", "2015-12-08 21:15:05.002066"], ["id", 1]]
+  [1m[36m (4.3ms)[0m  [1mcommit transaction[0m
+Completed 201 Created in 41ms (Views: 3.5ms | ActiveRecord: 6.0ms)
+
+
+Started PUT "/dashboard/subscriptions/2/update_options" for ::1 at 2015-12-08 22:15:55 +0100
+Processing by Dashboard::V1::SubscriptionsController#update_options as JSON
+  Parameters: {"opt_in_message"=>"Text YES to complete opt-in to Keyword or NO to cancel opt-in.", "id"=>"2"}
+  [1m[35mSubscription Load (0.2ms)[0m  SELECT  "subscriptions".* FROM "subscriptions" WHERE "subscriptions"."deleted_at" IS NULL AND "subscriptions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mClearcartOptions Load (0.2ms)[0m  [1mSELECT  "clearcart_options".* FROM "clearcart_options" WHERE "clearcart_options"."deleted_at" IS NULL AND "clearcart_options"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mProduct Load (0.2ms)[0m  SELECT "products".* FROM "products" WHERE "products"."deleted_at" IS NULL
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 2]]
+Unpermitted parameters: format, id
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "clearcart_options" SET "opt_in_message" = ?, "updated_at" = ? WHERE "clearcart_options"."id" = ?[0m  [["opt_in_message", "Text YES to complete opt-in to Keyword or NO to cancel opt-in."], ["updated_at", "2015-12-08 21:15:55.128276"], ["id", 1]]
+  [1m[35m (3.5ms)[0m  commit transaction
+Completed 201 Created in 19ms (Views: 1.4ms | ActiveRecord: 4.9ms)

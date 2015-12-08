@@ -4,5 +4,5 @@ class SafetextOptionsSerializer < ActiveModel::Serializer
              :welcome_message,
              :transactional_message,
              :cancellation_message,
-             :confirmation_message,
+             :confirmation_message
 end
