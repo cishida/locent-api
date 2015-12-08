@@ -1,7 +1,7 @@
-class CreateOrganisations < ActiveRecord::Migration
+class CreateOrganizations < ActiveRecord::Migration
   def change
-    create_table :organisations do |t|
-      t.string :organisation_name
+    create_table :organizations do |t|
+      t.string :organization_name
       t.integer :primary_user
       t.string :email
       t.string :client_key

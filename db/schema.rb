@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20151207222316) do
 
   add_index "keyword_options", ["deleted_at"], name: "index_keyword_options_on_deleted_at"
 
-  create_table "organisations", force: :cascade do |t|
-    t.string   "organisation_name"
+  create_table "organizations", force: :cascade do |t|
+    t.string   "organization_name"
     t.string   "email"
     t.string   "client_key"
     t.string   "phone"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20151207222316) do
     t.datetime "deleted_at"
   end
 
-  add_index "organisations", ["deleted_at"], name: "index_organisations_on_deleted_at"
+  add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20151207222316) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "organisation_id"
+    t.integer  "organization_id"
     t.integer  "product_id"
     t.integer  "short_code"
     t.string   "options_id"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20151207222316) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "organisation_id"
+    t.integer  "organization_id"
     t.boolean  "is_primary",             default: false
   end
 

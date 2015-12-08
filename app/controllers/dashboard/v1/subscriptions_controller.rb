@@ -9,12 +9,16 @@ class Dashboard::V1::SubscriptionsController < ActionController::API
     product_ids.each do |product_id|
       product_name = Product.find(product_id).name.capitalize
       corresponding_options_model = create_options_with_defaults product_name
-      subscription = Subscription.create(organisation_id: params[:organisation_id], product_id: product_id)
+      subscription = Subscription.create(organization_id: params[:organization_id], product_id: product_id)
       subscription.options = corresponding_options_model
       subscription.save
       subscriptions << subscription
     end
     render json: subscriptions, status: 201
+  end
+
+  def show
+    respond_with Subscription.find(params[:id])
   end
 
 
@@ -26,7 +30,7 @@ class Dashboard::V1::SubscriptionsController < ActionController::API
   end
 
   def subscription_params
-    params.permit(:organisation_id, :product_ids)
+    params.permit(:organization_id, :product_ids)
   end
 
 end

@@ -1,4 +1,4 @@
-class Organisation < ActiveRecord::Base
+class Organization < ActiveRecord::Base
   acts_as_paranoid
 
   has_many :users, dependent: :destroy
@@ -7,8 +7,8 @@ class Organisation < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :products, through: :subscriptions, dependent: :destroy
 
-  validates_presence_of :organisation_name
-  validates_uniqueness_of :organisation_name
+  validates_presence_of :organization_name
+  validates_uniqueness_of :organization_name
 
 
 end
