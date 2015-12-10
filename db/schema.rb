@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207222316) do
+ActiveRecord::Schema.define(version: 20151210171622) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -26,7 +26,22 @@ ActiveRecord::Schema.define(version: 20151207222316) do
     t.datetime "deleted_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "opt_in_verification_url"
+    t.string   "opt_in_confirmation_url"
+    t.string   "purchase_request_url"
   end
+
+  create_table "customers", force: :cascade do |t|
+    t.integer  "organisation_id"
+    t.string   "phone"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
 
   create_table "keyword_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -35,17 +50,31 @@ ActiveRecord::Schema.define(version: 20151207222316) do
     t.text     "transactional_message"
     t.text     "cancellation_message"
     t.text     "confirmation_message"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.datetime "deleted_at"
+    t.string   "opt_in_verification_url"
+    t.string   "opt_in_confirmation_url"
+    t.string   "purchase_request_url"
   end
 
   add_index "keyword_options", ["deleted_at"], name: "index_keyword_options_on_deleted_at"
 
+  create_table "opt_ins", force: :cascade do |t|
+    t.integer  "subscription_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "completed",       default: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "opt_ins", ["deleted_at"], name: "index_opt_ins_on_deleted_at"
+
   create_table "organizations", force: :cascade do |t|
     t.string   "organization_name"
     t.string   "email"
-    t.string   "client_key"
+    t.string   "auth_token"
     t.string   "phone"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -72,8 +101,11 @@ ActiveRecord::Schema.define(version: 20151207222316) do
     t.text     "cancellation_message"
     t.text     "confirmation_message"
     t.datetime "deleted_at"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "opt_in_verification_url"
+    t.string   "opt_in_confirmation_url"
+    t.string   "purchase_request_url"
   end
 
   create_table "subscriptions", force: :cascade do |t|
