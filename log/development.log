@@ -2671,3 +2671,448 @@ client-config: default
   [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "organization_id" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["organization_id", 2], ["updated_at", "2015-12-13 09:32:04.386168"], ["id", 2]]
   [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
 Completed 201 Created in 784ms (Views: 11.1ms | ActiveRecord: 12.8ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:37:05 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:37:32 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:37:59 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of RailsParam::Param::InvalidParameterError into String):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `+'
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (86.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:38:21 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:38:45 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:39:26 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `to_model' for #<RailsParam::Param::InvalidParameterError:0x007f978e943db0>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (54.8ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:39:41 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:39:54 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Unpermitted parameters: password, first_name, last_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@devcenter.co"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Completed 200 OK in 234ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:40:35 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Devcenter", "email"=>"timi@devcenter.co", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/subscriptions" for ::1 at 2015-12-13 13:41:04 +0100
+Processing by Dashboard::V1::SubscriptionsController#create as JSON
+  Parameters: {"organization_id"=>"1", "product_ids"=>"1 2 3aa"}
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT  "products".* FROM "products" WHERE "products"."deleted_at" IS NULL AND "products"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSubscription Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSubscription Exists (0.1ms)[0m  SELECT  1 AS one FROM "subscriptions" WHERE ("subscriptions"."organization_id" = 1 AND "subscriptions"."deleted_at" IS NULL AND "subscriptions"."product_id" = 1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Completed 201 Created in 83ms (Views: 2.5ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:41:26 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:41:44 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f978eb3a3d0>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (64.5ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:41:56 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:08 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:22 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:47 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "first_name"=>"Timi", "last_name"=>"Ajiboye"}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:51 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:56 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:57 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:58 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:42:58 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:19 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:20 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:20 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:32 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:35 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:35 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:36 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:36 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:36 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:36 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:36 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye"}
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:43:48 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:44:02 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:44:10 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:44:24 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180", "first_name"=>"Timi"}
+Unpermitted parameters: password, last_name, first_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  commit transaction
+Completed 200 OK in 133ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:45:27 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180", "first_name"=>"Timi"}
+Unpermitted parameters: password, last_name, first_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 118ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:45:38 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180", "first_name"=>"Timi"}
+Unpermitted parameters: password, last_name, first_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Completed 200 OK in 101ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:45:53 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180", "first_name"=>"Timi"}
+Unpermitted parameters: password, last_name, first_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 111ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:46:00 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:47:07 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:47:16 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180", "first_name"=>"Timi"}
+Unpermitted parameters: password, last_name, first_name, format
+Unpermitted parameters: organization_name, phone, format
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."deleted_at" IS NULL AND "users"."provider" = ? AND "users"."email" = ?[0m  [["provider", "email"], ["email", "timi@helloworld.ng"]]
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Completed 422 Unprocessable Entity in 132ms (Views: 0.3ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:49:32 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:49:44 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f9790002c40>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (61.2ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:49:47 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f978e819340>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (57.1ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:50:13 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:50:26 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f978b22f658>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.4ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:50:37 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f978b471790>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.5ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.2ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (100.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:50:58 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `[]' for #<RailsParam::Param::InvalidParameterError:0x007f978e99adb8>):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.3ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (49.6ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:51:12 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 13:51:40 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+TypeError (no implicit conversion of Symbol into Integer):
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `[]'
+  app/controllers/dashboard/v1/organizations_controller.rb:6:in `block in <class:OrganizationsController>'
+
+
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/timi/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (68.3ms)
+
+
+Started POST "/dashboard/organizations" for ::1 at 2015-12-13 18:31:01 +0100
+Processing by Dashboard::V1::OrganizationsController#create as JSON
+  Parameters: {"organization_name"=>"Helloworld.ng", "email"=>"timi@helloworld.ng", "password"=>"[FILTERED]", "last_name"=>"Ajiboye", "phone"=>"08028618180"}
+Completed 422 Unprocessable Entity in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms)
