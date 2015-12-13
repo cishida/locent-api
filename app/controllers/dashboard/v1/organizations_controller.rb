@@ -1,6 +1,11 @@
 class Dashboard::V1::OrganizationsController < ActionController::API
   include ActionController::ImplicitRender
   respond_to :json
+  before_action :validate_create_params, only: :create
+  rescue_from RailsParam::Param::InvalidParameterError do |exception|
+    render json: {errors: exception.message}
+  end
+
 
   def index
     respond_with Organization.all
@@ -42,7 +47,17 @@ class Dashboard::V1::OrganizationsController < ActionController::API
     return @organization.errors.full_messages
   end
 
+
   private
+
+  def validate_create_params
+    param! :organization_name, String, required: true
+    param! :email, String, required: true
+    param! :phone, String, required: true
+    param! :first_name, String, required: true
+    param! :last_name, String, required: true
+    param! :password, String, required: true
+  end
 
   def organization_params
     params.permit(:organization_name, :email, :phone)
