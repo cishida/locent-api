@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :dashboard, defaults: {format: :json} do
     scope module: :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth'
+      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :products, only: :index
       resources :subscriptions, only: [:create, :show] do

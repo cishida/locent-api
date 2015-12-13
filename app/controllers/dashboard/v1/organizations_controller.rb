@@ -1,13 +1,9 @@
-class Dashboard::V1::OrganizationsController < ActionController::API
-  include ActionController::ImplicitRender
+class Dashboard::V1::OrganizationsController < ApplicationController
+
   respond_to :json
-  before_action :authenticate_user!, only: :update
+  before_action :authenticate_dashboard_user!, only: :update
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
-  rescue_from RailsParam::Param::InvalidParameterError do |exception|
-    render json: {errors: exception}, status: 422
-  end
-
 
   def index
     respond_with Organization.all
@@ -28,7 +24,7 @@ class Dashboard::V1::OrganizationsController < ActionController::API
   end
 
   def update
-    @organization = @user.organisation
+    @organization = current_dashboard_user.organization
     @organization.update(organization_params)
     if @organization.update(organization_params)
       render json: @organization, status: 201, location: [:dashboard, @organization]
@@ -36,6 +32,9 @@ class Dashboard::V1::OrganizationsController < ActionController::API
       render json: {errors: @organization.errors.full_messages}, status: 422
     end
   end
+
+
+  private
 
   def create_primary_user_account
     @user = @organization.build_primary_user(organization_primary_user_params)
@@ -48,9 +47,6 @@ class Dashboard::V1::OrganizationsController < ActionController::API
     end
     return @organization.errors.full_messages
   end
-
-
-  private
 
   def validate_create_params
     param! :organization_name, String, required: true

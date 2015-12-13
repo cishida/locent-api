@@ -1,4 +1,4 @@
-class Dashboard::V1::ProductsController < ActionController::API
+class Dashboard::V1::ProductsController < ApplicationController
   include ActionController::ImplicitRender
   respond_to :json
 

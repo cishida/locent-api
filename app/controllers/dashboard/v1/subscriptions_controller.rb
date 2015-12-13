@@ -1,16 +1,18 @@
-class Dashboard::V1::SubscriptionsController < ActionController::API
-  include ActionController::ImplicitRender
+class Dashboard::V1::SubscriptionsController < ApplicationController
   respond_to :json
+  before_action :authenticate_dashboard_user!
   before_action :set_subscription, only: [:show, :options, :update_options]
 
 
+
   def create
+    param! :product_ids, Array, required: true
     subscriptions = []
-    product_ids = params[:product_ids].split(",").map { |s| s.to_i }
+    product_ids = params[:product_ids]
     product_ids.each do |product_id|
       product_name = Product.find(product_id).name.capitalize
       corresponding_options_model = create_options_with_defaults product_name
-      subscription = Subscription.create(organization_id: params[:organization_id], product_id: product_id)
+      subscription = Subscription.create(organization_id: current_dashboard_user.organization.id, product_id: product_id)
       subscription.options = corresponding_options_model
       subscription.save
       subscriptions << subscription
@@ -40,6 +42,9 @@ class Dashboard::V1::SubscriptionsController < ActionController::API
   def set_subscription
     @subscription = Subscription.find(params[:id])
     @options = @subscription.options
+    unless current_dashboard_user.organization.subscriptions.exists?(@subscription)
+      render json: {errors: ["Authorized users only."]}, status: 401
+    end
   end
 
   def create_options_with_defaults product_name
@@ -48,7 +53,7 @@ class Dashboard::V1::SubscriptionsController < ActionController::API
   end
 
   def subscription_params
-    params.permit(:organization_id, :product_ids)
+    params.permit(:product_ids)
   end
 
   def options_params
