@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210171622) do
+ActiveRecord::Schema.define(version: 20151214002627) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20151210171622) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.integer  "organisation_id"
+    t.integer  "organization_id"
     t.string   "phone"
     t.string   "first_name"
     t.string   "last_name"

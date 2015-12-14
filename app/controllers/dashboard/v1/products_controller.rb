@@ -1,7 +1,4 @@
-class Dashboard::V1::ProductsController < ApplicationController
-  include ActionController::ImplicitRender
-  respond_to :json
-
+class Dashboard::V1::ProductsController < DashboardController
   def index
     respond_with Product.all
   end

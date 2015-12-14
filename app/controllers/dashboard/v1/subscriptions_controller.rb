@@ -1,5 +1,4 @@
-class Dashboard::V1::SubscriptionsController < ApplicationController
-  respond_to :json
+class Dashboard::V1::SubscriptionsController < DashboardController
   before_action :authenticate_dashboard_user!
   before_action :set_subscription, only: [:show, :options, :update_options]
 
