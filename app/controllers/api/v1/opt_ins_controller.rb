@@ -15,6 +15,8 @@ class Api::V1::OptInsController < ApiController
 
     if @opt_in.save
       render json: @opt_in, status: 201, location: [:api, @opt_in]
+      send_opt_in_verification_code
+      send_opt_in_code_prompt_to_customer
     else
       render json: {errors: @opt_in.errors.full_messages}, status: 422
     end
@@ -38,6 +40,14 @@ class Api::V1::OptInsController < ApiController
         first_name: params[:customer_first_name],
         last_name: params[:customer_last_name]
     )
+  end
+
+  def send_opt_in_verification_code
+
+  end
+
+  def send_option_code_request_to_customer
+    
   end
 
 end
