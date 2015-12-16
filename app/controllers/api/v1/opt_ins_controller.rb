@@ -15,8 +15,8 @@ class Api::V1::OptInsController < ApiController
 
     if @opt_in.save
       render json: @opt_in, status: 201, location: [:api, @opt_in]
-      send_opt_in_verification_code
-      send_opt_in_code_prompt_to_customer
+      send_back_opt_in_verification_code
+      send_opt_in_code_request_to_customer
     else
       render json: {errors: @opt_in.errors.full_messages}, status: 422
     end
@@ -42,11 +42,19 @@ class Api::V1::OptInsController < ApiController
     )
   end
 
-  def send_opt_in_verification_code
-
+  def send_back_opt_in_verification_code
+    opt_in_verification_url = @opt_in.subscription.options.opt_in_verification_url
+    RestClient.post(opt_in_verification_url, :verification_code => @opt_in.verification_code){ |response, request, result, &block|
+      case response.code
+        when 200
+          # TODO
+        else
+          # TODO
+      end
+    }
   end
 
-  def send_option_code_request_to_customer
+  def send_opt_in_code_request_to_customer
     
   end
 
