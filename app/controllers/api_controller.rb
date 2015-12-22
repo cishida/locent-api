@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  include Authenitcable
+  include Authenticable
 
 
 end

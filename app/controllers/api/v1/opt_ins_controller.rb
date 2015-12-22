@@ -22,6 +22,10 @@ class Api::V1::OptInsController < ApiController
     end
   end
 
+  def test_message
+    Resque.enqueue(MessageSender, "+16015644274", "+2348028618180", "Holla at me")
+  end
+
 
   private
 

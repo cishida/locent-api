@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215063700) do
+ActiveRecord::Schema.define(version: 20151222025346) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151215063700) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.datetime "deleted_at"
+    t.integer  "subscription_id"
   end
 
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
