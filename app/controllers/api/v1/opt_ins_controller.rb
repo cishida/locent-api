@@ -1,50 +1,86 @@
 class Api::V1::OptInsController < ApiController
 
   def create
-    param! :product_id, Integer, required: true
-    param! :customer_phone_number, String, required: true
-    param! :customer_first_name, String, required: true
-    param! :customer_last_name, String
+    validate_create_params
+    set_subscription
+    get_or_create_customers
+    create_opt_ins
+    send_back_opt_in_verification_code
+    send_opt_in_code_request_to_customer
+    head status: 201
+  end
 
-    subscription = Subscription.find(product_id: params[:product_id], organization_id: @organization.id)
-    get_or_create_customer
-
-    @opt_in = OptIn.new
-    @opt_in.subscription = subscription
-    @opt_in.customer = @customer
-
-    if @opt_in.save
-      render json: @opt_in, status: 201, location: [:api, @opt_in]
-      send_back_opt_in_verification_code
-      send_opt_in_code_request_to_customer
-    else
-      render json: {errors: @opt_in.errors.full_messages}, status: 422
-    end
+  # TODO remove this method
+  def test_message
+    Resque.enqueue(MessageSender, '+16015644274', '+2348028618180', 'Test Locent', 'Test')
+    head status: 201
   end
 
 
   private
 
-  def get_or_create_customer
-    if Customer.exists?(organization_id: @organization.id, phone: params[:customer_phone_number])
-      @customer = Customer.find(organization_id: @organization.id, phone: params[:customer_phone_number])
-    else
-      create_new_customer
+  def validate_create_params
+    param! :product_id, Integer, required: true
+    param! :customers, Array, required: true do |customer|
+      customer.param! :uid, String, required: true
+      customer.param! :phone_number, String, required: true
+      customer.param! :first_name, String
+      customer.param! :last_name, String
     end
   end
 
-  def create_new_customer
+  def set_subscription
+    @subscription = Subscription.find_by_product_id_and_organization_id(params[:product_id], @organization.id)
+  end
+
+  def get_or_create_customers
+    @customers = []
+    customers_array = params[:customers]
+    customers_array.each do |customer|
+      if Customer.exists?(organization_id: @organization.id, phone: customer[:phone_number])
+        @customer = Customer.find_by_organization_id_and_phone(@organization.id, customer[:phone_number])
+      else
+        create_new_customer(customer)
+      end
+      @customers << @customer
+    end
+  end
+
+  def create_new_customer(customer)
     @customer = Customer.create(
         organization_id: @organization.id,
-        phone: params[:customer_phone_number],
-        first_name: params[:customer_first_name],
-        last_name: params[:customer_last_name]
+        subscription_id: @subscription.id,
+        uid: customer[:uid],
+        phone: customer[:phone_number],
+        first_name: customer[:first_name],
+        last_name: customer[:last_name]
     )
   end
 
+  def create_opt_ins
+    @opt_ins = []
+    @customers.each do |customer|
+      puts "LOL"
+      opt_in = OptIn.create(subscription_id: @subscription.id, customer_id: customer.id, completed: false)
+      puts opt_in.errors.full_messages
+      @opt_ins << opt_in
+    end
+  end
+
   def send_back_opt_in_verification_code
-    opt_in_verification_url = @opt_in.subscription.options.opt_in_verification_url
-    RestClient.post(opt_in_verification_url, :verification_code => @opt_in.verification_code){ |response, request, result, &block|
+    opt_in_verification_url = @subscription.options.opt_in_verification_url
+    verification_codes_array = []
+    @customers.each do |customer|
+      customer_opt_in = OptIn.find_by_subscription_id_and_customer_id(@subscription.id, customer.id)
+
+      new_codes_hash = {
+          customer_uid: customer.uid,
+          verification_code: customer_opt_in.verification_code
+      }
+      verification_codes_array << new_codes_hash
+    end
+
+    RestClient.post(opt_in_verification_url, verification_codes_array.to_json) { |response, request, result, &block|
       case response.code
         when 200
           # TODO
@@ -55,7 +91,10 @@ class Api::V1::OptInsController < ApiController
   end
 
   def send_opt_in_code_request_to_customer
-    
+    @customers.each do |recipient|
+      Resque.enqueue(MessageSender, '+16015644274', recipient.phone, @subscription.options.opt_in_message, 'OptIn')
+    end
   end
 
 end
+

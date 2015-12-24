@@ -10,7 +10,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
     product_ids = params[:product_ids]
     product_ids.each do |product_id|
       product_name = Product.find(product_id).name.capitalize
-      corresponding_options_model = create_options_with_defaults product_name
+      corresponding_options_model = create_options_with_defaults(product_name)
       subscription = Subscription.create(organization_id: current_dashboard_user.organization.id, product_id: product_id)
       subscription.options = corresponding_options_model
       subscription.save

@@ -1,10 +1,13 @@
 class OptIn < ActiveRecord::Base
   acts_as_paranoid
   before_create :set_verification_code
-  belongs_to :subscription
-  has_one :customer
 
-  validates_presence_of :subscription_id, :customer_id, :completed
+  belongs_to :subscription
+  belongs_to :customer
+
+  validates_presence_of :subscription_id, :customer_id
+  validates_uniqueness_of :subscription_id, :scope => :customer_id
+
 
 
   private
@@ -14,6 +17,6 @@ class OptIn < ActiveRecord::Base
   end
 
   def generate_verification_code
-    SecureRandom.hex(5).upcase
+    SecureRandom.hex(3).upcase
   end
 end

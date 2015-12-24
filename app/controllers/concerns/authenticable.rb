@@ -1,4 +1,4 @@
-module Authenitcable
+module Authenticable
   extend ActiveSupport::Concern
 
   included do
@@ -17,8 +17,7 @@ module Authenitcable
   end
 
   def render_unauthorized
-    self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-    render json: 'Bad credentials', status: 401
+    head status: :unauthorized
   end
 
 end

@@ -1,6 +1,5 @@
 class DashboardController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
-  respond_to :json
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
@@ -11,6 +10,6 @@ class DashboardController < ApplicationController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
+    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :organization_id]
   end
 end
