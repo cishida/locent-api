@@ -22,6 +22,16 @@ module LucentApi
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    Dir[File.join(Rails.root, "app", "extensions", "*.rb")].each {|l| require l }
+    Dir[File.join(Rails.root, "app", "extensions", "*.rb")].each { |l| require l }
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => :any,
+                 :methods => [:get, :post, :options, :delete, :put, :patch],
+                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client']
+      end
+    end
   end
 end

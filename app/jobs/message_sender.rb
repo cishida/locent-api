@@ -1,11 +1,37 @@
 class MessageSender
+  extend Resque::Plugins::WaitingRoom
   @queue = :messaging
 
+  can_be_performed times: 1, period: 1
 
+  def self.perform from, to, body, kind
+    create_new_message from, to, body, kind
+    create_twilio_client
+    send_message
+  end
 
-  def self.perform from, to, body
-    @client = Twilio::REST::Client.new 'ACf9578d77d83865c499ff633de7206458', '1bf81b86fda92238873dba5d84fb6204'
-    @client.account.messages.create from: from, to: to, body: body
+  private
+
+  def self.create_new_message from, to, body, kind
+    @message = Message.create(
+        from: from,
+        to: to,
+        body: body,
+        kind: kind
+    )
+  end
+
+  def self.create_twilio_client
+    @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+  end
+
+  def self.send_message
+    @client.account.messages.create(
+        from: @message.from,
+        to: @message.to,
+        body: @message.body,
+        status_callback: "http://d56bdcaf.ngrok.io/status/#{@message.id}"
+    )
   end
 
 

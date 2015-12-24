@@ -14,6 +14,9 @@ gem 'rails_param'
 gem 'rest-client'
 gem 'resque'
 gem 'twilio-ruby'
+gem 'resque-waiting-room'
+gem 'rack-cors', :require => 'rack/cors'
+
 #gem 'activerecord-import'
 
 

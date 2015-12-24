@@ -3,8 +3,8 @@ class Organization < ActiveRecord::Base
   before_create :set_auth_token
   has_many :users, dependent: :destroy
   has_one  :primary_user, -> { where(is_primary: true) }, :class_name => "User"
+  has_many :products, through: :subscriptions
   has_many :subscriptions, dependent: :destroy
-  has_many :products, through: :subscriptions, dependent: :destroy
   has_many :customers
 
   validates_presence_of :organization_name

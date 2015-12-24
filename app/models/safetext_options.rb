@@ -4,7 +4,7 @@ class SafetextOptions < ActiveRecord::Base
 
   def self.defaults
     default_hash = {
-        opt_in_message: 'Text YES to complete opt-in to Safetext or NO to cancel opt-in.',
+        opt_in_message: 'Text your confirmation code to complete opt-in to Safetext or text NO to cancel.',
         opt_in_refusal_message: 'You have successfully cancelled opt-in to Safetext.',
         welcome_message: 'Welcome to Safetext. You will receive an SMS to confirm every purchase that is attempted with your account',
         transactional_message: 'An {PRICE} order for {ITEM} has been placed with your account. Reply YES to confirm order or NO to cancel',
