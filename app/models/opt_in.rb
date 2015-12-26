@@ -4,6 +4,8 @@ class OptIn < ActiveRecord::Base
 
   belongs_to :subscription
   belongs_to :customer
+  has_many  :messages, as: :purpose, dependent: :destroy
+
 
   validates_presence_of :subscription_id, :customer_id
   validates_uniqueness_of :subscription_id, :scope => :customer_id

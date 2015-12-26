@@ -68,19 +68,24 @@ class Api::V1::OptInsController < ApiController
   end
 
   def send_back_opt_in_verification_code
-    opt_in_verification_url = @subscription.options.opt_in_verification_url
-    verification_codes_array = []
-    @customers.each do |customer|
-      customer_opt_in = OptIn.find_by_subscription_id_and_customer_id(@subscription.id, customer.id)
+    construct_verification_codes_array
+    post_array_to_custom_webhook_url
+  end
 
+  def construct_verification_codes_array
+    @verification_codes_array = []
+    @opt_ins.each do |opt_in|
       new_codes_hash = {
-          customer_uid: customer.uid,
-          verification_code: customer_opt_in.verification_code
+          customer_uid: opt_in.customer.uid,
+          verification_code: opt_in.verification_code
       }
-      verification_codes_array << new_codes_hash
+      @verification_codes_array << new_codes_hash
     end
+  end
 
-    RestClient.post(opt_in_verification_url, verification_codes_array.to_json) { |response, request, result, &block|
+  def post_array_to_custom_webhook_url
+    opt_in_verification_url = @subscription.options.opt_in_verification_url
+    RestClient.post(opt_in_verification_url, @verification_codes_array.to_json) { |response, request, result, &block|
       case response.code
         when 200
           # TODO
@@ -91,8 +96,8 @@ class Api::V1::OptInsController < ApiController
   end
 
   def send_opt_in_code_request_to_customer
-    @customers.each do |recipient|
-      Resque.enqueue(MessageSender, '+16015644274', recipient.phone, @subscription.options.opt_in_message, 'OptIn')
+    @opt_ins.each do |opt_in|
+      Resque.enqueue(MessageSender, '+16015644274', opt_in.customer.phone, @subscription.options.opt_in_message, opt_in.to_descriptor_hash)
     end
   end
 
