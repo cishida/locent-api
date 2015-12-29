@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 gem 'rails-api'
-gem 'spring', :group => :development
-gem 'sqlite3'
+gem 'spring', group: :development
+gem 'sqlite3', group: :development
 gem 'devise'
 gem 'devise_token_auth'
 gem 'responders'
@@ -32,6 +32,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
