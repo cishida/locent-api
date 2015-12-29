@@ -9,11 +9,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     scope module: :v1 do
-      resources :opt_ins, only: [:create] do
-        collection do
-          get 'test_message'
-        end
-      end
+      resources :opt_ins, only: [:create]
+      resources :safetexts, only: [:create]
     end
   end
 

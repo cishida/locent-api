@@ -10,13 +10,6 @@ class Api::V1::OptInsController < ApiController
     head status: 201
   end
 
-  # TODO remove this method
-  def test_message
-    Resque.enqueue(MessageSender, '+16015644274', '+2348028618180', 'Test Locent', 'Test')
-    head status: 201
-  end
-
-
   private
 
   def validate_create_params
@@ -49,7 +42,6 @@ class Api::V1::OptInsController < ApiController
   def create_new_customer(customer)
     @customer = Customer.create(
         organization_id: @organization.id,
-        subscription_id: @subscription.id,
         uid: customer[:uid],
         phone: customer[:phone_number],
         first_name: customer[:first_name],
@@ -60,8 +52,12 @@ class Api::V1::OptInsController < ApiController
   def create_opt_ins
     @opt_ins = []
     @customers.each do |customer|
-      puts "LOL"
-      opt_in = OptIn.create(subscription_id: @subscription.id, customer_id: customer.id, completed: false)
+      opt_in = OptIn.create(
+          subscription_id: @subscription.id,
+          customer_id: customer.id,
+          product_id: @subscription.product_id,
+          completed: false
+      )
       puts opt_in.errors.full_messages
       @opt_ins << opt_in
     end
@@ -97,6 +93,7 @@ class Api::V1::OptInsController < ApiController
 
   def send_opt_in_code_request_to_customer
     @opt_ins.each do |opt_in|
+      puts opt_in.id
       Resque.enqueue(MessageSender, '+16015644274', opt_in.customer.phone, @subscription.options.opt_in_message, opt_in.to_descriptor_hash)
     end
   end

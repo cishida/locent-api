@@ -6,4 +6,5 @@ class Product < ActiveRecord::Base
 
   has_many :organizations, through: :subscriptions
   has_many :subscriptions, dependent: :destroy
+  has_many :opt_ins, dependent: :destroy
 end
