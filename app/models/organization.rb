@@ -1,5 +1,6 @@
 class Organization < ActiveRecord::Base
   acts_as_paranoid
+
   before_create :set_auth_token
   has_many :users, dependent: :destroy
   has_one  :primary_user, -> { where(is_primary: true) }, :class_name => "User"

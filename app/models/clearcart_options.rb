@@ -2,9 +2,6 @@ class ClearcartOptions < ActiveRecord::Base
   acts_as_paranoid
   has_one  :subscription, as: :options, dependent: :destroy
 
-
-
-
   def self.defaults
     default_hash = {
         opt_in_message: 'Text your confirmation code to complete opt-in to Clearcart or text NO to cancel.',
