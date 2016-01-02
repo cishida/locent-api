@@ -9,6 +9,10 @@ class Api::V1::SafetextsController < ApiController
     head status: 201
   end
 
+  def order_status
+
+  end
+
   private
 
   def create_new_safetext

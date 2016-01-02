@@ -1,5 +1,5 @@
 class Dashboard::V1::SubscriptionsController < DashboardController
-  before_action :authenticate_dashboard_user!
+  before_action :authenticate_user!
   before_action :set_subscription, only: [:show, :options, :update_options]
 
 
@@ -11,7 +11,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
     product_ids.each do |product_id|
       product_name = Product.find(product_id).name.capitalize
       corresponding_options_model = create_options_with_defaults(product_name)
-      subscription = Subscription.create(organization_id: current_dashboard_user.organization.id, product_id: product_id)
+      subscription = Subscription.create(organization_id: current_user.organization.id, product_id: product_id)
       subscription.options = corresponding_options_model
       subscription.save
       subscriptions << subscription
@@ -41,7 +41,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
   def set_subscription
     @subscription = Subscription.find(params[:id])
     @options = @subscription.options
-    unless current_dashboard_user.organization.subscriptions.exists?(@subscription)
+    unless current_user.organization.subscriptions.exists?(@subscription)
       render json: {errors: ["Authorized users only."]}, status: 401
     end
   end

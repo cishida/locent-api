@@ -1,5 +1,5 @@
 class Dashboard::V1::OrganizationsController < DashboardController
-  before_action :authenticate_dashboard_user!, only: :update
+  before_action :authenticate_user!, only: :update
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
@@ -22,7 +22,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def update
-    @organization = current_dashboard_user.organization
+    @organization = current_user.organization
     @organization.update(organization_params)
     if @organization.update(organization_params)
       render json: @organization, status: 201, location: [:dashboard, @organization]
