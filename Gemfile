@@ -11,10 +11,11 @@ gem 'paranoia', '~> 2.0'
 gem 'active_model_serializers', '~> 0.8.0'
 gem 'rails_param'
 gem 'rest-client'
-gem 'resque'
 gem 'twilio-ruby'
 gem 'resque-waiting-room'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'resque', "~> 1.22.0"
+
 
 group :development, :test do
   gem 'spring'
