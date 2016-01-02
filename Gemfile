@@ -15,7 +15,7 @@ gem 'twilio-ruby'
 gem 'resque-waiting-room'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'resque', "~> 1.22.0"
-
+gem 'redis'
 
 group :development, :test do
   gem 'spring'
