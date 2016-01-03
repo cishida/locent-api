@@ -37,9 +37,9 @@ class Api::V1::SafetextController < ApiController
   end
 
   def validate_create_params
-    param! :customer_uid, String
+    param! :customer_uid, String, required: true
     param! :customer_phone_number, String, required: true
-    param! :order_uid, String
+    param! :order_uid, String, required: true
     param! :item_price, BigDecimal, required: true
     param! :item_name, String, required: true
   end
