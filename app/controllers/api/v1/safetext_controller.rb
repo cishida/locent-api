@@ -1,4 +1,4 @@
-class Api::V1::SafetextsController < ApiController
+class Api::V1::SafetextController < ApiController
 
   def create
     validate_create_params
