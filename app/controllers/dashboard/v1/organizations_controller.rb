@@ -13,7 +13,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def create
     @organization = Organization.new(organization_params)
-    if create_primary_user_account && @organization.save
+    if @organization.save && create_primary_user_account
       render json: @organization, status: 201, location: [:dashboard, @organization]
     else
       render json: {errors: combined_errors}, status: 422
