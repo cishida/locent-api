@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 gem 'rails-api'
 
-gem 'devise'
 gem 'devise_token_auth'
 gem 'responders'
 gem 'paranoia', '~> 2.0'
