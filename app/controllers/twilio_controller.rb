@@ -59,9 +59,9 @@ class TwilioController < ApplicationController
     if customer_intends_to_complete_opt_in?
       @opt_in.completed = true
       @opt_in.save
-      send_welcome_message
+      send_opt_in_welcome_message
     elsif customer_intends_to_cancel_opt_in?
-      send_cancellation_message
+      send_opt_in_cancellation_message
       @opt_in.destroy
     end
   end
@@ -72,11 +72,11 @@ class TwilioController < ApplicationController
     if customer_intends_to_confirm_payment?
       @safetext.confirmed = true
       @safetext.save
-    elsif customer_intends_to_cancel_payment?
-      send_safetext_cancellation_message
-      @safetext.destroy
+    # elsif customer_intends_to_cancel_payment?
+    #   send_safetext_cancellation_message
+    #   @safetext.destroy
     end
-    notify_of_confirmation_or_cancellation
+    notify_organization_of_customer_intent
   end
 
   def set_opt_in
@@ -116,22 +116,17 @@ class TwilioController < ApplicationController
     customer_intends_to_cancel_opt_in?
   end
 
-  def send_welcome_message
+  def send_opt_in_welcome_message
     message_body = @opt_in.subscription.options.welcome_message
     Resque.enqueue(MessageSender, '+16015644274', @customer.phone, message_body, @opt_in.to_descriptor_hash)
   end
 
-  def send_cancellation_message
+  def send_opt_in_cancellation_message
     message_body = @opt_in.subscription.options.opt_in_refusal_message
     Resque.enqueue(MessageSender, '+16015644274', @customer.phone, message_body, @opt_in.to_descriptor_hash)
   end
 
-  def send_safetext_cancellation_message
-    redact_cancellation_message
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, @cancellation_message, @safetext.to_descriptor_hash)
-  end
-
-  def notify_of_confirmation_or_cancellation
+  def notify_organization_of_customer_intent
     purchase_request_url = @opt_in.subscription.options.purchase_request_url
     puts purchase_request_url
     construct_safetext_post_params
@@ -169,13 +164,6 @@ class TwilioController < ApplicationController
             organization_id: @customer.organization_id
         }
     ).first
-  end
-
-  def redact_cancellation_message
-    cancellation_message = @opt_in.subscription.options.cancellation_message
-    cancellation_message.gsub!("{ITEM}", @safetext.item_name)
-    cancellation_message.gsub!("{PRICE}", "$" + @safetext.item_price.to_s)
-    @cancellation_message = cancellation_message
   end
 
 end

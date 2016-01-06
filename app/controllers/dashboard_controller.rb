@@ -7,6 +7,10 @@ class DashboardController < ApplicationController
     render json: {errors: exception}, status: 422
   end
 
+  def default_serializer_options
+    {root: false}
+  end
+
   protected
 
   def configure_permitted_parameters
