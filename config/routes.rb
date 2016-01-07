@@ -20,9 +20,13 @@ Rails.application.routes.draw do
   namespace :dashboard, defaults: {format: :json} do
     scope module: :v1 do
       resources :organizations, only: [:show, :create, :index, :update, :destroy] do
-
       end
       resources :products, only: :index
+      resources :safetext, except: [:all] do
+        collection do
+          get "customers"
+        end
+      end
       resources :subscriptions, only: [:create, :show] do
         member do
           get :options
