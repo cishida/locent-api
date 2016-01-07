@@ -19,12 +19,11 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: '/dashboard/auth', skip: [:omniauth_callbacks]
   namespace :dashboard, defaults: {format: :json} do
     scope module: :v1 do
-      resources :organizations, only: [:show, :create, :index, :update, :destroy] do
-      end
+      resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :products, only: :index
       resources :safetext do
         collection do
-          get "customers"
+          get :customers
         end
       end
       resources :subscriptions, only: [:create, :show] do
