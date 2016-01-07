@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [:show, :create, :index, :update, :destroy] do
       end
       resources :products, only: :index
-      resources :safetext, except: [:all] do
+      resources :safetext do
         collection do
           get "customers"
         end
