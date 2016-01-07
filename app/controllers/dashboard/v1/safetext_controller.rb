@@ -1,4 +1,4 @@
-class Dashboard::V1::Safetext < DashboardController
+class Dashboard::V1::SafetextController < DashboardController
   before_action :set_organization
 
   def customers
