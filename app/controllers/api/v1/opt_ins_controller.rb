@@ -13,7 +13,7 @@ class Api::V1::OptInsController < ApiController
   private
 
   def validate_create_params
-    param! :product_id, Integer, required: true
+    param! :feature_id, Integer, required: true
     param! :customers, Array, required: true do |customer|
       customer.param! :uid, String, required: true
       customer.param! :phone_number, String, required: true
@@ -23,7 +23,7 @@ class Api::V1::OptInsController < ApiController
   end
 
   def set_subscription
-    @subscription = Subscription.find_by_product_id_and_organization_id(params[:product_id], @organization.id)
+    @subscription = Subscription.find_by_feature_id_and_organization_id(params[:feature_id], @organization.id)
   end
 
   def get_or_create_customers
@@ -55,7 +55,7 @@ class Api::V1::OptInsController < ApiController
       opt_in = OptIn.create(
           subscription_id: @subscription.id,
           customer_id: customer.id,
-          product_id: @subscription.product_id,
+          feature_id: @subscription.feature_id,
           completed: false
       )
       puts opt_in.errors.full_messages

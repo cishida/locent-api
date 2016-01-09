@@ -5,13 +5,13 @@ class Dashboard::V1::SubscriptionsController < DashboardController
 
 
   def create
-    param! :product_ids, Array, required: true
+    param! :feature_ids, Array, required: true
     subscriptions = []
-    product_ids = params[:product_ids]
-    product_ids.each do |product_id|
-      product_name = Product.find(product_id).name.capitalize
-      corresponding_options_model = create_options_with_defaults(product_name)
-      subscription = Subscription.create(organization_id: current_user.organization.id, product_id: product_id)
+    feature_ids = params[:feature_ids]
+    feature_ids.each do |feature_id|
+      feature_name = Feature.find(feature_id).name.capitalize
+      corresponding_options_model = create_options_with_defaults(feature_name)
+      subscription = Subscription.create(organization_id: current_user.organization.id, feature_id: feature_id)
       subscription.options = corresponding_options_model
       subscription.save
       subscriptions << subscription
@@ -46,19 +46,19 @@ class Dashboard::V1::SubscriptionsController < DashboardController
     end
   end
 
-  def create_options_with_defaults product_name
-    options_class = (product_name + "Options").constantize
+  def create_options_with_defaults feature_name
+    options_class = (feature_name + "Options").constantize
     options_class.new(options_class.defaults)
   end
 
   def subscription_params
-    params.permit(:product_ids)
+    params.permit(:feature_ids)
   end
 
   def options_params
-    Product.all.each do |product|
-      if @subscription.product == product
-        options_params_method_string = (product.name.capitalize + "OptionsParams").snake_case
+    Feature.all.each do |feature|
+      if @subscription.feature == feature
+        options_params_method_string = (feature.name.capitalize + "OptionsParams").snake_case
         return self.send(options_params_method_string)
       end
     end

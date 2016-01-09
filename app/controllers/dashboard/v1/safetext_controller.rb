@@ -15,7 +15,7 @@ class Dashboard::V1::SafetextController < DashboardController
 
   def set_organization
     @organization = current_user.organization
-    @subscription = Subscription.find_by_organization_id_and_product_id(@organization.id, 3)
+    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
   end
 
 

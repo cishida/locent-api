@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103233032) do
+ActiveRecord::Schema.define(version: 20160109174105) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20160103233032) do
 
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
   add_index "customers", ["uid"], name: "index_customers_on_uid", unique: true
+
+  create_table "features", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "has_items",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "features", ["deleted_at"], name: "index_features_on_deleted_at"
 
   create_table "keyword_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -86,7 +96,7 @@ ActiveRecord::Schema.define(version: 20160103233032) do
     t.boolean  "completed",         default: false
     t.datetime "deleted_at"
     t.string   "verification_code"
-    t.integer  "product_id"
+    t.integer  "feature_id"
   end
 
   add_index "opt_ins", ["deleted_at"], name: "index_opt_ins_on_deleted_at"
@@ -102,16 +112,6 @@ ActiveRecord::Schema.define(version: 20160103233032) do
   end
 
   add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at"
-
-  create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "has_items",  default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.datetime "deleted_at"
-  end
-
-  add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
 
   create_table "safetext_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20160103233032) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "organization_id"
-    t.integer  "product_id"
+    t.integer  "feature_id"
     t.integer  "short_code"
     t.string   "options_id"
     t.string   "options_type"

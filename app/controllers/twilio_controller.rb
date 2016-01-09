@@ -158,7 +158,7 @@ class TwilioController < ApplicationController
   def get_safetext_opt_in
     @opt_in = OptIn.joins(:subscription).where(
         customer_id: @customer.id,
-        product_id: 3,
+        feature_id: 3,
         completed: true,
         subscriptions: {
             organization_id: @customer.organization_id

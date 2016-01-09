@@ -4,7 +4,7 @@ class OptIn < ActiveRecord::Base
 
   belongs_to :subscription
   belongs_to :customer
-  belongs_to :product
+  belongs_to :feature
   has_one :safetext
   has_many  :messages, as: :purpose, dependent: :destroy
 

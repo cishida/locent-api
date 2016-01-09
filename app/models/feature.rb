@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Feature < ActiveRecord::Base
   acts_as_paranoid
 
   validates_presence_of :name
