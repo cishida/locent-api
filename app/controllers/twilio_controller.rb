@@ -150,7 +150,7 @@ class TwilioController < ApplicationController
   def get_appropriate_status_string
     if @safetext.confirmed
       return "confirmed"
-    else
+    elsif !@safetext.confirmed && customer_intends_to_cancel_payment?
       return "cancelled"
     end
   end
