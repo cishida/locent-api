@@ -2,9 +2,9 @@ class Dashboard::V1::DashboardSafetextController < DashboardController
   before_action :set_organization
 
   def customers
-    @customers = Customer.joins(:opt_in).where(
+    a = Customer.joins(:opt_ins).where(
         opt_ins: {
-            subscription_id: @subscription.id
+            subscription_id: 3
         }
     )
     respond_with @customers
