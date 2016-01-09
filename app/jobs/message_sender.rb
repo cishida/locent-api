@@ -32,7 +32,7 @@ class MessageSender
         from: @message.from,
         to: @message.to,
         body: @message.body,
-        status_callback: "http://84454f90.ngrok.io/status/#{@message.id}"
+        status_callback: "http://locent-api.heroku.com/status/#{@message.id}"
     )
   end
 
