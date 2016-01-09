@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :products, only: :index
-      resources :dashboard_safetext do
+      resources :safetext do
         collection do
           get :customers
         end
