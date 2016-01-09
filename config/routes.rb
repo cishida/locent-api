@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
       resources :safetext, only: [:create] do
-        post :order_status
+        collection do
+          post :order_status
+        end
       end
     end
   end
