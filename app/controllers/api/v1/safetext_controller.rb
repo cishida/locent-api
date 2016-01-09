@@ -39,7 +39,7 @@ class Api::V1::SafetextController < ApiController
 
   def validate_order_status_params
     param! :order_uid, String, required: true
-    param! :order_success, Boolean, required: true
+    param! :order_success, :boolean, required: true
   end
 
   def send_initial_safetext_message
