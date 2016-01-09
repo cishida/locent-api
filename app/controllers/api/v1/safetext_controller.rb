@@ -72,9 +72,9 @@ class Api::V1::SafetextController < ApiController
 
   def find_and_set_customer
     if !params[:customer_uid].blank?
-      @customer = Customer.find_by_subscription_id_and_uid(@subscription.id, params[:customer_uid])
+      @customer = Customer.find_by_organization_id_and_uid(@subscription.organization.id, params[:customer_uid])
     else
-      @customer = Customer.find_by_subscription_id_and_phone(@subscription.id, params[:phone])
+      @customer = Customer.find_by_organization_id_and_phone(@subscription.organization.id, params[:phone])
     end
     handle_inexistent_customer
   end
