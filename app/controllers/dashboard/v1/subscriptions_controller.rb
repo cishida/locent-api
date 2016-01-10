@@ -71,6 +71,9 @@ class Dashboard::V1::SubscriptionsController < DashboardController
   def safetext_options_params
     params.permit(:opt_in_message,
                   :opt_in_refusal_message,
+                  :opt_in_confirmation_url,
+                  :opt_in_verification_url,
+                  :purchase_request_url,
                   :welcome_message,
                   :transactional_message,
                   :cancellation_message,
