@@ -1,5 +1,5 @@
 class Dashboard::V1::CustomersController < DashboardController
-  def index
+  def show
     param! :feature, String, required: true
 
     @organization = current_user.organization

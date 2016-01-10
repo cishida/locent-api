@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :features, only: :index
       resources :safetext
-      resources :customers, param: :feature
+      resources :customers, only: :show, param: :feature
       resources :subscriptions, only: [:create, :show] do
         member do
           get :options
