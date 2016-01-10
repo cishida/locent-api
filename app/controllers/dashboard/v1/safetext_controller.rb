@@ -1,4 +1,5 @@
 class Dashboard::V1::SafetextController < DashboardController
+  before_action :authenticate_user!
   before_action :set_organization
 
   def customers
