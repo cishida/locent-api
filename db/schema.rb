@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109174105) do
+ActiveRecord::Schema.define(version: 20160109190401) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20160109174105) do
 
   create_table "features", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "has_items",  default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "has_products", default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.datetime "deleted_at"
   end
 
