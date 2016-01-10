@@ -1,5 +1,4 @@
 class Dashboard::V1::OrganizationsController < DashboardController
-  before_action :authenticate_user!, only: :update
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 

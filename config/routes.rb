@@ -23,11 +23,8 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :features, only: :index
-      resources :safetext do
-        collection do
-          get :customers
-        end
-      end
+      resources :safetext
+      resources :customers, param: :feature
       resources :subscriptions, only: [:create, :show] do
         member do
           get :options

@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :authenticate_user!
 
   rescue_from RailsParam::Param::InvalidParameterError do |exception|
     render json: {errors: exception}, status: 422

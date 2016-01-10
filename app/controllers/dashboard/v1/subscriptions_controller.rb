@@ -1,5 +1,4 @@
 class Dashboard::V1::SubscriptionsController < DashboardController
-  before_action :authenticate_user!
   before_action :set_variables, only: [:show, :options, :update_options]
 
 
