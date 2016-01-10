@@ -37,7 +37,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
 
   private
 
-  def set_subscription
+  def set_variables
     @subscription = Subscription.find(params[:id])
     @options = @subscription.options
     unless current_user.organization.subscriptions.exists?(@subscription)
