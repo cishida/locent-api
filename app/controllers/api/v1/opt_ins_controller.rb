@@ -58,7 +58,6 @@ class Api::V1::OptInsController < ApiController
           feature_id: @subscription.feature_id,
           completed: false
       )
-      puts opt_in.errors.full_messages
       @opt_ins << opt_in
     end
   end

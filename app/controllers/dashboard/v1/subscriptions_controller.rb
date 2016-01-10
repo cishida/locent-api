@@ -1,6 +1,6 @@
 class Dashboard::V1::SubscriptionsController < DashboardController
   before_action :authenticate_user!
-  before_action :set_subscription, only: [:show, :options, :update_options]
+  before_action :set_variables, only: [:show, :options, :update_options]
 
 
 
@@ -34,7 +34,6 @@ class Dashboard::V1::SubscriptionsController < DashboardController
       render json: {errors: @options.errors.full_messages}, status: 422
     end
   end
-
 
   private
 

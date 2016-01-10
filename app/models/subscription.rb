@@ -6,8 +6,11 @@ class Subscription < ActiveRecord::Base
   belongs_to :options, polymorphic: :true, dependent: :destroy
   has_many :opt_ins, dependent: :destroy
   has_many :customers, through: :opt_ins, dependent: :destroy
+  has_many :products
 
 
   validates_presence_of :organization_id, :feature_id
   validates_uniqueness_of :organization_id, :scope => :feature_id
+
+  scope :if_feature_has_products, -> {where(feature: {has_products: true})}
 end

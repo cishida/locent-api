@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109190401) do
+ActiveRecord::Schema.define(version: 20160110025228) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 20160109190401) do
 
   add_index "keyword_options", ["deleted_at"], name: "index_keyword_options_on_deleted_at"
 
+  create_table "keyword_products", force: :cascade do |t|
+    t.string   "product_name"
+    t.string   "product_uid"
+    t.integer  "subscription_id"
+    t.string   "keyword"
+    t.decimal  "price"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string   "sid"
     t.string   "status"
@@ -112,6 +122,16 @@ ActiveRecord::Schema.define(version: 20160109190401) do
   end
 
   add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "uid",             null: false
+    t.string   "name"
+    t.integer  "subscription_id"
+    t.string   "keyword"
+    t.decimal  "price"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "safetext_options", force: :cascade do |t|
     t.text     "opt_in_message"

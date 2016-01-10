@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  has_items: false
+  product_name: MyString
+  product_uid: MyString
+  subscription_id: 1
+  keyword: MyString
+  price: 9.99
 
 two:
-  name: MyString
-  has_items: false
+  product_name: MyString
+  product_uid: MyString
+  subscription_id: 1
+  keyword: MyString
+  price: 9.99

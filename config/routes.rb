@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           put :update_options
         end
       end
+      resources :products, only: [:create, :show], param: :feature
     end
   end
 
