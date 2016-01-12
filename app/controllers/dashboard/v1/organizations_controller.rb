@@ -72,7 +72,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def provision_number_for_organization
     @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
-    numbers = @client.available_phone_numbers.get('US').list()
+    numbers = @client.available_phone_numbers.get('US').mobile.list()
     @number = numbers[0].purchase()
     @number.update(
         sms_url: "http://locent-api.herokuapp.com/receive",
