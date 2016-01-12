@@ -13,6 +13,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def create
     @organization = Organization.new(organization_params)
+    provision_number_for_organization
     if @organization.save && create_primary_user_account
       render json: @organization, status: 201, location: [:dashboard, @organization]
     else
@@ -67,6 +68,17 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def organization_primary_user_params
     params.permit(:first_name, :last_name, :email, :password)
+  end
+
+  def provision_number_for_organization
+    @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    numbers = @client.available_phone_numbers.get('US').list()
+    @number = numbers[0].purchase()
+    @number.update(
+        sms_url: "http://locent-api.herokuapp.com/receive",
+        sms_method: "POST"
+    )
+    @organization.long_number = @number.to_s
   end
 
 end
