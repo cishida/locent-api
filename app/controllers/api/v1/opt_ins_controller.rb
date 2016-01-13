@@ -1,13 +1,15 @@
 class Api::V1::OptInsController < ApiController
 
   def create
-    validate_create_params
-    set_subscription
-    get_or_create_customers
-    create_opt_ins
-    send_back_opt_in_verification_code
-    send_opt_in_code_request_to_customer
-    head status: 201
+    ActiveRecord::Base.transaction do
+      validate_create_params
+      set_subscription
+      get_or_create_customers
+      create_opt_ins
+      send_back_opt_in_verification_code
+      send_opt_in_code_request_to_customer
+      head status: 201
+    end
   end
 
   private

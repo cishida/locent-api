@@ -1,12 +1,14 @@
 class Api::V1::SafetextController < ApiController
 
   def create
-    validate_create_params
-    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
-    find_and_set_opt_in
-    create_new_safetext
-    send_initial_safetext_message
-    head status: 201
+    ActiveRecord::Base.transaction do
+      validate_create_params
+      @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
+      find_and_set_opt_in
+      create_new_safetext
+      send_initial_safetext_message
+      head status: 201
+    end
   end
 
   def order_status

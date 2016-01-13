@@ -12,19 +12,18 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def create
-    @organization = Organization.new(organization_params)
-    provision_number_for_organization
-    if @organization.save && create_primary_user_account
-      render json: @organization, status: 201, location: [:dashboard, @organization]
-    else
-      render json: {errors: combined_errors}, status: 422
-      @user.really_destroy!
-    end
+      @organization = Organization.new(organization_params)
+      provision_number_for_organization
+      if  @organization.save && create_primary_user_account
+        render json: @organization, status: 201, location: [:dashboard, @organization]
+      else
+        render json: {errors: combined_errors}, status: 422
+        @user.really_destroy!
+      end
   end
 
   def update
     @organization = current_user.organization
-    @organization.update(organization_params)
     if @organization.update(organization_params)
       render json: @organization, status: 201, location: [:dashboard, @organization]
     else
