@@ -42,7 +42,15 @@ class TwilioController < ApplicationController
 
 
   def get_last_message_sent_to_customer
-    @last_message_to_customer = Message.where(to: @incoming_message.from).order("id Desc").limit(1).first
+    set_organization
+    @last_message_to_customer = Message.where(to: @incoming_message.from, from: @organization.from).order("id Desc").limit(1).first
+  end
+
+  def check_if_organization_has_short_code
+    @organization = Organization.find_by_short_code(@incoming_message.to)
+    if @organization.blank?
+      @organization = Organization.find_by_long_number(@incoming_message.to)
+    end
   end
 
   def is_opt_in?
@@ -118,12 +126,12 @@ class TwilioController < ApplicationController
 
   def send_opt_in_welcome_message
     message_body = @opt_in.subscription.options.welcome_message
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, message_body, @opt_in.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash)
   end
 
   def send_opt_in_cancellation_message
     message_body = @opt_in.subscription.options.opt_in_refusal_message
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, message_body, @opt_in.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash)
   end
 
   def notify_organization_of_customer_intent

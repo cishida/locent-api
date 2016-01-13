@@ -7,4 +7,6 @@ class Customer < ActiveRecord::Base
   has_many :opt_ins, dependent: :destroy
 
   validates_uniqueness_of :organization_id, :scope => :phone
+  validates_uniqueness_of :organization_id, :scope => :uid
+
 end

@@ -44,18 +44,18 @@ class Api::V1::SafetextController < ApiController
 
   def send_initial_safetext_message
     transactional_message = redact_message(@subscription.options.transactional_message)
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, transactional_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, transactional_message, @safetext.to_descriptor_hash)
   end
 
   def send_safetext_welcome_message
     confirmation_message = redact_message(@opt_in.subscription.options.confirmation_message)
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, confirmation_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, confirmation_message, @safetext.to_descriptor_hash)
   end
 
 
   def send_safetext_cancellation_message
     cancellation_message = redact_message(@opt_in.subscription.options.cancellation_message)
-    Resque.enqueue(MessageSender, '+16015644274', @customer.phone, cancellation_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, cancellation_message, @safetext.to_descriptor_hash)
   end
 
   def find_and_set_opt_in

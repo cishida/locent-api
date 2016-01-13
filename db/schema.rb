@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112224746) do
+ActiveRecord::Schema.define(version: 20160113091129) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 20160112224746) do
   end
 
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
-  add_index "customers", ["uid"], name: "index_customers_on_uid", unique: true
 
   create_table "features", force: :cascade do |t|
     t.string   "name"

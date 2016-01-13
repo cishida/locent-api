@@ -93,7 +93,7 @@ class Api::V1::OptInsController < ApiController
   def send_opt_in_code_request_to_customer
     @opt_ins.each do |opt_in|
       puts opt_in.id
-      Resque.enqueue(MessageSender, '+16015644274', opt_in.customer.phone, @subscription.options.opt_in_message, opt_in.to_descriptor_hash)
+      Resque.enqueue(MessageSender, @organization.from, opt_in.customer.phone, @subscription.options.opt_in_message, opt_in.to_descriptor_hash)
     end
   end
 
