@@ -73,7 +73,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   def provision_number_for_organization
     @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
     number = @client.account.incoming_phone_numbers.create(
-        friendly_name: @organization.name,
+        friendly_name: @organization.organization_name,
         sms_url: "http://locent-api.herokuapp.com/receive",
         sms_method: "POST",
         area_code: "709"
