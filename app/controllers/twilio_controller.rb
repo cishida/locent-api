@@ -58,7 +58,7 @@ class TwilioController < ApplicationController
   end
 
   def is_safetext?
-    @purpose.feature == "safetext"
+    @purpose.feature == "safetext" && !@purpose.completed
   end
 
 

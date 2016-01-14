@@ -11,6 +11,7 @@ class Api::V1::OrdersController < ApiController
     @order.completed = true
     @order.save
     send_confirmation_message
+    head status: 200
   end
 
   private
