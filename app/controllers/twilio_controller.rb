@@ -142,7 +142,7 @@ class TwilioController < ApplicationController
   end
 
   def set_customer
-    @customer = Customer.find_by_phone(@incoming_message.from)
+    @customer = Customer.find_by_phone_and_organization_id(@incoming_message.from, @organization.id)
   end
 
   def customer_intends_to_complete_opt_in?
