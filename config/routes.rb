@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
-      get '/safetext', to: 'orders#safetext'
+      post '/safetext', to: 'orders#safetext'
       post '/order_status', to: 'orders#order_status'
     end
   end
