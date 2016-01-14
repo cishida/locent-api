@@ -11,7 +11,7 @@ class Api::V1::OrdersController < ApiController
       @order.order_success = params[:order_success]
       @order.completed = true
       @order.save
-      send_confirmation_message
+      send_appropriate_message
       head status: 200
     else
       head status: 403
@@ -58,6 +58,14 @@ class Api::V1::OrdersController < ApiController
   def send_transactional_message
     transactional_message = redact_message(@subscription.options.transactional_message)
     Resque.enqueue(MessageSender, @organization.from, @customer.phone, transactional_message, @order.to_descriptor_hash)
+  end
+
+  def send_appropriate_message
+    if @order.order_success
+      send_confirmation_message
+    else
+      send_cancellation_messages
+    end
   end
 
   def send_confirmation_message

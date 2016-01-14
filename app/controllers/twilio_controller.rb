@@ -79,8 +79,10 @@ class TwilioController < ApplicationController
     get_order_opt_in
     if customer_intends_to_confirm_payment?
       @order.confirmed = true
-      @order.save
+    else customer_intends_to_cancel_payment?
+      @order.confirmed = false
     end
+    @order.save
     notify_organization_of_customer_intent
   end
 
@@ -155,7 +157,7 @@ class TwilioController < ApplicationController
   def get_appropriate_status_string
     if @order.confirmed
       return "confirmed"
-    elsif !@order.confirmed && customer_intends_to_cancel_payment?
+    elsif !@order.confirmed
       return "cancelled"
     end
   end
