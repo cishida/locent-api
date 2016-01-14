@@ -3,15 +3,19 @@ class Api::V1::OrdersController < ApiController
   def safetext
     order("safetext")
   end
-  
+
   def order_status
     validate_order_status_params
     set_order
-    @order.order_success = params[:order_success]
-    @order.completed = true
-    @order.save
-    send_confirmation_message
-    head status: 200
+    if !@order.completed
+      @order.order_success = params[:order_success]
+      @order.completed = true
+      @order.save
+      send_confirmation_message
+      head status: 200
+    else
+      head status: 403
+    end
   end
 
   private
