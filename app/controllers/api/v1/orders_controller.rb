@@ -95,7 +95,7 @@ class Api::V1::OrdersController < ApiController
   def redact_message(message)
     message.gsub!("{ITEM}", @order.item_name)
     message.gsub!("{PRICE}", "$" + @order.item_price.to_s)
-    message.gsub!("{ORDERNUMBER}", @order.order_uid.to_s)
+    message.gsub!("{ORDERNUMBER}", @order.uid.to_s)
     return message
   end
 
