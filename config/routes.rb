@@ -11,11 +11,7 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
       get '/safetext', to: 'orders#safetext'
-      resources :safetext, only: [:create] do
-        collection do
-          post :order_status
-        end
-      end
+      post '/order_status', to: 'orders#order_status'
     end
   end
 
