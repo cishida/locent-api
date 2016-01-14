@@ -9,9 +9,11 @@ class TwilioController < ApplicationController
   end
 
   def receive
-    create_incoming_message
-    handle_incoming_message_appropriately
-    head status: 200
+    ActiveRecord::Base.transaction do
+      create_incoming_message
+      handle_incoming_message_appropriately
+      head status: 200
+    end
   end
 
   private
@@ -118,6 +120,8 @@ class TwilioController < ApplicationController
         confirmed: true
     )
     @order.save
+    @incoming_message.purpose = @order
+    @incoming_message.save
   end
 
   def set_opt_in
