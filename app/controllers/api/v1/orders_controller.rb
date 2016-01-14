@@ -64,7 +64,7 @@ class Api::V1::OrdersController < ApiController
     if @order.order_success
       send_confirmation_message
     else
-      send_cancellation_messages
+      send_cancellation_message
     end
   end
 
