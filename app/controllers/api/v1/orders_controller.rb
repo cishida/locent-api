@@ -1,33 +1,38 @@
-class Api::V1::SafetextController < ApiController
+class Api::V1::OrdersController < ApiController
 
-  def create
-    ActiveRecord::Base.transaction do
-      validate_create_params
-      @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
-      find_and_set_opt_in
-      create_new_safetext
-      send_initial_safetext_message
-      head status: 201
-    end
+  def safetext
+    order("safetext")
   end
-
+  
   def order_status
     validate_order_status_params
-    set_safetext
-    @safetext.order_success = params[:order_success]
-    @safetext.completed = true
-    @safetext.true
-    send_safetext_welcome_message
+    set_order
+    @order.order_success = params[:order_success]
+    @order.completed = true
+    @order.save
+    send_confirmation_message
   end
 
   private
 
-  def create_new_safetext
-    @safetext = Safetext.create(
-        order_uid: params[:order_uid],
+  def order(feature)
+    ActiveRecord::Base.transaction do
+      validate_create_params
+      @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
+      find_and_set_opt_in
+      create_new_order(feature)
+      send_transactional_message
+      head status: 201
+    end
+  end
+
+  def create_new_order(feature)
+    @order = Order.create(
+        uid: params[:order_uid],
         item_name: params[:item_name],
         item_price: params[:item_price],
-        opt_in_id: @opt_in.id
+        opt_in_id: @opt_in.id,
+        feature: feature
     )
   end
 
@@ -44,20 +49,20 @@ class Api::V1::SafetextController < ApiController
     param! :order_success, :boolean, required: true
   end
 
-  def send_initial_safetext_message
+  def send_transactional_message
     transactional_message = redact_message(@subscription.options.transactional_message)
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, transactional_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, transactional_message, @order.to_descriptor_hash)
   end
 
-  def send_safetext_welcome_message
+  def send_confirmation_message
     confirmation_message = redact_message(@opt_in.subscription.options.confirmation_message)
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, confirmation_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash)
   end
 
 
-  def send_safetext_cancellation_message
+  def send_cancellation_message
     cancellation_message = redact_message(@opt_in.subscription.options.cancellation_message)
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, cancellation_message, @safetext.to_descriptor_hash)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, cancellation_message, @order.to_descriptor_hash)
   end
 
   def find_and_set_opt_in
@@ -94,9 +99,9 @@ class Api::V1::SafetextController < ApiController
     return message
   end
 
-  def set_safetext
-    @safetext = Safetext.find_by_order_uid(params[:order_uid])
-    @opt_in = @safetext.opt_in
+  def set_order
+    @order = Order.find_by_uid(params[:order_uid])
+    @opt_in = @order.opt_in
     @customer = @opt_in.customer
   end
 

@@ -1,4 +1,4 @@
-class Safetext < ActiveRecord::Base
+class Orders < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :opt_in
 

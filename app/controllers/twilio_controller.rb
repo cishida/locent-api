@@ -58,7 +58,7 @@ class TwilioController < ApplicationController
   end
 
   def is_safetext?
-    @purpose.is_a? Safetext
+    @purpose.feature == "safetext"
   end
 
 
@@ -75,14 +75,11 @@ class TwilioController < ApplicationController
   end
 
   def handle_if_safetext_message
-    set_safetext
-    get_safetext_opt_in
+    set_order
+    get_order_opt_in
     if customer_intends_to_confirm_payment?
-      @safetext.confirmed = true
-      @safetext.save
-    # elsif customer_intends_to_cancel_payment?
-    #   send_safetext_cancellation_message
-    #   @safetext.destroy
+      @order.confirmed = true
+      @order.save
     end
     notify_organization_of_customer_intent
   end
@@ -91,8 +88,8 @@ class TwilioController < ApplicationController
     @opt_in = @purpose
   end
 
-  def set_safetext
-    @safetext = @purpose
+  def set_order
+    @order = @purpose
   end
 
   def set_purpose
@@ -117,7 +114,7 @@ class TwilioController < ApplicationController
   end
 
   def customer_intends_to_confirm_payment?
-    (!@safetext.confirmed) && (@incoming_message.body.upcase == "PAY")
+    (!@order.confirmed) && (@incoming_message.body.upcase == "PAY")
   end
 
   def customer_intends_to_cancel_payment?
@@ -137,7 +134,7 @@ class TwilioController < ApplicationController
   def notify_organization_of_customer_intent
     purchase_request_url = @opt_in.subscription.options.purchase_request_url
     puts purchase_request_url
-    construct_safetext_post_params
+    construct_post_body
     RestClient.post(purchase_request_url, @post_params.to_json) { |response, request, result, &block|
       case response.code
         when 200
@@ -148,30 +145,23 @@ class TwilioController < ApplicationController
     }
   end
 
-  def construct_safetext_post_params
+  def construct_post_body
     @post_params = {
         status: get_appropriate_status_string,
-        order_uid: @safetext.order_uid
+        order_uid: @order.uid
     }
   end
 
   def get_appropriate_status_string
-    if @safetext.confirmed
+    if @order.confirmed
       return "confirmed"
-    elsif !@safetext.confirmed && customer_intends_to_cancel_payment?
+    elsif !@order.confirmed && customer_intends_to_cancel_payment?
       return "cancelled"
     end
   end
 
-  def get_safetext_opt_in
-    @opt_in = OptIn.joins(:subscription).where(
-        customer_id: @customer.id,
-        feature_id: 3,
-        completed: true,
-        subscriptions: {
-            organization_id: @customer.organization_id
-        }
-    ).first
+  def get_order_opt_in
+    @opt_in = @order.opt_in
   end
 
 end

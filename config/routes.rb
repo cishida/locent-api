@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
+      get '/safetext', to: 'orders#safetext'
       resources :safetext, only: [:create] do
         collection do
           post :order_status
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
       resources :features, only: :index
-      resources :safetext
       resources :customers, only: :show, param: :feature
       resources :subscriptions, only: [:create, :show] do
         member do

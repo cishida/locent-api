@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113091129) do
+ActiveRecord::Schema.define(version: 20160114010742) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -110,6 +110,22 @@ ActiveRecord::Schema.define(version: 20160113091129) do
 
   add_index "opt_ins", ["deleted_at"], name: "index_opt_ins_on_deleted_at"
 
+  create_table "orders", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "item_name"
+    t.string   "item_price"
+    t.integer  "opt_in_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "completed",     default: false
+    t.boolean  "confirmed"
+    t.boolean  "order_success"
+    t.string   "feature"
+  end
+
+  add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
+
   create_table "organizations", force: :cascade do |t|
     t.string   "organization_name"
     t.string   "email"
@@ -148,21 +164,6 @@ ActiveRecord::Schema.define(version: 20160113091129) do
     t.string   "opt_in_confirmation_url"
     t.string   "purchase_request_url"
   end
-
-  create_table "safetexts", force: :cascade do |t|
-    t.string   "order_uid"
-    t.string   "item_name"
-    t.string   "item_price"
-    t.integer  "opt_in_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.boolean  "completed",     default: false
-    t.boolean  "confirmed"
-    t.boolean  "order_success"
-  end
-
-  add_index "safetexts", ["deleted_at"], name: "index_safetexts_on_deleted_at"
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "organization_id"
