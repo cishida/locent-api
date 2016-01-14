@@ -46,7 +46,7 @@ class TwilioController < ApplicationController
     @last_message_to_customer = Message.where(to: @incoming_message.from, from: @organization.from).order("id Desc").limit(1).first
   end
 
-  def check_if_organization_has_short_code
+  def set_organization
     @organization = Organization.find_by_short_code(@incoming_message.to)
     if @organization.blank?
       @organization = Organization.find_by_long_number(@incoming_message.to)
