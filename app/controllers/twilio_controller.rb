@@ -10,7 +10,6 @@ class TwilioController < ApplicationController
 
   def receive
     ActiveRecord::Base.transaction do
-      create_incoming_message
       handle_incoming_message_appropriately
       head status: 200
     end
@@ -31,6 +30,7 @@ class TwilioController < ApplicationController
 
 
   def handle_incoming_message_appropriately
+    create_incoming_message
     get_last_message_sent_to_customer
     set_customer
     set_purpose
@@ -64,7 +64,7 @@ class TwilioController < ApplicationController
   def is_keyword?
     product_keywords = @organization.products.map(&:keyword)
     product_keywords.map!(&:upcase)
-    product_keywords.include? @incoming_message.body.upcase
+    return product_keywords.include? @incoming_message.body.upcase
   end
 
   def is_safetext?

@@ -6,6 +6,7 @@ class Dashboard::V1::ProductsController < DashboardController
     validate_create_params
     @product = Product.new(product_params)
     @product.subscription = @subscription
+    @product.organization = @organization
     if @product.save
       render json: @product, status: 201, location: [:dashboard, @product]
     else
