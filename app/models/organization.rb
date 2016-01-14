@@ -12,6 +12,14 @@ class Organization < ActiveRecord::Base
   validates_uniqueness_of :organization_name
 
 
+  def from
+    if self.short_code.nil?
+      return self.long_number
+    else
+      return self.short_code
+    end
+  end
+
   private
   def set_auth_token
     return if auth_token.present?
@@ -20,14 +28,6 @@ class Organization < ActiveRecord::Base
 
   def generate_auth_token
     SecureRandom.uuid.gsub(/\-/, '')
-  end
-
-  def from
-    if self.short_code.nil?
-      return self.long_number
-    else
-      return self.short_code
-    end
   end
 
 end
