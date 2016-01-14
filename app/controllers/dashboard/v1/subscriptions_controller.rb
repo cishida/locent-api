@@ -64,8 +64,16 @@ class Dashboard::V1::SubscriptionsController < DashboardController
   end
 
   def keyword_options_params
-    params.permit(:opt_in_message, :opt_in_refusal_message, :welcome_message, :transactional_message,
-                  :confirmation_message, :cancellation_message)
+    params.permit(:opt_in_message,
+                  :opt_in_refusal_message,
+                  :welcome_message,
+                  :transactional_message,
+                  :confirmation_message,
+                  :cancellation_message,
+                  :opt_in_confirmation_url,
+                  :opt_in_verification_url,
+                  :purchase_request_url
+    )
   end
 
   def safetext_options_params
@@ -81,9 +89,18 @@ class Dashboard::V1::SubscriptionsController < DashboardController
   end
 
   def clearcart_options_params
-    params.permit(:opt_in_message, :opt_in_refusal_message, :welcome_message,
-                  :initial_cart_abandonment_message, :follow_up_message, :confirmation_message,
-                  :number_of_times_to_message, :time_interval_between_messages)
+    params.permit(:opt_in_message,
+                  :opt_in_refusal_message,
+                  :welcome_message,
+                  :initial_cart_abandonment_message,
+                  :follow_up_message,
+                  :confirmation_message,
+                  :number_of_times_to_message,
+                  :time_interval_between_messages,
+                  :opt_in_confirmation_url,
+                  :opt_in_verification_url,
+                  :purchase_request_url
+    )
   end
 
 
