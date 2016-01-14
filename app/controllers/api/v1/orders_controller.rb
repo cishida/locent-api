@@ -5,16 +5,18 @@ class Api::V1::OrdersController < ApiController
   end
 
   def order_status
-    validate_order_status_params
-    set_order
-    if !@order.completed
-      @order.order_success = params[:order_success]
-      @order.completed = true
-      @order.save
-      send_appropriate_message
-      head status: 200
-    else
-      head status: 403
+    ActiveRecord::Base.transaction do
+      validate_order_status_params
+      set_order
+      if !@order.completed
+        @order.order_success = params[:order_success]
+        @order.completed = true
+        @order.save
+        send_appropriate_message
+        head status: 200
+      else
+        head status: 403
+      end
     end
   end
 

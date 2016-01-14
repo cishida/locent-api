@@ -6,8 +6,10 @@ class Organization < ActiveRecord::Base
   has_one :primary_user, -> { where(is_primary: true) }, :class_name => "User"
   has_many :features, through: :subscriptions
   has_many :subscriptions, dependent: :destroy
-  has_many :customers
-  has_many :orders
+  has_many :customers, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :products, dependent: :destroy
+
 
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name

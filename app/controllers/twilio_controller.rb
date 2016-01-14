@@ -35,6 +35,8 @@ class TwilioController < ApplicationController
     set_incoming_message_purpose
     if is_opt_in?
       handle_if_opt_in_message
+    elsif is_keyword?
+      handle_if_keyword_message
     elsif is_safetext?
       handle_if_safetext_message
     end
@@ -55,6 +57,12 @@ class TwilioController < ApplicationController
 
   def is_opt_in?
     @purpose.is_a? OptIn
+  end
+
+  def is_keyword?
+    product_keywords = @organization.products.map(&:keyword)
+    product_keywords.map!(&:upcase)
+    product_keywords.include? @incoming_message.body.upcase
   end
 
   def is_safetext?
@@ -79,11 +87,37 @@ class TwilioController < ApplicationController
     get_order_opt_in
     if customer_intends_to_confirm_payment?
       @order.confirmed = true
-    else customer_intends_to_cancel_payment?
+    else
+      customer_intends_to_cancel_payment?
       @order.confirmed = false
     end
     @order.save
     notify_organization_of_customer_intent
+  end
+
+  def handle_if_keyword_message
+    set_product_and_opt_in
+    create_keyword_order
+    notify_organization_of_customer_intent
+  end
+
+  def set_product_and_opt_in
+    @product = Product.find_by_organization_id_and_keyword(@organization.id, @incoming_message.body.upcase)
+    subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 1)
+    @opt_in = OptIn.find_by_subscription_id_and_customer_id(subscription.id, @customer.id)
+  end
+
+  def create_keyword_order
+    @order = Order.new(
+        uid: SecureRandom.uuid.gsub(/\-/, ''),
+        item_name: @product.name,
+        item_price: @product.price,
+        opt_in_id: @opt_in.id,
+        feature: "keyword",
+        organization_id: @organization.id,
+        confirmed: true
+    )
+    @order.save
   end
 
   def set_opt_in
@@ -152,6 +186,16 @@ class TwilioController < ApplicationController
         status: get_appropriate_status_string,
         order_uid: @order.uid
     }
+    append_extra_information_if_necessary
+  end
+
+  def append_extra_information_if_necessary
+    if @order.feature == "keyword"
+      @post_params.merge!(
+          product_uid: @product.uid,
+          product_name: @product.name
+      )
+    end
   end
 
   def get_appropriate_status_string
