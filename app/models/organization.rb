@@ -7,6 +7,7 @@ class Organization < ActiveRecord::Base
   has_many :features, through: :subscriptions
   has_many :subscriptions, dependent: :destroy
   has_many :customers
+  has_many :orders
 
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name

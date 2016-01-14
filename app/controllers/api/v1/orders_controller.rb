@@ -10,7 +10,6 @@ class Api::V1::OrdersController < ApiController
     @order.order_success = params[:order_success]
     @order.completed = true
     @order.save
-    puts @order.completed
     send_confirmation_message
     head status: 200
   end
@@ -34,7 +33,8 @@ class Api::V1::OrdersController < ApiController
         item_name: params[:item_name],
         item_price: params[:item_price],
         opt_in_id: @opt_in.id,
-        feature: feature
+        feature: feature,
+        organization_id: @organization.id
     )
   end
 
@@ -103,7 +103,6 @@ class Api::V1::OrdersController < ApiController
 
   def set_order
     @order = Order.find_by_uid(params[:order_uid])
-    puts @order
     @opt_in = @order.opt_in
     @customer = @opt_in.customer
   end
