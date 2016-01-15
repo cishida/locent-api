@@ -9,7 +9,8 @@ class Dashboard::V1::CustomersController < DashboardController
             subscription_id: @subscription.id
         }
     )
-    respond_with @customers
+
+    paginate json: @customers
   end
 
 end

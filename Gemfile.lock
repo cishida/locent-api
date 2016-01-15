@@ -39,6 +39,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    api-pagination (4.2.0)
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -62,6 +63,9 @@ GEM
     i18n (0.7.0)
     json (1.8.3)
     jwt (1.5.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -169,7 +173,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.0)
+  api-pagination
   devise_token_auth
+  kaminari
   paranoia (~> 2.0)
   pg
   rack-cors
