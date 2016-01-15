@@ -1,4 +1,16 @@
+# @restful_api 1.0
+#
+# Customers
+#
 class Dashboard::V1::CustomersController < DashboardController
+  # @url /customers/:feature
+  # @action GET
+  #
+  # Get a paginated list of all of an organization's customers subscribed to a feature
+  #
+  # @required [String] feature The feature e.g 'keyword'
+  #
+  # @response_field [Array<Customer>] customers List of customers on this page
   def show
     param! :feature, String, required: true
     @organization = current_user.organization

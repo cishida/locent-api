@@ -18,7 +18,8 @@ gem 'redis'
 gem 'validate_url'
 gem 'kaminari'
 gem 'api-pagination'
-
+gem 'yard'
+gem 'yard-restful'
 
 group :development, :test do
   gem 'spring'

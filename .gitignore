@@ -11,3 +11,6 @@
 /tmp
 /log/development.log
 /tmp/pids/server.pid
+
+.yardoc
+public/api

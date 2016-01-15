@@ -1,3 +1,21 @@
+# @restful_api 1.0
+#
+# @property [Integer] id ID of the organization
+# @property [String] email Contact email address of the organization
+# @property [String] organization_name Name of the organization
+# @property [User] primary_user Primary User of the organization
+# @property [Array<Subscription>] subscriptions all of the organizations's subscriptions
+#
+# @example
+#   ```json
+#   {
+#     "id": "1",
+#     "email": "test@ordertolagos.com",
+#     "organization_name": "Order To Lagos",
+#     "primary_user": [User],
+#     "subscriptions": [Array<Subscription>]
+#   }
+#   ```
 class Organization < ActiveRecord::Base
   acts_as_paranoid
 

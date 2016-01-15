@@ -1,12 +1,30 @@
+# @restful_api 1.0
+#
+# Organizations
+#
 class Dashboard::V1::OrganizationsController < DashboardController
   before_action :authenticate_user!, only: :update
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
+  # @url /organizations
+  # @action GET
+  #
+  # Get a list of all of Locent's organizations
+  #
+  # @response_field [Array<Organization>]
   def index
     respond_with Organization.all
   end
 
+  # @url /organizations/:id
+  # @action GET
+  #
+  # Gets one organization
+  #
+  # @required [Integer] id ID of the organization
+  #
+  # @response_field [Organization]
   def show
     respond_with Organization.find(params[:id])
   end

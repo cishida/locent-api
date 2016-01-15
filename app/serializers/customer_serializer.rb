@@ -1,4 +1,4 @@
 class CustomerSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :phone
+  attributes :first_name, :last_name, :phone
 
 end
