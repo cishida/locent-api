@@ -15,6 +15,8 @@ gem 'resque-waiting-room'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'resque', "~> 1.22.0"
 gem 'redis'
+gem 'validate_url'
+
 
 group :development, :test do
   gem 'spring'

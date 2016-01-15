@@ -14,7 +14,6 @@ class Organization < ActiveRecord::Base
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name
 
-
   def from
     if self.short_code.nil?
       return self.long_number
@@ -22,6 +21,7 @@ class Organization < ActiveRecord::Base
       return self.short_code
     end
   end
+
 
   private
   def set_auth_token
