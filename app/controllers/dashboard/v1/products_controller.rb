@@ -8,7 +8,7 @@ class Dashboard::V1::ProductsController < DashboardController
     @product.subscription = @subscription
     @product.organization = @organization
     if @product.save
-      render json: @product, status: 201, location: [:dashboard, @product]
+      render json: @product, status: 201
     else
       render json: {errors: @product.full_messages}, status: 422
     end
