@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       resources :opt_ins, only: [:create]
       post '/safetext', to: 'orders#safetext'
       post '/order_status', to: 'orders#order_status'
+      post 'products', to: 'products#create'
+      get 'products/:feature', to: 'products#show'
+      put 'products/:uid', to: 'products#update'
+      delete 'products/:uid', to: 'products#destroy'
     end
   end
 

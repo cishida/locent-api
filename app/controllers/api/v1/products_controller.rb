@@ -7,7 +7,7 @@ class Api::V1::ProductsController < ApiController
     @product.subscription = @subscription
     @product.organization = @organization
     if @product.save
-      render json: @product, status: 201, location: [:dashboard, @product]
+      render json: @product, status: 201
     else
       render json: {errors: @product.full_messages}, status: 422
     end
@@ -20,7 +20,7 @@ class Api::V1::ProductsController < ApiController
 
   def update
     validate_update_params
-    @product = Product.find_by_uid(params[:uid])
+    @product = Product.find_by_uid_and_organization_id(params[:uid], @organization.id)
     if @product.update(product_update_params)
       render json: @product, status: 201, location: [:dashboard, @product]
     else
@@ -31,6 +31,7 @@ class Api::V1::ProductsController < ApiController
 
   def destroy
     param! :uid, String, required: true
+    @product = Product.find_by_uid_and_organization_id(params[:uid], @organization.id)
     @product.destroy
     head status: 204
   end
