@@ -1,5 +1,4 @@
-class Dashboard::V1::ProductsController < DashboardController
-  before_action :authenticate_user!
+class Api::V1::ProductsController < ApiController
   before_action :set_variables
 
   def create
@@ -54,7 +53,6 @@ class Dashboard::V1::ProductsController < DashboardController
   end
 
   def set_variables
-    @organization = current_user.organization
     @feature = Feature.find_by_name(params[:feature].capitalize)
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
