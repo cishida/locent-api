@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
   belongs_to :organization
   has_one :customer, through: :opt_in
   validates_uniqueness_of :organization_id, :scope => :uid
-  after_save :set_status
-  
+  before_save :set_status
+
 
   def set_status
     if self.order_success && self.completed
@@ -17,7 +17,6 @@ class Order < ActiveRecord::Base
     elsif !self.completed && self.confirmed
       self.status = 'pending'
     end
-    self.save
   end
 
 end
