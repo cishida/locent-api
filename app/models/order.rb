@@ -5,10 +5,7 @@ class Order < ActiveRecord::Base
   has_one :customer, through: :opt_in
   validates_uniqueness_of :organization_id, :scope => :uid
   after_save :set_status
-
-
-
-  private
+  
 
   def set_status
     if self.order_success && self.completed
