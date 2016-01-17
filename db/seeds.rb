@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Feature.create([{name: 'Keyword', has_items: true}, {name: 'Clearcart'}, {name: 'Safetext'}])
+Feature.create([{name: 'Keyword', has_products: true}, {name: 'Clearcart'}, {name: 'Safetext'}])

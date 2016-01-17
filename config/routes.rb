@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         end
       end
       resources :products, only: [:create, :show], param: :feature
+      get '/orders/:feature', to: 'orders#orders'
     end
   end
 
