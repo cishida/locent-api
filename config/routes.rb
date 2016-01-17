@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       post 'products', to: 'products#create'
       get 'products/:feature', to: 'products#show'
       put 'products/:uid', to: 'products#update'
+      delete 'products/:uid', to: 'products#destroy'
       get 'orders/:feature', to: 'orders#orders'
     end
   end

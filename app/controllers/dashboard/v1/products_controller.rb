@@ -29,6 +29,14 @@ class Dashboard::V1::ProductsController < DashboardController
     end
   end
 
+
+  def destroy
+    param! :uid, String, required: true
+    @product = Product.find_by_uid(params[:uid])
+    @product.destroy
+    head status: 204
+  end
+
   private
 
   def validate_create_params

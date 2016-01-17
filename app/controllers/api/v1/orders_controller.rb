@@ -13,7 +13,7 @@ class Api::V1::OrdersController < ApiController
         @order.completed = true
         @order.save
         send_appropriate_message
-        head status: 200
+        head status: 204
       else
         head status: 403
       end
@@ -29,7 +29,7 @@ class Api::V1::OrdersController < ApiController
       find_and_set_opt_in
       create_new_order(feature)
       send_transactional_message
-      head status: 201
+      head status: 204
     end
   end
 

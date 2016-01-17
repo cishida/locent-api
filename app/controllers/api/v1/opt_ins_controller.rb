@@ -8,7 +8,7 @@ class Api::V1::OptInsController < ApiController
       create_opt_ins
       send_back_opt_in_verification_code
       send_opt_in_code_request_to_customer
-      head status: 201
+      head status: 204
     end
   end
 
