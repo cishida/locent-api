@@ -27,8 +27,10 @@ Rails.application.routes.draw do
           put :update_options
         end
       end
-      resources :products, only: [:create, :show], param: :feature
-      get '/orders/:feature', to: 'orders#orders'
+      post 'products', to: 'products#create'
+      get 'products/:feature', to: 'products#show'
+      put 'products/:uid', to: 'products#update'
+      get 'orders/:feature', to: 'orders#orders'
     end
   end
 

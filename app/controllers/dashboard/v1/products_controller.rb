@@ -4,7 +4,7 @@ class Dashboard::V1::ProductsController < DashboardController
 
   def create
     validate_create_params
-    @product = Product.new(product_params)
+    @product = Product.new(product_create_params)
     @product.subscription = @subscription
     @product.organization = @organization
     if @product.save
@@ -19,6 +19,16 @@ class Dashboard::V1::ProductsController < DashboardController
     respond_with @subscription.products
   end
 
+  def update
+    validate_update_params
+    @product = Product.find_by_uid(params[:uid])
+    if @product.update(product_update_params)
+      render json: @product, status: 201, location: [:dashboard, @product]
+    else
+      render json: {errors: @product.full_messages}, status: 422
+    end
+  end
+
   private
 
   def validate_create_params
@@ -29,13 +39,24 @@ class Dashboard::V1::ProductsController < DashboardController
     param! :price, BigDecimal, required: true
   end
 
+  def validate_update_params
+    param! :name, String
+    param! :uid, String, required: true
+    param! :keyword, String
+    param! :price, BigDecimal
+  end
+
   def set_variables
     @organization = current_user.organization
     @feature = Feature.find_by_name(params[:feature].capitalize)
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
 
-  def product_params
+  def product_create_params
     params.permit(:name, :uid, :keyword, :price)
+  end
+
+  def product_update_params
+    params.permit(:name, :keyword, :price)
   end
 end
