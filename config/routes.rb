@@ -27,7 +27,7 @@ Rails.application.routes.draw do
           put :update_options
         end
       end
-      post 'products/:feature', to: 'products#create'
+      post 'products', to: 'products#create'
       get 'products/:feature', to: 'products#show'
       put 'products/:uid', to: 'products#update'
       delete 'products/:uid', to: 'products#destroy'
