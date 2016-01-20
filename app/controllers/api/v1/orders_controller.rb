@@ -81,11 +81,11 @@ class Api::V1::OrdersController < ApiController
   end
 
   def send_error_message
-    error_message = @organization.error_messages.joins(:errors).where({
-      error: {
+    error_message = @organization.error_messages.joins(:error).where({
+      errors: {
           code: params[:code]
       }
-    }).first
+    }).first.message
     redacted_error_message = redact_message(error_message)
     Resque.enqueue(MessageSender, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash)
   end
