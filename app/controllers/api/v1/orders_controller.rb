@@ -55,6 +55,7 @@ class Api::V1::OrdersController < ApiController
   def validate_order_status_params
     param! :order_uid, String, required: true
     param! :order_success, :boolean, required: true
+    param :error_code, Integer
   end
 
   def send_transactional_message
@@ -65,14 +66,28 @@ class Api::V1::OrdersController < ApiController
   def send_appropriate_message
     if @order.order_success
       send_confirmation_message
+    elsif !@order_success && !params[:error_code].blank? && Error.find_by_code(params[:code]).exists?
+      send_error_message
     else
       send_cancellation_message
     end
   end
 
+
+
   def send_confirmation_message
     confirmation_message = redact_message(@opt_in.subscription.options.confirmation_message)
     Resque.enqueue(MessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash)
+  end
+
+  def send_error_message
+    error_message = @organization.error_messages.joins(:errors).where({
+      error: {
+          code: params[:code]
+      }
+    }).first
+    redacted_error_message = redact_message(error_message)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash)
   end
 
 

@@ -8,6 +8,6 @@ class ErrorMessage < ActiveRecord::Base
   validates_presence_of :organization_id
   validates_presence_of :message
 
-  validates_uniqueness_of :error_id, :scope => :feature_id
+  validates_uniqueness_of :error_id, :scope => :organization_id
 
 end
