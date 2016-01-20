@@ -31,6 +31,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def create
       @organization = Organization.new(organization_params)
+      create_error_messages_for_organization
       provision_number_for_organization
       if  @organization.save && create_primary_user_account
         render json: @organization, status: 201, location: [:dashboard, @organization]
@@ -96,6 +97,10 @@ class Dashboard::V1::OrganizationsController < DashboardController
         area_code: "709"
     )
     @organization.long_number = number.phone_number.to_s
+  end
+
+  def create_error_messages_for_organization
+
   end
 
 end

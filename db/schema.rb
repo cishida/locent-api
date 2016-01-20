@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117002831) do
+ActiveRecord::Schema.define(version: 20160120110024) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -43,6 +43,24 @@ ActiveRecord::Schema.define(version: 20160117002831) do
   end
 
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
+
+  create_table "error_messages", force: :cascade do |t|
+    t.integer  "error_id"
+    t.text     "message"
+    t.integer  "organization_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "errors", force: :cascade do |t|
+    t.integer  "code"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "errors", ["deleted_at"], name: "index_errors_on_deleted_at"
 
   create_table "features", force: :cascade do |t|
     t.string   "name"
@@ -151,7 +169,10 @@ ActiveRecord::Schema.define(version: 20160117002831) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "organization_id"
+    t.datetime "deleted_at"
   end
+
+  add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
 
   create_table "safetext_options", force: :cascade do |t|
     t.text     "opt_in_message"

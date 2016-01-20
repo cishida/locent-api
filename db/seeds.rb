@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Feature.create([{name: 'Keyword', has_products: true}, {name: 'Clearcart'}, {name: 'Safetext'}])
+Error.create([{code: 1001, description: 'Server Error'}, {code: 1002, description: 'Product out of stock'}, {code: 1003, description: 'Insufficient funds'}])
