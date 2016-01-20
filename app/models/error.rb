@@ -3,6 +3,11 @@ class Error < ActiveRecord::Base
   has_many :error_messages, dependent: :destroy
   belongs_to :organization
 
+  validates_presence_of :code
+  validates_presence_of :description
+  validates_presence_of :default_message
+
+
   validates_uniqueness_of :code
 
 

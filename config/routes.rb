@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :dashboard, defaults: {format: :json} do
     scope module: :v1 do
       resources :organizations, only: [:show, :create, :index, :update, :destroy]
+      put 'error_message/:code', to: 'organizations#update_error_message'
       resources :features, only: :index
       resources :customers, only: :show, param: :feature
       resources :subscriptions, only: [:create, :show] do

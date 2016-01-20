@@ -51,6 +51,14 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  def update_error_message
+    param! :message, String, required: true
+    organization = current_user.organization
+    error = Error.find_by_code(params[:code])
+    error_message = ErrorMessage.find_by_error_id_and_organization_id(error.id, organization.id)
+    error_message.update(message: params[:message])
+  end
+
 
   private
 
@@ -88,7 +96,5 @@ class Dashboard::V1::OrganizationsController < DashboardController
   def organization_primary_user_params
     params.permit(:first_name, :last_name, :email, :password)
   end
-
-
 
 end

@@ -3,4 +3,5 @@ class OrganizationSerializer < ActiveModel::Serializer
 
   has_one :primary_user
   has_many :subscriptions
+  has_many :error_messages
 end
