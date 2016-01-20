@@ -7,4 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Feature.create([{name: 'Keyword', has_products: true}, {name: 'Clearcart'}, {name: 'Safetext'}])
-Error.create([{code: 1001, description: 'Server Error'}, {code: 1002, description: 'Product out of stock'}, {code: 1003, description: 'Insufficient funds'}])
+Error.create([{code: 1001, description: 'Server Error', default_message: 'Your {PRICE} order for {ITEM} was unsuccessful due to an internal server error.'},
+              {code: 1002, description: 'Product out of stock', default_message: 'Your {PRICE} order for {ITEM} was unsuccessful because the item is out of stock.'},
+              {code: 1003, description: 'Insufficient funds', default_message: 'You do not have sufficient funds for your {PRICE} order for {ITEM}.'}])

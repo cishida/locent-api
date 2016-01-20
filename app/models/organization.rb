@@ -27,7 +27,10 @@ class Organization < ActiveRecord::Base
   has_many :customers, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :error_messages, dependent: :destroy
 
+  after_create :create_error_message
+  after_create :provision_number
 
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name
@@ -38,6 +41,29 @@ class Organization < ActiveRecord::Base
     else
       return self.short_code
     end
+  end
+
+
+  def create_error_messages
+    Error.all.each do |error|
+      ErrorMessage.create(
+          error_id: error.id,
+          message: error.default_message,
+          organization_id: self.id
+      )
+    end
+  end
+
+  def provision_number
+    @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    number = @client.account.incoming_phone_numbers.create(
+        friendly_name: self.organization_name,
+        sms_url: "http://locent-api.herokuapp.com/receive",
+        sms_method: "POST",
+        area_code: "709"
+    )
+    self.long_number = number.phone_number.to_s
+    self.save
   end
 
 

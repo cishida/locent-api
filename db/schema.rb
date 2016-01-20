@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120110024) do
+ActiveRecord::Schema.define(version: 20160120113008) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -50,14 +50,18 @@ ActiveRecord::Schema.define(version: 20160120110024) do
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "error_messages", ["deleted_at"], name: "index_error_messages_on_deleted_at"
 
   create_table "errors", force: :cascade do |t|
     t.integer  "code"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "deleted_at"
+    t.text     "default_message"
   end
 
   add_index "errors", ["deleted_at"], name: "index_errors_on_deleted_at"

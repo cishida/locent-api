@@ -30,15 +30,16 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def create
+    ActiveRecord::Base.transaction do
       @organization = Organization.new(organization_params)
-      create_error_messages_for_organization
-      provision_number_for_organization
-      if  @organization.save && create_primary_user_account
+      if @organization.save && create_primary_user_account
+        create_error_messages_for_organization
         render json: @organization, status: 201, location: [:dashboard, @organization]
       else
         render json: {errors: combined_errors}, status: 422
         @user.really_destroy!
       end
+    end
   end
 
   def update
@@ -88,19 +89,6 @@ class Dashboard::V1::OrganizationsController < DashboardController
     params.permit(:first_name, :last_name, :email, :password)
   end
 
-  def provision_number_for_organization
-    @client = Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
-    number = @client.account.incoming_phone_numbers.create(
-        friendly_name: @organization.organization_name,
-        sms_url: "http://locent-api.herokuapp.com/receive",
-        sms_method: "POST",
-        area_code: "709"
-    )
-    @organization.long_number = number.phone_number.to_s
-  end
 
-  def create_error_messages_for_organization
-
-  end
 
 end
