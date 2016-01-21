@@ -23,7 +23,7 @@ class Dashboard::V1::ProductsController < DashboardController
     validate_update_params
     @product = Product.find_by_uid(params[:uid])
     if @product.update(product_update_params)
-      render json: @product, status: 201, location: [:dashboard, @product]
+      render json: @product, status: 201
     else
       render json: {errors: @product.full_messages}, status: 422
     end
