@@ -16,7 +16,7 @@ class Dashboard::V1::ProductsController < DashboardController
 
   def show
     param! :feature, String, required: true
-    respond_with @subscription.products
+    paginate json: @subscription.products.order_by("id DESC")
   end
 
   def update
