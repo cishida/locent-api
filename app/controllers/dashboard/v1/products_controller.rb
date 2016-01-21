@@ -1,6 +1,6 @@
 class Dashboard::V1::ProductsController < DashboardController
   before_action :authenticate_user!
-  before_action :set_variables, except: :destroy
+  before_action :set_variables, except: [:destroy, :update]
 
   def create
     validate_create_params
