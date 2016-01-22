@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
       post '/safetext', to: 'orders#safetext'
+      post '/clearcart', to: 'orders#clearcart'
       post '/order_status', to: 'orders#order_status'
       post 'products', to: 'products#create'
       get 'products/:feature', to: 'products#show'

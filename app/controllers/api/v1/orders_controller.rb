@@ -4,6 +4,10 @@ class Api::V1::OrdersController < ApiController
     order("safetext")
   end
 
+  def clearcart
+
+  end
+
   def order_status
     ActiveRecord::Base.transaction do
       validate_order_status_params
