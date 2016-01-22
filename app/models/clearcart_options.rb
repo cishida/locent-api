@@ -18,10 +18,5 @@ class ClearcartOptions < ActiveRecord::Base
         time_interval_between_messages: 72
     }
   end
-
-  def self.reset_defaults
-    ClearcartOptions.all.each do |options|
-      options.update(defaults)
-    end
-  end
+  
 end
