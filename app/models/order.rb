@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   end
 
   def set_reminder_status
-    if self.status == 'successful' || self.status = 'failed'
+    if !self.reminder.blank? && (self.status == 'successful' || self.status = 'failed')
       self.reminder.active = false
     end
   end

@@ -1,5 +1,5 @@
 desc "This task is called by the Heroku scheduler add-on"
-task update_feed: :environment do
+task send_clearcart_reminders: :environment do
   puts "Sending Clearcart reminders..."
   Reminder.where(active: true, number_of_times: 0..Float::INFINITY).each do |reminder|
     set_variables reminder
