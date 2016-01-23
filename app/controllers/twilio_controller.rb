@@ -41,6 +41,8 @@ class TwilioController < ApplicationController
       handle_if_keyword_message
     elsif is_safetext?
       handle_if_safetext_message
+    elsif is_clearcart?
+      handle_if_clearcart_message
     end
   end
 
@@ -71,6 +73,10 @@ class TwilioController < ApplicationController
     @purpose.feature == "safetext" && !@purpose.completed
   end
 
+  def is_clearcart?
+    @purpose.feature == "clearcart" && !@purpose.completed
+  end
+
 
   def handle_if_opt_in_message
     set_opt_in
@@ -95,6 +101,10 @@ class TwilioController < ApplicationController
     end
     @order.save
     notify_organization_of_customer_intent
+  end
+
+  def handle_if_clearcart_message
+    handle_if_safetext_message
   end
 
   def handle_if_keyword_message

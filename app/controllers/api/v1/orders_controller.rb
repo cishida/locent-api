@@ -5,7 +5,7 @@ class Api::V1::OrdersController < ApiController
   end
 
   def clearcart
-
+    order("clearcart")
   end
 
   def order_status
@@ -32,7 +32,8 @@ class Api::V1::OrdersController < ApiController
       @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, 3)
       find_and_set_opt_in
       create_new_order(feature)
-      send_transactional_message
+      create_reminder_if_clearcart
+      send_initial_message
       head status: 204
     end
   end
@@ -44,8 +45,23 @@ class Api::V1::OrdersController < ApiController
         item_price: params[:item_price],
         opt_in_id: @opt_in.id,
         feature: feature,
-        organization_id: @organization.id
+        organization_id: @organization.id,
+        percentage_discount: params[:percentage_discount]
     )
+  end
+
+  def create_reminder_if_clearcart
+    if is_clearcart?
+      Reminder.create(
+          number_of_times: @order.opt_in.subscription.options.number_of_times_to_message - 1,
+          order_id: @order.id,
+          interval: @order.opt_in.subscription.options.time_interval_between_messages
+      )
+    end
+  end
+
+  def is_clearcart?
+    @order.feature == "clearcart"
   end
 
   def validate_create_params
@@ -54,6 +70,7 @@ class Api::V1::OrdersController < ApiController
     param! :order_uid, String, required: true
     param! :item_price, BigDecimal, required: true
     param! :item_name, String, required: true
+    param! :percentage_discount, Integer
   end
 
   def validate_order_status_params
@@ -62,9 +79,13 @@ class Api::V1::OrdersController < ApiController
     param :error_code, Integer
   end
 
-  def send_transactional_message
-    transactional_message = redact_message(@subscription.options.transactional_message)
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, transactional_message, @order.to_descriptor_hash)
+  def send_initial_message
+    if is_clearcart?
+      initial_message = redact_message(@subscription.options.initial_cart_abandoment_message)
+    else
+      initial_message = redact_message(@subscription.options.transactional_message)
+    end
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, initial_message, @order.to_descriptor_hash)
   end
 
   def send_appropriate_message
@@ -78,7 +99,6 @@ class Api::V1::OrdersController < ApiController
   end
 
 
-
   def send_confirmation_message
     confirmation_message = redact_message(@opt_in.subscription.options.confirmation_message)
     Resque.enqueue(MessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash)
@@ -86,10 +106,10 @@ class Api::V1::OrdersController < ApiController
 
   def send_error_message
     error_message = @organization.error_messages.joins(:error).where({
-      errors: {
-          code: params[:code]
-      }
-    }).first.message
+                                                                         errors: {
+                                                                             code: params[:code]
+                                                                         }
+                                                                     }).first.message
     redacted_error_message = redact_message(error_message)
     Resque.enqueue(MessageSender, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash)
   end
@@ -131,6 +151,7 @@ class Api::V1::OrdersController < ApiController
     message.gsub!("{ITEM}", @order.item_name)
     message.gsub!("{PRICE}", "$" + @order.item_price.to_s)
     message.gsub!("{ORDERNUMBER}", @order.uid.to_s)
+    message.gsub!("{DISCOUNT}", @order.percentage_discount.to_s + "%")
     return message
   end
 

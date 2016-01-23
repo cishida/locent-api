@@ -18,5 +18,5 @@ class ClearcartOptions < ActiveRecord::Base
         time_interval_between_messages: 72
     }
   end
-  
+
 end

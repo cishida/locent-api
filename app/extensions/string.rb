@@ -7,14 +7,4 @@ class String
         downcase
   end
 
-  def redact values_hash
-    text = self
-    puts "LOL " + self
-    values_hash.each do |key, value|
-      to_be_replaced = "{#{key.to_s.upcase}}"
-      text.gsub!(to_be_replaced, value)
-    end
-    puts "hahahaha " + text
-    return text
-  end
 end

@@ -5,6 +5,4 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :uid, :scope => :organization
   validates_uniqueness_of :name, :scope => :organization_id
 
-
-  scope :if_subscription_feature_has_products, -> {where(subscription: {feature: {has_products: true}})}
 end

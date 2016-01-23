@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120113008) do
+ActiveRecord::Schema.define(version: 20160123122711) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -138,14 +138,15 @@ ActiveRecord::Schema.define(version: 20160120113008) do
     t.decimal  "item_price"
     t.integer  "opt_in_id"
     t.datetime "deleted_at"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "completed",       default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "completed",           default: false
     t.boolean  "confirmed"
     t.boolean  "order_success"
     t.string   "feature"
     t.integer  "organization_id"
     t.string   "status"
+    t.integer  "percentage_discount"
   end
 
   add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
@@ -177,6 +178,19 @@ ActiveRecord::Schema.define(version: 20160120113008) do
   end
 
   add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
+
+  create_table "reminders", force: :cascade do |t|
+    t.integer  "number_of_times"
+    t.integer  "order_id"
+    t.integer  "interval"
+    t.boolean  "active",          default: true
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.datetime "deleted_at"
+    t.datetime "last_sent"
+  end
+
+  add_index "reminders", ["deleted_at"], name: "index_reminders_on_deleted_at"
 
   create_table "safetext_options", force: :cascade do |t|
     t.text     "opt_in_message"
