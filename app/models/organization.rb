@@ -29,7 +29,7 @@ class Organization < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :error_messages, dependent: :destroy
 
-  after_create :create_error_message
+  after_create :create_error_messages
   after_create :provision_number
 
   validates_presence_of :organization_name
