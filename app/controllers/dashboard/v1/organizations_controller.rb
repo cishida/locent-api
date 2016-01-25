@@ -33,7 +33,6 @@ class Dashboard::V1::OrganizationsController < DashboardController
     ActiveRecord::Base.transaction do
       @organization = Organization.new(organization_params)
       if @organization.save && create_primary_user_account
-        create_error_messages_for_organization
         render json: @organization, status: 201, location: [:dashboard, @organization]
       else
         render json: {errors: combined_errors}, status: 422
