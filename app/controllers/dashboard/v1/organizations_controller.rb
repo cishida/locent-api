@@ -63,6 +63,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def create_primary_user_account
     @user = @organization.build_primary_user(organization_primary_user_params)
+    @user.admin = true
     @user.save
   end
 

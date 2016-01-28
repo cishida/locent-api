@@ -3,20 +3,21 @@ class Dashboard::V1::SubscriptionsController < DashboardController
   before_action :set_variables, only: [:show, :options, :update_options]
 
 
-
   def create
     param! :feature_ids, Array, required: true
-    subscriptions = []
-    feature_ids = params[:feature_ids]
-    feature_ids.each do |feature_id|
-      feature_name = Feature.find(feature_id).name.capitalize
-      corresponding_options_model = create_options_with_defaults(feature_name)
-      subscription = Subscription.create(organization_id: current_user.organization.id, feature_id: feature_id)
-      subscription.options = corresponding_options_model
-      subscription.save
-      subscriptions << subscription
+    ActiveRecord::Base.transaction do
+      subscriptions = []
+      feature_ids = params[:feature_ids]
+      feature_ids.each do |feature_id|
+        feature_name = Feature.find(feature_id).name.capitalize
+        corresponding_options_model = create_options_with_defaults(feature_name)
+        subscription = Subscription.create(organization_id: current_user.organization.id, feature_id: feature_id)
+        subscription.options = corresponding_options_model
+        subscription.save
+        subscriptions << subscription
+      end
+      render json: subscriptions, status: 201
     end
-    render json: subscriptions, status: 201
   end
 
   def show
