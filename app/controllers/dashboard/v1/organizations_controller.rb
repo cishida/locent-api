@@ -3,7 +3,7 @@
 # Organizations
 #
 class Dashboard::V1::OrganizationsController < DashboardController
-  before_action :authenticate_user!, only: :update
+  before_action :authenticate_user!, only: [:update, :users]
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
@@ -58,6 +58,28 @@ class Dashboard::V1::OrganizationsController < DashboardController
     error_message.update(message: params[:message])
   end
 
+  def users
+    organization = current_user.organization
+    paginate json: organization.userss
+  end
+
+  def create_users
+    if current_user.is_admin?
+      ActiveRecord::Base.transaction do
+        validate_create_users_params
+        @organization = current_user.organization
+        @users = []
+        users_array = params[:users]
+        users_array.each do |user|
+          create_new_user(user)
+          @users << @user
+        end
+        paginate json: @users, status: 201
+      end
+    else
+      head status: :unauthorized
+    end
+  end
 
   private
 
@@ -87,6 +109,27 @@ class Dashboard::V1::OrganizationsController < DashboardController
     param! :organization_name, String
     param! :email, String
     param! :phone, String
+  end
+
+  def validate_create_users_params
+    param! :users, Array, required: true do |user|
+      user.param! :first_name, String, required: true
+      user.param! :last_name, String, required: true
+      user.param! :email, String, required: true
+      user.param! :password, String, required: true
+      user.param! :admin, :boolean
+    end
+  end
+
+  def create_new_user(user)
+    @user = User.create(
+        organization_id: @organization.id,
+        first_name: user[:first_name],
+        last_name: user[:last_name],
+        email: user[:email],
+        password: user[:password],
+        admin: user[:admin]
+    )
   end
 
   def organization_params

@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
 
+  def is_admin?
+    return self.admin
+  end
+
 end
