@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123122711) do
+ActiveRecord::Schema.define(version: 20160128162106) do
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20160123122711) do
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.boolean  "is_primary",             default: false
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
