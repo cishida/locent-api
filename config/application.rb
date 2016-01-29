@@ -8,19 +8,13 @@ Bundler.require(*Rails.groups)
 
 module LucentApi
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    ApiPagination.configure do |config|
+      config.total_header = 'total'
+      config.per_page_header = 'per-page'
+      config.page_header = 'page'
+    end
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.initialize_on_precompile = false
     Dir[File.join(Rails.root, "app", "extensions", "*.rb")].each { |l| require l }
@@ -30,8 +24,9 @@ module LucentApi
         resource '*',
                  :headers => :any,
                  :methods => [:get, :post, :options, :delete, :put, :patch],
-                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client']
+                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'total', 'per-page', 'page']
       end
     end
+
   end
 end
