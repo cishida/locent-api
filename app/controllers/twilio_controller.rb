@@ -122,8 +122,8 @@ class TwilioController < ApplicationController
   def create_keyword_order
     @order = Order.new(
         uid: SecureRandom.uuid.gsub(/\-/, ''),
-        item_name: @product.name,
-        item_price: @product.price,
+        description: @product.name,
+        price: @product.price,
         opt_in_id: @opt_in.id,
         feature: "keyword",
         organization_id: @organization.id,

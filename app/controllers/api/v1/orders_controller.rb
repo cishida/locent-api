@@ -41,8 +41,8 @@ class Api::V1::OrdersController < ApiController
   def create_new_order(feature)
     @order = Order.create(
         uid: params[:order_uid],
-        item_name: params[:item_name],
-        item_price: params[:item_price],
+        description: params[:description],
+        price: params[:price],
         opt_in_id: @opt_in.id,
         feature: feature,
         organization_id: @organization.id,
@@ -68,8 +68,8 @@ class Api::V1::OrdersController < ApiController
     param! :customer_uid, String, required: true
     param! :customer_phone_number, String, required: true
     param! :order_uid, String, required: true
-    param! :item_price, BigDecimal, required: true
-    param! :item_name, String, required: true
+    param! :price, BigDecimal, required: true
+    param! :description, String, required: true
     param! :percentage_discount, Integer
   end
 
@@ -148,8 +148,8 @@ class Api::V1::OrdersController < ApiController
   end
 
   def redact_message(message)
-    message.gsub!("{ITEM}", @order.item_name)
-    message.gsub!("{PRICE}", "$" + @order.item_price.to_s)
+    message.gsub!("{ITEM}", @order.description)
+    message.gsub!("{PRICE}", "$" + @order.price.to_s)
     message.gsub!("{ORDERNUMBER}", @order.uid.to_s)
     message.gsub!("{DISCOUNT}", @order.percentage_discount.to_s + "%")
     return message

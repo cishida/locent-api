@@ -22,8 +22,8 @@ def set_variables(reminder)
 end
 
 def redact_message(message)
-  message.gsub!("{ITEM}", @order.item_name)
-  message.gsub!("{PRICE}", "$" + @order.item_price.to_s)
+  message.gsub!("{ITEM}", @order.description)
+  message.gsub!("{PRICE}", "$" + @order.price.to_s)
   message.gsub!("{ORDERNUMBER}", @order.uid.to_s)
   return message
 end
