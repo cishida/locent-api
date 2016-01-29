@@ -60,7 +60,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def users
     organization = current_user.organization
-    paginate json: organization.userss
+    paginate json: organization.users
   end
 
   def create_users
