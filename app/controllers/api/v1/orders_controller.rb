@@ -39,15 +39,25 @@ class Api::V1::OrdersController < ApiController
   end
 
   def create_new_order(feature)
+    set_description_based_on_feature
     @order = Order.create(
         uid: params[:order_uid],
-        description: params[:description],
+        description: @order_description,
         price: params[:price],
         opt_in_id: @opt_in.id,
         feature: feature,
         organization_id: @organization.id,
         percentage_discount: params[:percentage_discount]
     )
+  end
+
+
+  def set_description_based_on_feature
+    if feature == "clearcart"
+      @order_description = params[:description]
+    else
+      @order_description = params[:item_name]
+    end
   end
 
   def create_reminder_if_clearcart
@@ -69,7 +79,8 @@ class Api::V1::OrdersController < ApiController
     param! :customer_phone_number, String, required: true
     param! :order_uid, String, required: true
     param! :price, BigDecimal, required: true
-    param! :description, String, required: true
+    param! :item_name, String
+    param! :description, String
     param! :percentage_discount, Integer
   end
 
