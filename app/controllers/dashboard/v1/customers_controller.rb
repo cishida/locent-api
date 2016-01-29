@@ -25,4 +25,11 @@ class Dashboard::V1::CustomersController < DashboardController
     paginate json: @customers
   end
 
+
+  def messages
+    param! :uid, String, required: true
+    customer = Customer.find_by_uid(params[:uids])
+
+  end
+
 end

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       put 'error_message/:code', to: 'organizations#update_error_message'
       resources :features, only: :index
       resources :customers, only: :show, param: :feature
+      get 'customers/:uid/messages', to: 'customers#messages'
       resources :subscriptions, only: [:create, :show] do
         member do
           get :options

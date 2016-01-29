@@ -30,7 +30,7 @@ module LucentApi
         resource '*',
                  :headers => :any,
                  :methods => [:get, :post, :options, :delete, :put, :patch],
-                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client']
+                 :expose => '*'
       end
     end
   end
