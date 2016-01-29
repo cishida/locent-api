@@ -64,20 +64,19 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def create_users
-    if current_user.is_admin?
-      ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction do
+      if current_user.is_admin?
         validate_create_users_params
         @organization = current_user.organization
         @users = []
         users_array = params[:users]
         users_array.each do |user|
           create_new_user(user)
-          @users << @user
         end
         paginate json: @users, status: 201
+      else
+        head status: :unauthorized
       end
-    else
-      head status: :unauthorized
     end
   end
 
@@ -122,7 +121,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def create_new_user(user)
-    @user = User.create(
+    @user = User.new(
         organization_id: @organization.id,
         first_name: user[:first_name],
         last_name: user[:last_name],
@@ -130,6 +129,9 @@ class Dashboard::V1::OrganizationsController < DashboardController
         password: user[:password],
         admin: user[:admin]
     )
+    if @user.save
+      @users << @user
+    end
   end
 
   def organization_params
