@@ -164,7 +164,11 @@ class TwilioController < ApplicationController
   end
 
   def customer_intends_to_confirm_payment?
-    (!@order.confirmed) && (@incoming_message.body.upcase == "PAY")
+    if is_clearcart?
+      return (!@order.confirmed) && (@incoming_message.body.upcase == "BUY")
+    elsif is_safetext?
+      return (!@order.confirmed) && (@incoming_message.body.upcase == "PAY")
+    end
   end
 
   def customer_intends_to_cancel_payment?
