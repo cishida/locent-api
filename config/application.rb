@@ -11,7 +11,7 @@ module LucentApi
 
     ApiPagination.configure do |config|
       config.total_header = 'total'
-      config.per_page_header = 'per-page'
+      config.per_page_header = 'perPage'
       config.page_header = 'page'
     end
 
@@ -24,7 +24,7 @@ module LucentApi
         resource '*',
                  :headers => :any,
                  :methods => [:get, :post, :options, :delete, :put, :patch],
-                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'total', 'per-page', 'page']
+                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'total', 'perPage', 'page']
       end
     end
 
