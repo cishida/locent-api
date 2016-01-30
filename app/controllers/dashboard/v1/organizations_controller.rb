@@ -91,8 +91,8 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def destroy_user
-    param! :uid, String, required: true
-    @user = User.find_by_uid(params[:uid])
+    param! :id, String, required: true
+    @user = User.find(params[:id])
     @user.destroy
     head status: 204
   end
