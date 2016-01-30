@@ -27,9 +27,9 @@ Rails.application.routes.draw do
         collection do
           get 'users'
           post 'create_users'
-          delete 'delete_user/:uid'
           put 'update_user_admin_status'
         end
+        delete 'delete_user/:uid', to: 'organizations#delete_user'
       end
       put 'error_message/:code', to: 'organizations#update_error_message'
       resources :features, only: :index
