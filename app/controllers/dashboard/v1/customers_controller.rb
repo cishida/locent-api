@@ -28,8 +28,9 @@ class Dashboard::V1::CustomersController < DashboardController
 
   def messages
     param! :uid, String, required: true
+    @organization = current_user.organization
     customer = Customer.find_by_uid(params[:uids])
-
+    messages = Message.where(to: customer.phone, from: @organization.long_number).where(to: customer.phone, from: @organization.short_code).where(from: customer.phone, to: @organization.long_number).where()
   end
 
 end
