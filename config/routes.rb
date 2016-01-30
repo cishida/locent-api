@@ -30,7 +30,7 @@ Rails.application.routes.draw do
           put 'update_user_admin_status'
         end
       end
-      delete 'organizations/delete_user/:id', to: 'organizations#delete_user'
+      delete 'organizations/destroy_user/:id', to: 'organizations#delete_user'
       put 'error_message/:code', to: 'organizations#update_error_message'
       resources :features, only: :index
       resources :customers, only: :show, param: :feature
