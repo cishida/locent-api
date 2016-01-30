@@ -27,6 +27,8 @@ Rails.application.routes.draw do
         collection do
           get 'users'
           post 'create_users'
+          delete 'delete_user'
+          put 'update_user'
         end
       end
       put 'error_message/:code', to: 'organizations#update_error_message'

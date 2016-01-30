@@ -80,6 +80,23 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  def update_user
+    param! :uid, String, required: true
+    param! :admin, :boolean
+
+    @user = User.find_by_uid(params[:uid])
+    @user.update(admin: params[:admin])
+
+    respond_with @user
+  end
+
+  def destroy_user
+    param! :uid, String, required: true
+    @user = User.find_by_uid(params[:uid])
+    @user.destroy
+    head status: 204
+  end
+
   private
 
   def create_primary_user_account
