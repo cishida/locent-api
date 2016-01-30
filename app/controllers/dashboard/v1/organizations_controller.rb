@@ -80,7 +80,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
-  def update_user
+  def update_user_admin_status
     param! :uid, String, required: true
     param! :admin, :boolean
 
