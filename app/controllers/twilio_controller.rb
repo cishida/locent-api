@@ -43,6 +43,8 @@ class TwilioController < ApplicationController
       handle_if_safetext_message
     elsif is_clearcart?
       handle_if_clearcart_message
+    elsif is_invalid?
+      
     end
   end
 

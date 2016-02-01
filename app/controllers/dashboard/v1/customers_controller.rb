@@ -14,7 +14,7 @@ class Dashboard::V1::CustomersController < DashboardController
   def show
     param! :feature, String, required: true
     @organization = current_user.organization
-    @feature = Feature.find_by_name(params[:feature].capitalize)
+    @feature = Feature.find_by_name(params[:feature].downcase.capitalize)
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
     @customers = Customer.joins(:opt_ins).where(
         opt_ins: {
@@ -28,6 +28,9 @@ class Dashboard::V1::CustomersController < DashboardController
 
   def messages
     param! :uid, String, required: true
+    param! :feature, String, required: true
+
+    feature = Feature.find_by_name(params[:feature].downcase.capitalize)
     @organization = current_user.organization
     customer = Customer.find_by_uid(params[:uids])
     @messages = Message.where(to: customer.phone, from: @organization.long_number).where(to: customer.phone, from: @organization.short_code).where(from: customer.phone, to: @organization.long_number).where(from: customer.phone, to: @organization.short_code).order("id DESC")
