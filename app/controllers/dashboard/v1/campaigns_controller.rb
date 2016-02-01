@@ -9,7 +9,7 @@ class Dashboard::V1::CampaignsController < DashboardController
     @customers = Customer.joins(:opt_ins).where(
         organization_id: @organization.id,
         opt_ins: {
-            feature: feature.id
+            feature_id: feature.id
         }
     )
 
