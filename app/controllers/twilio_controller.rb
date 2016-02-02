@@ -103,8 +103,10 @@ class TwilioController < ApplicationController
       @invalid_message = @opt_in.subscription.options.invalid_message
     elsif is_from_customer_but_invalid?
       @invalid_message = "" #TODO
+      @purpose = nil
     elsif is_entirely_invalid?
       @invalid_message = "" #TODO
+      @purpose = nil
     end
   end
 
