@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202040808) do
+ActiveRecord::Schema.define(version: 20160202211817) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
     t.integer  "number_of_targets"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "name"
+    t.datetime "deleted_at"
+    t.integer  "organization_id"
   end
+
+  add_index "campaigns", ["deleted_at"], name: "index_campaigns_on_deleted_at"
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"

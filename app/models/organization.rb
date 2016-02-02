@@ -28,6 +28,7 @@ class Organization < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :error_messages, dependent: :destroy
+  has_many :campaigns, dependent: :destroy
 
   after_create :create_error_messages
   after_create :provision_number

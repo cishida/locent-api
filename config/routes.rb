@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       resources :features, only: :index
       resources :customers, only: :show, param: :feature
       get 'customers/:uid/messages/:feature', to: 'customers#messages'
+      resources :campaigns, only: :index
       post 'campaigns/alert/:feature', to: 'campaigns#alert'
       post 'campaigns/import', to: 'campaigns#import'
       resources :subscriptions, only: [:create, :show] do

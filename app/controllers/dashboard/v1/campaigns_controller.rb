@@ -8,6 +8,7 @@ class Dashboard::V1::CampaignsController < DashboardController
       validate_alert_params
       set_alert_variables
       send_message_to_customers("alert")
+      head status: 204
     end
   end
 
@@ -22,6 +23,11 @@ class Dashboard::V1::CampaignsController < DashboardController
     end
   end
 
+  def index
+    @campaigns = Campaign.where(organization_id: @organization.id)
+    paginate json: @campaigns
+  end
+
   private
 
   def set_organization
@@ -31,14 +37,19 @@ class Dashboard::V1::CampaignsController < DashboardController
 
   def validate_alert_params
     param! :feature, String, required: true
-    param! :message, String, required: true
+    validate_campaign_params
   end
 
   def validate_import_params
-    param! :message, String, required: true
+    validate_campaign_params
     param! :customers, Array, required: true do |customer|
       customer.param! :phone_number, String, required: true
     end
+  end
+
+  def validate_campaign_params
+    param! :message, String, required: true
+    param! :campaign_name, String, required: true
   end
 
   def set_alert_variables
@@ -79,7 +90,7 @@ class Dashboard::V1::CampaignsController < DashboardController
   end
 
   def create_new_campaign(kind)
-    @campaign = Campaign.create(kind: kind, number_of_targets: @customers.count)
+    @campaign = Campaign.create(kind: kind, number_of_targets: @customers.count, name: params[:campaign_name], organization_id: @organization.id)
   end
 
 end
