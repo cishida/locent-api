@@ -4,6 +4,7 @@
 #
 class Dashboard::V1::CustomersController < DashboardController
   before_action :authenticate_user!
+  before_action :set_organization
   # @url /customers/:feature
   # @action GET
   #
@@ -14,26 +15,46 @@ class Dashboard::V1::CustomersController < DashboardController
   # @response_field [Array<Customer>] customers List of customers on this page
   def show
     param! :feature, String, required: true
+    set_variables
+    paginate json: @customers
+  end
+
+
+  # def messages
+  #   param! :uid, String, required: true
+  #   param! :feature, String, required: true
+  #   customer = Customer.find_by_uid(params[:uids])
+  #   @messages = Message.where(to: customer.phone, from: @organization.long_number).where(to: customer.phone, from: @organization.short_code).where(from: customer.phone, to: @organization.long_number).where(from: customer.phone, to: @organization.short_code).order("id DESC")
+  #   render json: @messages
+  # end
+
+
+  private
+
+  def set_organization
     @organization = current_user.organization
+  end
+
+  def set_variables
+    set_subscription
+    set_feature
+    set_customers
+  end
+
+  def set_subscription
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
+  end
+
+  def set_feature
+    @feature = Feature.find_by_name(params[:feature])
+  end
+
+  def set_customers
     @customers = Customer.joins(:opt_ins).where(
         opt_ins: {
             subscription_id: @subscription.id
         }
     )
-
-    paginate json: @customers
-  end
-
-
-  def messages
-    param! :uid, String, required: true
-    param! :feature, String, required: true
-
-    @organization = current_user.organization
-    customer = Customer.find_by_uid(params[:uids])
-    @messages = Message.where(to: customer.phone, from: @organization.long_number).where(to: customer.phone, from: @organization.short_code).where(from: customer.phone, to: @organization.long_number).where(from: customer.phone, to: @organization.short_code).order("id DESC")
-    render json: @messages
   end
 
 end

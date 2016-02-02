@@ -4,6 +4,7 @@
 #
 class Dashboard::V1::OrganizationsController < DashboardController
   before_action :authenticate_user!, only: [:update, :users]
+  before_action :set_organization, except: [:create]
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
@@ -42,7 +43,6 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def update
-    @organization = current_user.organization
     if @organization.update(organization_params)
       render json: @organization, status: 201
     else
@@ -52,22 +52,21 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def update_error_message
     param! :message, String, required: true
-    organization = current_user.organization
-    error = Error.find_by_code(params[:code])
-    error_message = ErrorMessage.find_by_error_id_and_organization_id(error.id, organization.id)
-    error_message.update(message: params[:message])
+    set_error
+    set_error_message
+    if @error_message.update(message: params[:message])
+      head status: 201
+    end
   end
 
   def users
-    organization = current_user.organization
-    paginate json: organization.users
+    paginate json: @organization.users
   end
 
   def create_users
     ActiveRecord::Base.transaction do
       if current_user.is_admin?
         validate_create_users_params
-        @organization = current_user.organization
         @users = []
         users_array = params[:users]
         users_array.each do |user|
@@ -98,6 +97,18 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   private
+
+  def set_organization
+    @organization = current_user.organization
+  end
+
+  def set_error
+    @error = Error.find_by_code(params[:code])
+  end
+
+  def set_error_message
+    @error_message = ErrorMessage.find_by_error_id_and_organization_id(@error.id, @organization.id)
+  end
 
   def create_primary_user_account
     @user = @organization.build_primary_user(organization_primary_user_params)
