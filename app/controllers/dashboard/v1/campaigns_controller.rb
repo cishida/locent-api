@@ -19,10 +19,10 @@ class Dashboard::V1::CampaignsController < DashboardController
   end
 
   def import
+    param! :message, String, required: true
     param! :customers, Array, required: true do |customer|
       customer.param! :phone_number, String, required: true
     end
-
     count = 0
     params[:customers].each do |customer|
       if Customer.exists?(phone: customer[:phone_number], organization_id: current_user.organization.id)
@@ -30,8 +30,8 @@ class Dashboard::V1::CampaignsController < DashboardController
       else
         count+=1
       end
-      render json: {failed: count}, status: 204
     end
+    render json: {failed: count}, status: 204
   end
 
 end
