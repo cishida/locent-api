@@ -7,6 +7,10 @@ class ClearcartOptionsSerializer < ActiveModel::Serializer
              :confirmation_message,
              :number_of_times_to_message,
              :time_interval_between_messages,
-             :opt_in_verification_url, :opt_in_confirmation_url, :purchase_request_url
+             :opt_in_verification_url,
+             :opt_in_confirmation_url,
+             :purchase_request_url,
+             :invalid_message,
+             :opt_in_invalid_message
 
 end
