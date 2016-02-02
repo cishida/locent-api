@@ -93,7 +93,7 @@ class TwilioController < ApplicationController
 
   def send_invalid_message
     set_invalid_message
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, @invalid_message, nil)
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, @invalid_message, @purpose)
   end
 
   def set_invalid_message

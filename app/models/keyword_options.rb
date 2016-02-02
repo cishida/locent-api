@@ -18,3 +18,4 @@ class KeywordOptions < ActiveRecord::Base
     }
   end
 end
+
