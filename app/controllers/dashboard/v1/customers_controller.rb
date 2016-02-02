@@ -36,17 +36,17 @@ class Dashboard::V1::CustomersController < DashboardController
   end
 
   def set_variables
-    set_subscription
     set_feature
+    set_subscription
     set_customers
-  end
-
-  def set_subscription
-    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
 
   def set_feature
     @feature = Feature.find_by_name(params[:feature])
+  end
+
+  def set_subscription
+    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
 
   def set_customers
