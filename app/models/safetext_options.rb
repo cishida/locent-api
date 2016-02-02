@@ -15,8 +15,8 @@ class SafetextOptions < ActiveRecord::Base
         transactional_message: 'A {PRICE} order for {ITEM} has been placed with your account. Reply PAY to confirm order or NO to cancel',
         cancellation_message: 'You have cancelled the {PRICE} order for {ITEM}',
         confirmation_message: 'Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}',
-        invalid_message: 'Invalid command. Please reply with PAY to complete your order or NO to cancel it.',
-        opt_in_invalid_message: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
+        invalid_message_response: 'Invalid command. Please reply with PAY to complete your order or NO to cancel it.',
+        opt_in_invalid_message_response: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
     }
   end
 end

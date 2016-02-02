@@ -44,7 +44,7 @@ class TwilioController < ApplicationController
     elsif is_clearcart?
       handle_if_clearcart_message
     else
-      send_invalid_message
+      send_invalid_message_response
     end
   end
 
@@ -91,21 +91,21 @@ class TwilioController < ApplicationController
     OptIn.exists?(customer_id: @customer.id, organization_id: @organization.id, completed: true)
   end
 
-  def send_invalid_message
-    set_invalid_message
-    Resque.enqueue(MessageSender, @organization.from, @customer.phone, @invalid_message, @purpose)
+  def send_invalid_message_response
+    set_invalid_message_response
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, @invalid_message_response, @purpose)
   end
 
-  def set_invalid_message
+  def set_invalid_message_response
     if is_opt_in?
-      @invalid_message = @purpose.subscription.options.opt_in_invalid_message
+      @invalid_message_response = @purpose.subscription.options.opt_in_invalid_message_response
     elsif is_safetext? || is_clearcart?
-      @invalid_message = @opt_in.subscription.options.invalid_message
+      @invalid_message_response = @opt_in.subscription.options.invalid_message_response
     elsif is_from_customer_but_invalid?
-      @invalid_message = "" #TODO
+      @invalid_message_response = ""
       @purpose = nil
     elsif is_entirely_invalid?
-      @invalid_message = "" #TODO
+      @invalid_message_response = ""
       @purpose = nil
     end
   end
@@ -119,7 +119,7 @@ class TwilioController < ApplicationController
       send_opt_in_cancellation_message
       @opt_in.destroy
     else
-      send_invalid_message
+      send_invalid_message_response
     end
   end
 
@@ -133,7 +133,7 @@ class TwilioController < ApplicationController
       @order.update(confirmed: false)
       notify_organization_of_customer_intent
     else
-      send_invalid_message
+      send_invalid_message_response
     end
   end
 

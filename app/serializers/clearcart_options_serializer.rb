@@ -10,7 +10,7 @@ class ClearcartOptionsSerializer < ActiveModel::Serializer
              :opt_in_verification_url,
              :opt_in_confirmation_url,
              :purchase_request_url,
-             :invalid_message,
-             :opt_in_invalid_message
+             :invalid_message_response,
+             :opt_in_invalid_message_response
 
 end

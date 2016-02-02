@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202211817) do
+ActiveRecord::Schema.define(version: 20160202223458) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20160202211817) do
     t.string   "opt_in_verification_url"
     t.string   "opt_in_confirmation_url"
     t.string   "purchase_request_url"
-    t.text     "invalid_message"
-    t.text     "opt_in_invalid_message"
+    t.text     "invalid_message_response"
+    t.text     "opt_in_invalid_message_response"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -97,13 +97,13 @@ ActiveRecord::Schema.define(version: 20160202211817) do
     t.text     "transactional_message"
     t.text     "cancellation_message"
     t.text     "confirmation_message"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.datetime "deleted_at"
     t.string   "opt_in_verification_url"
     t.string   "opt_in_confirmation_url"
     t.string   "purchase_request_url"
-    t.text     "opt_in_invalid_message"
+    t.text     "opt_in_invalid_message_response"
   end
 
   add_index "keyword_options", ["deleted_at"], name: "index_keyword_options_on_deleted_at"
@@ -215,13 +215,13 @@ ActiveRecord::Schema.define(version: 20160202211817) do
     t.text     "cancellation_message"
     t.text     "confirmation_message"
     t.datetime "deleted_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "opt_in_verification_url"
     t.string   "opt_in_confirmation_url"
     t.string   "purchase_request_url"
-    t.text     "invalid_message"
-    t.text     "opt_in_invalid_message"
+    t.text     "invalid_message_response"
+    t.text     "opt_in_invalid_message_response"
   end
 
   create_table "subscriptions", force: :cascade do |t|

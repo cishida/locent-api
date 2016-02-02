@@ -14,7 +14,7 @@ class KeywordOptions < ActiveRecord::Base
         transactional_message: 'You just placed an order for {ITEM}. Your order is processing and we will send you a confirmation SMS soon.',
         confirmation_message: 'Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}.',
         cancellation_message: 'Your order for {ITEM} has been cancelled due to {ERROR}',
-        opt_in_invalid_message: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
+        opt_in_invalid_message_response: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
     }
   end
 end

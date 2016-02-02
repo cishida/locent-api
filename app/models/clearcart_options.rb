@@ -6,7 +6,7 @@ class ClearcartOptions < ActiveRecord::Base
   validates :opt_in_confirmation_url, :url => {:no_local => true}
   validates :purchase_request_url, :url => {:no_local => true}
 
-  def self.invalid_message
+  def self.invalid_message_response
     "Invalid command. Please reply with BUY to clear your cart or NO to cancel the order."
   end
 
@@ -20,8 +20,8 @@ class ClearcartOptions < ActiveRecord::Base
         confirmation_message: 'Your {PRICE} order is on the way! Your order number is {ORDERNUMBER}',
         number_of_times_to_message: 3,
         time_interval_between_messages: 72,
-        invalid_message: 'Invalid command. Please reply with BUY to clear your cart or NO to cancel the order.',
-        opt_in_invalid_message: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
+        invalid_message_response: 'Invalid command. Please reply with BUY to clear your cart or NO to cancel the order.',
+        opt_in_invalid_message_response: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
     }
   end
 

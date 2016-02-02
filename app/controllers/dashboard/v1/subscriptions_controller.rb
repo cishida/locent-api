@@ -74,7 +74,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :opt_in_confirmation_url,
                   :opt_in_verification_url,
                   :purchase_request_url,
-                  :opt_in_invalid_message
+                  :opt_in_invalid_message_response
     )
   end
 
@@ -88,8 +88,8 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :transactional_message,
                   :cancellation_message,
                   :confirmation_message,
-                  :invalid_message,
-                  :opt_in_invalid_message
+                  :invalid_message_response,
+                  :opt_in_invalid_message_response
     )
   end
 
@@ -105,8 +105,8 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :opt_in_confirmation_url,
                   :opt_in_verification_url,
                   :purchase_request_url,
-                  :invalid_message,
-                  :opt_in_invalid_message
+                  :invalid_message_response,
+                  :opt_in_invalid_message_response
     )
   end
 
