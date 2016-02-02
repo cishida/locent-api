@@ -4,18 +4,22 @@ class Dashboard::V1::CampaignsController < DashboardController
 
 
   def alert
-    validate_alert_params
-    set_alert_variables
-    send_message_to_customers
+    ActiveRecord::Base.transaction do
+      validate_alert_params
+      set_alert_variables
+      send_message_to_customers("alert")
+    end
   end
 
   def import
-    validate_import_params
-    @failed_count = 0
-    @customers = []
-    set_opted_in_customers
-    send_message_to_customers
-    render json: {failed: @failed_count}, status: 204
+    ActiveRecord::Base.transaction do
+      validate_import_params
+      @failed_count = 0
+      @customers = []
+      set_opted_in_customers
+      send_message_to_customers("import")
+      render json: {failed: @failed_count}, status: 204
+    end
   end
 
   private
@@ -69,8 +73,13 @@ class Dashboard::V1::CampaignsController < DashboardController
     Customer.exists?(phone: customer[:phone_number], organization_id: @organization.id)
   end
 
-  def send_message_to_customers
-    @customers.each { |customer| Resque.enqueue(MessageSender, @organization.from, customer.phone, params[:message], nil) }
+  def send_message_to_customers(kind)
+    create_new_campaign(kind)
+    @customers.each { |customer| Resque.enqueue(MessageSender, @organization.from, customer.phone, params[:message], @campaign) }
+  end
+
+  def create_new_campaign(kind)
+    @campaign = Campaign.create(kind: kind, number_of_targets: @customers.count)
   end
 
 end

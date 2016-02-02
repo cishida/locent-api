@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: MyString
+  number_of_targets: 1
+
+two:
+  kind: MyString
+  number_of_targets: 1
