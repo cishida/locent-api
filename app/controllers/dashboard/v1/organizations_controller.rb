@@ -33,7 +33,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
     ActiveRecord::Base.transaction do
       @organization = Organization.new(organization_params)
       if @organization.save && create_primary_user_account
-        render json: @organization, status: 201, location: [:dashboard, @organization]
+        render json: @organization, status: 201
       else
         render json: {errors: combined_errors}, status: 422
         @user.really_destroy!
@@ -44,7 +44,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   def update
     @organization = current_user.organization
     if @organization.update(organization_params)
-      render json: @organization, status: 201, location: [:dashboard, @organization]
+      render json: @organization, status: 201
     else
       render json: {errors: @organization.errors.full_messages}, status: 422
     end

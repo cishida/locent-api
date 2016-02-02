@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :customers, only: :show, param: :feature
       get 'customers/:uid/messages/:feature', to: 'customers#messages'
       post 'campaigns/alert/:feature', to: 'campaigns#alert'
+      post 'campaigns/import', to: 'campaigns#import'
       resources :subscriptions, only: [:create, :show] do
         member do
           get :options

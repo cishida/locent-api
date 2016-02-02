@@ -9,7 +9,7 @@ class Dashboard::V1::SubscriptionsController < DashboardController
       subscriptions = []
       feature_ids = params[:feature_ids]
       feature_ids.each do |feature_id|
-        feature_name = Feature.find(feature_id).name.capitalize
+        feature_name = Feature.find(feature_id).name
         corresponding_options_model = create_options_with_defaults(feature_name)
         subscription = Subscription.create(organization_id: current_user.organization.id, feature_id: feature_id)
         subscription.options = corresponding_options_model

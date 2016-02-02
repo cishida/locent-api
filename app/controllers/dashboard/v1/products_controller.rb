@@ -56,7 +56,7 @@ class Dashboard::V1::ProductsController < DashboardController
 
   def set_variables
     @organization = current_user.organization
-    @feature = Feature.find_by_name(params[:feature].capitalize)
+    @feature = Feature.find_by_name(params[:feature])
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
 
