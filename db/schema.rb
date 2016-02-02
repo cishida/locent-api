@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202223458) do
+ActiveRecord::Schema.define(version: 20160202230727) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -171,11 +171,13 @@ ActiveRecord::Schema.define(version: 20160202223458) do
     t.string   "email"
     t.string   "auth_token"
     t.string   "phone"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.datetime "deleted_at"
     t.string   "short_code"
     t.string   "long_number"
+    t.text     "customer_invalid_message_response"
+    t.text     "stranger_invalid_message_response"
   end
 
   add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at"

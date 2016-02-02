@@ -32,6 +32,7 @@ class Organization < ActiveRecord::Base
 
   after_create :create_error_messages
   after_create :provision_number
+  after_create :create_invalid_message_responses
 
   validates_presence_of :organization_name
   validates_uniqueness_of :organization_name
@@ -67,6 +68,16 @@ class Organization < ActiveRecord::Base
     self.save
   end
 
+  def create_invalid_message_responses
+    self.update(invalid_message_response_defaults)
+  end
+
+  def invalid_message_response_defaults
+    {
+        customer_invalid_message_response: 'Invalid command.',
+        stranger_invalid_message_response: "You are not Opted In to any of our text message services."
+    }
+  end
 
   private
   def set_auth_token

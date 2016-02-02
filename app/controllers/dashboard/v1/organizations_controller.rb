@@ -52,9 +52,19 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def update_error_message
     param! :message, String, required: true
+    param! :code, String, required: true
     set_error
     set_error_message
     if @error_message.update(message: params[:message])
+      head status: 201
+    end
+  end
+
+  def update_invalid_message_responses
+    param! :customer_invalid_message_response, String
+    param! :stranger_invalid_message_response, String
+
+    if @organization.update(customer_invalid_message_response: params[:customer_invalid_message_response], stranger_invalid_message_response: params[:stranger_invalid_message_response])
       head status: 201
     end
   end
@@ -112,8 +122,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
 
   def create_primary_user_account
     @user = @organization.build_primary_user(organization_primary_user_params)
-    @user.admin = true
-    @user.save
+    @user.update(admin: true)
   end
 
   def combined_errors
