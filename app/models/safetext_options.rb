@@ -6,9 +6,6 @@ class SafetextOptions < ActiveRecord::Base
   validates :opt_in_confirmation_url, :url => {:no_local => true}
   validates :purchase_request_url, :url => {:no_local => true}
 
-  def self.invalid_message
-    "Invalid command. Please reply with PAY to complete your order or NO to cancel it."
-  end
 
   def self.defaults
     default_hash = {
@@ -18,6 +15,8 @@ class SafetextOptions < ActiveRecord::Base
         transactional_message: 'A {PRICE} order for {ITEM} has been placed with your account. Reply PAY to confirm order or NO to cancel',
         cancellation_message: 'You have cancelled the {PRICE} order for {ITEM}',
         confirmation_message: 'Your {PRICE} order for {ITEM} is on the way! Your order number is {ORDERNUMBER}',
+        invalid_message: 'Invalid command. Please reply with PAY to complete your order or NO to cancel it.',
+        opt_in_invalid_message: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
     }
   end
 end

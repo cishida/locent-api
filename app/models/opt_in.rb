@@ -13,10 +13,6 @@ class OptIn < ActiveRecord::Base
   validates_uniqueness_of :subscription_id, :scope => :customer_id
 
 
-  def self.invalid_message
-    "Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel"
-  end
-
   private
   def set_verification_code
     return if verification_code.present?

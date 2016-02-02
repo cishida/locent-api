@@ -19,7 +19,9 @@ class ClearcartOptions < ActiveRecord::Base
         follow_up_message: 'Your cart is still {DISCOUNT} off and is still in your cart. Reply with BUY to buy them now at {PRICE}!',
         confirmation_message: 'Your {PRICE} order is on the way! Your order number is {ORDERNUMBER}',
         number_of_times_to_message: 3,
-        time_interval_between_messages: 72
+        time_interval_between_messages: 72,
+        invalid_message: 'Invalid command. Please reply with BUY to clear your cart or NO to cancel the order.',
+        opt_in_invalid_message: 'Invalid command. Please reply with your confirmation code to complete Opt In or text NO to cancel'
     }
   end
 

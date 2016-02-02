@@ -98,11 +98,9 @@ class TwilioController < ApplicationController
 
   def set_invalid_message
     if is_opt_in?
-      @invalid_message = OptIn.invalid_message
-    elsif is_safetext?
-      @invalid_message = SafetextOptions.invalid_message
-    elsif is_clearcart?
-      @invalid_message = ClearcartOptions.invalid_message
+      @invalid_message = @purpose.subscription.options.opt_in_invalid_message
+    elsif is_safetext? || is_clearcart?
+      @invalid_message = @opt_in.subscription.options.invalid_message
     elsif is_from_customer_but_invalid?
       @invalid_message = "" #TODO
     elsif is_entirely_invalid?

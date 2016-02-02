@@ -73,7 +73,8 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :cancellation_message,
                   :opt_in_confirmation_url,
                   :opt_in_verification_url,
-                  :purchase_request_url
+                  :purchase_request_url,
+                  :opt_in_invalid_message
     )
   end
 
@@ -86,7 +87,10 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :welcome_message,
                   :transactional_message,
                   :cancellation_message,
-                  :confirmation_message)
+                  :confirmation_message,
+                  :invalid_message,
+                  :opt_in_invalid_message
+    )
   end
 
   def clearcart_options_params
@@ -100,7 +104,9 @@ class Dashboard::V1::SubscriptionsController < DashboardController
                   :time_interval_between_messages,
                   :opt_in_confirmation_url,
                   :opt_in_verification_url,
-                  :purchase_request_url
+                  :purchase_request_url,
+                  :invalid_message,
+                  :opt_in_invalid_message
     )
   end
 
