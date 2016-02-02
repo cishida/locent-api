@@ -43,8 +43,8 @@ class TwilioController < ApplicationController
       handle_if_safetext_message
     elsif is_clearcart?
       handle_if_clearcart_message
-    elsif is_invalid?
-      
+    else
+      send_invalid_message
     end
   end
 
@@ -79,16 +79,47 @@ class TwilioController < ApplicationController
     @purpose.feature == "clearcart" && !@purpose.completed
   end
 
+  def is_from_customer_but_invalid?
+    !@customer.blank? && customer_opt_in_is_complete? && is_invalid?
+  end
+
+  def is_invalid?
+    !is_clearcart? && !is_safetext? && !is_keyword? && !is_opt_in?
+  end
+
+  def customer_opt_in_is_complete
+    OptIn.exists?(customer_id: @customer.id, organization_id: @organization.id, completed: true)
+  end
+
+  def send_invalid_message
+    set_invalid_message
+    Resque.enqueue(MessageSender, @organization.from, @customer.phone, @invalid_message, nil)
+  end
+
+  def set_invalid_message
+    if is_opt_in?
+      @invalid_message = OptIn.invalid_message
+    elsif is_safetext?
+      @invalid_message = SafetextOptions.invalid_message
+    elsif is_clearcart?
+      @invalid_message = ClearcartOptions.invalid_message
+    elsif is_from_customer_but_invalid?
+      @invalid_message = "" #TODO
+    elsif is_entirely_invalid?
+      @invalid_message = "" #TODO
+    end
+  end
 
   def handle_if_opt_in_message
     set_opt_in
     if customer_intends_to_complete_opt_in?
-      @opt_in.completed = true
-      @opt_in.save
+      @opt_in.update(completed: true)
       send_opt_in_welcome_message
     elsif customer_intends_to_cancel_opt_in?
       send_opt_in_cancellation_message
       @opt_in.destroy
+    else
+      send_invalid_message
     end
   end
 
@@ -96,13 +127,14 @@ class TwilioController < ApplicationController
     set_order
     get_order_opt_in
     if customer_intends_to_confirm_payment?
-      @order.confirmed = true
+      @order.update(confirmed: true)
+      notify_organization_of_customer_intent
+    elsif customer_intends_to_cancel_payment?
+      @order.update(confirmed: false)
+      notify_organization_of_customer_intent
     else
-      customer_intends_to_cancel_payment?
-      @order.confirmed = false
+      send_invalid_message
     end
-    @order.save
-    notify_organization_of_customer_intent
   end
 
   def handle_if_clearcart_message

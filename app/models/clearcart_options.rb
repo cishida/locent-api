@@ -6,6 +6,10 @@ class ClearcartOptions < ActiveRecord::Base
   validates :opt_in_confirmation_url, :url => {:no_local => true}
   validates :purchase_request_url, :url => {:no_local => true}
 
+  def self.invalid_message
+    "Invalid command. Please reply with BUY to clear your cart or NO to cancel the order."
+  end
+
   def self.defaults
     default_hash = {
         opt_in_message: 'Text your confirmation code to complete opt-in to Clearcart or text NO to cancel.',
