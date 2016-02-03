@@ -42,9 +42,7 @@ class Dashboard::V1::CampaignsController < DashboardController
 
   def validate_import_params
     validate_campaign_params
-    param! :customers, Array, required: true do |customer|
-      customer.param! :phone_number, String, required: true
-    end
+    param! :customers, Array, required: true
   end
 
   def validate_campaign_params
@@ -81,7 +79,7 @@ class Dashboard::V1::CampaignsController < DashboardController
   end
 
   def organization_can_message? customer
-    Customer.exists?(phone: customer[:phone_number], organization_id: @organization.id)
+    Customer.exists?(phone: customer, organization_id: @organization.id)
   end
 
   def send_message_to_customers(kind)
