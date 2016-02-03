@@ -28,7 +28,6 @@ Rails.application.routes.draw do
           get 'users'
           post 'create_users'
           put 'update_user_admin_status'
-          put 'update_invalid_message_responses'
         end
       end
       delete 'organizations/destroy_user/:id', to: 'organizations#destroy_user'

@@ -60,15 +60,6 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
-  def update_invalid_message_responses
-    param! :customer_invalid_message_response, String
-    param! :stranger_invalid_message_response, String
-
-    if @organization.update(customer_invalid_message_response: params[:customer_invalid_message_response], stranger_invalid_message_response: params[:stranger_invalid_message_response])
-      head status: 201
-    end
-  end
-
   def users
     paginate json: @organization.users
   end
@@ -172,7 +163,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   end
 
   def organization_params
-    params.permit(:organization_name, :email, :phone)
+    params.permit(:organization_name, :email, :phone, :customer_invalid_message_response, :stranger_invalid_message_response)
   end
 
   def organization_primary_user_params

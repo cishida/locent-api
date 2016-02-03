@@ -8,7 +8,7 @@ class Dashboard::V1::CampaignsController < DashboardController
       validate_alert_params
       set_alert_variables
       send_message_to_customers("alert")
-      head status: 204
+      render json: @campaign, status: 201
     end
   end
 
@@ -19,7 +19,7 @@ class Dashboard::V1::CampaignsController < DashboardController
       @customers = []
       set_opted_in_customers
       send_message_to_customers("import")
-      render json: {failed: @failed_count}, status: 204
+      render json: {failed: @failed_count, campaign: @campaign}, status: 201
     end
   end
 
@@ -63,7 +63,7 @@ class Dashboard::V1::CampaignsController < DashboardController
     @customers = Customer.joins(:opt_ins).where(
         organization_id: @organization.id,
         opt_ins: {
-            feature_id: feature.id
+            feature_id: @feature.id
         }
     )
   end
