@@ -29,6 +29,7 @@ class Organization < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :error_messages, dependent: :destroy
   has_many :campaigns, dependent: :destroy
+  has_one :shortcode_application
 
   after_create :create_error_messages
   after_create :provision_number

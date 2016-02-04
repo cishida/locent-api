@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202230727) do
+ActiveRecord::Schema.define(version: 20160204000755) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -226,6 +226,27 @@ ActiveRecord::Schema.define(version: 20160202230727) do
     t.text     "opt_in_invalid_message_response"
   end
 
+  create_table "shortcode_applications", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "vanity_or_random"
+    t.string   "payment_frequency"
+    t.string   "company_name"
+    t.text     "company_mailing_address"
+    t.string   "city"
+    t.string   "state_or_province"
+    t.string   "primary_contact_name"
+    t.string   "primary_contact_number"
+    t.string   "support_email_address"
+    t.string   "support_toll_free_number"
+    t.string   "company_tax_id"
+    t.string   "company_email"
+    t.string   "help_message"
+    t.string   "stop_message"
+    t.integer  "organization_id"
+    t.string   "status"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "feature_id"
@@ -237,6 +258,35 @@ ActiveRecord::Schema.define(version: 20160202230727) do
   end
 
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at"
+
+  create_table "super_admins", force: :cascade do |t|
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,       null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "email"
+    t.text     "tokens"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "super_admins", ["email"], name: "index_super_admins_on_email"
+  add_index "super_admins", ["reset_password_token"], name: "index_super_admins_on_reset_password_token", unique: true
+  add_index "super_admins", ["uid", "provider"], name: "index_super_admins_on_uid_and_provider", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false

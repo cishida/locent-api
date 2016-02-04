@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
   belongs_to :organization
   has_one :customer, through: :opt_in
   has_one :reminder
+  has_many  :messages, as: :purpose, dependent: :destroy
+
   validates_uniqueness_of :organization_id, :scope => :uid
   before_save :set_status
 

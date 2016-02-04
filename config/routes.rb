@@ -49,6 +49,18 @@ Rails.application.routes.draw do
       put 'products/:uid', to: 'products#update'
       delete 'products/:uid', to: 'products#destroy'
       get 'orders/:feature', to: 'orders#orders'
+      resources :shortcode_applications, only: :create
+    end
+  end
+
+  mount_devise_token_auth_for 'SuperAdmin', at: '/superadmin/auth', skip: [:omniauth_callbacks]
+  namespace :superadmin, defaults: {format: :json} do
+    scope module: :v1 do
+      resources :shortcode_applications, only: :index do
+        member do
+          put 'update_status'
+        end
+      end
     end
   end
 
