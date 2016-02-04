@@ -16,4 +16,15 @@ class Dashboard::V1::ShortcodeApplicationsController < SuperAdminController
       render json: {errors: @application.full_messages}, status: 422
     end
   end
+
+  def assign_shortcode_to_organization
+    param! :shortcode, String, required: true
+
+    @organization = Organization.find(params[:id])
+    if @organization.update(short_code: params[:shortcode])
+      render json: @application, status: 201
+    else
+      render json: {errors: @application.full_messages}, status: 422
+    end
+  end
 end

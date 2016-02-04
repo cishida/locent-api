@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       resources :shortcode_applications, only: :index do
         member do
           put 'update_status'
+          post 'assign_shortcode_to_organization'
         end
       end
     end
