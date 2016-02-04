@@ -1,4 +1,4 @@
-class SuperAdmin::V1::ShortcodeApplicationsController < SuperAdminController
+class Superadmin::V1::ShortcodeApplicationsController < SuperAdminController
   before_action :authenticate_super_admin
 
   def index
