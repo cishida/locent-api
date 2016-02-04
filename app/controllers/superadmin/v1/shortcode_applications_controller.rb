@@ -1,4 +1,4 @@
-class Dashboard::V1::ShortcodeApplicationsController < SuperAdminController
+class SuperAdmin::V1::ShortcodeApplicationsController < SuperAdminController
   before_action :authenticate_super_admin
 
   def index
@@ -22,9 +22,9 @@ class Dashboard::V1::ShortcodeApplicationsController < SuperAdminController
 
     @organization = Organization.find(params[:id])
     if @organization.update(short_code: params[:shortcode])
-      render json: @application, status: 201
+      render json: @organization, status: 201
     else
-      render json: {errors: @application.full_messages}, status: 422
+      render json: {errors: @organization.full_messages}, status: 422
     end
   end
 end
