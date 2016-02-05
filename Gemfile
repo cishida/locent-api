@@ -19,6 +19,7 @@ gem 'kaminari'
 gem 'api-pagination'
 gem 'yard'
 gem 'yard-restful'
+gem 'active_record_union'
 
 group :development, :test do
   gem 'spring'
