@@ -25,7 +25,7 @@ class Dashboard::V1::CustomersController < DashboardController
     param! :feature, String, required: true
 
     customer = Customer.find_by_uid(params[:uid])
-    @messages = Message.where(organization: @organization, to: customer.phone).where(organization: @organization, from: customer.phone).select{ |message| message.purpose.feature == params[:feature]}.order("id DESC")
+    @messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "Order").where(organization: @organization, from: customer.phone, purpose_type: "Order").select{ |message| message.purpose.feature == params[:feature]}.order("id DESC")
     render json: @messages
   end
 
