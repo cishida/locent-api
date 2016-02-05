@@ -28,6 +28,7 @@ class Organization < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_many :products, dependent: :destroy
   has_many :error_messages, dependent: :destroy
+  has_many :messages
   has_many :campaigns, dependent: :destroy
   has_one :shortcode_application
 
