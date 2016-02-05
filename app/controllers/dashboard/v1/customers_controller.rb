@@ -73,7 +73,7 @@ class Dashboard::V1::CustomersController < DashboardController
   end
 
   def combine_the_above_messages
-    @messages = @messages.union(@opt_in_messages).order("id DESC")
+    @messages = @messages + @opt_in_messages
   end
 
 end
