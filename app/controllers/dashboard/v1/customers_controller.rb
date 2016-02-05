@@ -25,7 +25,7 @@ class Dashboard::V1::CustomersController < DashboardController
     param! :feature, String, required: true
 
     customer = Customer.find_by_uid(params[:uid])
-    @messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "Order").where(organization: @organization, from: customer.phone, purpose_type: "Order").select{ |message| message.purpose.feature == params[:feature]}.order("id DESC")
+    find_and_set_messages
     render json: @messages
   end
 
@@ -56,6 +56,24 @@ class Dashboard::V1::CustomersController < DashboardController
             subscription_id: @subscription.id
         }
     )
+  end
+
+  def find_and_set_messages
+    find_all_feature_order_messages_with_customer
+    find_all_feature_opt_in_messages_with_customer
+    combine_the_above_messages
+  end
+
+  def find_all_feature_order_messages_with_customer
+    @messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "Order").where(organization: @organization, from: customer.phone, purpose_type: "Order").select { |message| message.purpose.feature == params[:feature] }
+  end
+
+  def find_all_feature_opt_in_messages_with_customer
+    @opt_in_messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "OptIn").where(organization: @organization, from: customer.phone, purpose_type: "OptIn").select { |message| message.purpose.feature_id == Feature.find_by_name(params[:feature]).id }
+  end
+
+  def combine_the_above_messages
+    @messages = @messages.merge(@opt_in_messages).order("id DESC")
   end
 
 end
