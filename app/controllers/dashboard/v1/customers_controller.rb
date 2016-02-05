@@ -65,11 +65,11 @@ class Dashboard::V1::CustomersController < DashboardController
   end
 
   def find_all_feature_order_messages_with_customer
-    @messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "Order").where(organization: @organization, from: customer.phone, purpose_type: "Order").select { |message| message.purpose.feature == params[:feature] }
+    @messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "Order").merge(Message.where(organization: @organization, from: customer.phone, purpose_type: "Order")).select { |message| message.purpose.feature == params[:feature] }
   end
 
   def find_all_feature_opt_in_messages_with_customer
-    @opt_in_messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "OptIn").where(organization: @organization, from: customer.phone, purpose_type: "OptIn").select { |message| message.purpose.feature_id == Feature.find_by_name(params[:feature]).id }
+    @opt_in_messages = Message.where(organization: @organization, to: customer.phone, purpose_type: "OptIn").merge(Message.where(organization: @organization, from: customer.phone, purpose_type: "OptIn")).select { |message| message.purpose.feature_id == Feature.find_by_name(params[:feature]).id }
   end
 
   def combine_the_above_messages
