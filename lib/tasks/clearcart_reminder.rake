@@ -4,7 +4,7 @@ task send_clearcart_reminders: :environment do
   Reminder.where(active: true, number_of_times: 0..Float::INFINITY).each do |reminder|
     set_variables reminder
     if is_time_to_send_reminder? reminder
-      Resque.enqueue(MessageSender, @organization.from, @customer.phone, @message, @order.to_descriptor_hash)
+      Resque.enqueue(MessageSender, @organization.from, @customer.phone, @message, @order.to_descriptor_hash, @organization.id)
       reminder.update(number_of_times: reminder.number_of_times - 1, last_sent: Time.now)
     end
   end

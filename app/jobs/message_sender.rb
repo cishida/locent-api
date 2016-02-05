@@ -4,15 +4,15 @@ class MessageSender
 
   can_be_performed times: 1, period: 1
 
-  def self.perform from, to, body, purpose
-    create_new_message from, to, body, purpose
+  def self.perform from, to, body, purpose, organization_id
+    create_new_message from, to, body, purpose, organization_id
     create_twilio_client
     send_message
   end
 
   private
 
-  def self.create_new_message from, to, body, purpose
+  def self.create_new_message from, to, body, purpose, organization_id
     @message = Message.create(
         from: from,
         to: to,

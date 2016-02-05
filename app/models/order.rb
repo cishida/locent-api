@@ -30,3 +30,10 @@ class Order < ActiveRecord::Base
     end
   end
 end
+
+
+Message.all.each do |x|
+  if Organization.exists?(long_number: x.to)
+    x.update(organization_id: Organization.find_by_long_number(x.to).id)
+  end
+end
