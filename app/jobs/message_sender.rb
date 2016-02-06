@@ -19,7 +19,8 @@ class MessageSender
         body: body,
         kind: "outgoing",
         purpose_type: purpose["class_name"],
-        purpose_id: purpose["id"]
+        purpose_id: purpose["id"],
+        organization_id: organization_id
     )
   end
 

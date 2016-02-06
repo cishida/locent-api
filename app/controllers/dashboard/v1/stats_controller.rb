@@ -7,7 +7,7 @@ class Dashboard::V1::StatsController < DashboardController
 
     messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id).select{ |message| message.purpose.feature == "keyword"}.count
     completed_opt_ins_count = OptIn.where(subscription_id: @subscription.id, completed: true).count
-    completed_orders_count = OptIn.where(subscription_id: @subscription.id, completed: true).select { Op}
+    completed_orders_count = OptIn.where(subscription_id: @subscription.id, completed: true).select{||}
 
   end
 
