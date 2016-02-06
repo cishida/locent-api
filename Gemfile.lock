@@ -45,6 +45,9 @@ GEM
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
+    by_star (2.2.1)
+      activesupport
+    chronic (0.10.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -180,6 +183,8 @@ DEPENDENCIES
   active_model_serializers (~> 0.8.0)
   active_record_union
   api-pagination
+  by_star
+  chronic
   devise_token_auth
   kaminari
   paranoia (~> 2.0)

@@ -20,6 +20,8 @@ gem 'api-pagination'
 gem 'yard'
 gem 'yard-restful'
 gem 'active_record_union'
+gem 'by_star'
+gem 'chronic'
 
 group :development, :test do
   gem 'spring'

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       delete 'products/:uid', to: 'products#destroy'
       get 'orders/:feature', to: 'orders#orders'
       resources :shortcode_applications, only: :create
+      get 'stats/keyword/:from/:to', to: 'stats#keyword'
     end
   end
 

@@ -12,6 +12,14 @@ class OptIn < ActiveRecord::Base
   validates_presence_of :subscription_id, :customer_id
   validates_uniqueness_of :subscription_id, :scope => :customer_id
 
+  def has_at_least_one_successful_order?
+    self.orders.each do |order|
+      if order.completed && order.status == "successful"
+        return true
+      end
+    end
+    return false
+  end
 
   private
   def set_verification_code
@@ -22,4 +30,5 @@ class OptIn < ActiveRecord::Base
   def generate_verification_code
     SecureRandom.hex(3).upcase
   end
+
 end
