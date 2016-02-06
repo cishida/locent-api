@@ -11,25 +11,30 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
 
-
   private
 
   def keyword_response
     {
-      messages: @messages_count,
-      customers: @completed_opt_ins_count,
-      active_customers: @active_customers_count,
-      orders: @successful_orders_count,
-      total_revenue: @total_revenue
+        messages: @messages_count,
+        customers: @completed_opt_ins_count,
+        active_customers: @active_customers_count,
+        orders: @successful_orders_count,
+        total_revenue: @total_revenue
     }.to_json
   end
 
   def set_values_for_response_hash
-    @messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id)
-                          .union(Message.where(purpose_type: "OptIn", organization_id: @organization.id))
-                          .between_times(param[:from], param[:to])
-                          .select { |message| message.purpose.feature == "keyword" }
-                          .count
+    order_messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id)
+                               .between_times(param[:from], param[:to])
+                               .select { |message| message.purpose.feature == "keyword" }
+                               .count
+
+    opt_in_messages_count = Message.where(purpose_type: "OptIn", organization_id: @organization.id)
+                                .between_times(param[:from], param[:to])
+                                .select { |message| message.purpose.feature_id == @feature.id }
+                                .count
+
+    @messages_count = opt_in_messages_count + order_messages_count
 
     @completed_opt_ins_count = OptIn.where(subscription_id: @subscription.id, completed: true)
                                    .between_times(param[:from], param[:to])
