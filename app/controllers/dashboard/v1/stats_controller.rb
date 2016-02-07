@@ -1,34 +1,35 @@
 class Dashboard::V1::StatsController < DashboardController
   before_action :set_organization
 
-  def keyword
-    @to = DateTime.strptime(params[:to], '%s')
-    @from = DateTime.strptime(params[:from], '%s')
 
-    @feature = Feature.find_by_name("keyword")
-    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
-    set_values_for_response
-    respond_with keyword_response.to_json
+  def stats
+    set_variables
+    set_common_stats
+    case params[:feature]
+      when "keyword"
+        add_keyword_specific_stats
+      when "clearcart"
+        add_clearcart_specific_stats
+      when "safetext"
+        add_safetext_specific_stats
+    end
+    respond_with @stats.to_json
   end
 
 
   private
 
-  def keyword_response
-    return {
-        messages: @messages_count,
-        customers: @completed_opt_ins_count,
-        active_customers: @active_customers_count,
-        orders: @successful_orders_count,
-        total_revenue: @total_revenue,
-        products: @product_revenues_array
-    }
+  def set_common_stats
+    set_messages_count
+    set_orders_count
+    set_total_revenue
+    set_stats_hash
   end
 
-  def set_values_for_response
+  def set_messages_count
     order_messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id)
                                .between_times(@from, @to)
-                               .select { |message| message.purpose.feature == "keyword" }
+                               .select { |message| message.purpose.feature == params[:feature] }
                                .count
 
     opt_in_messages_count = Message.where(purpose_type: "OptIn", organization_id: @organization.id)
@@ -37,39 +38,132 @@ class Dashboard::V1::StatsController < DashboardController
                                 .count
 
     @messages_count = opt_in_messages_count + order_messages_count
+  end
 
+  def set_orders_count
+    @successful_orders = Order.where(feature: params[:feature], status: "successful", completed: true)
+                             .between_times(@from, @to)
+    @successful_orders_count = @successful_orders.count
+  end
+
+  def set_total_revenue
+    @total_revenue = @successful_orders.sum(:price).to_s
+  end
+
+  def set_stats_hash
+    @stats = {
+        messages: @messages_count,
+        orders: @successful_orders_count,
+        total_revenue: @total_revenue
+    }
+  end
+
+  def add_keyword_specific_stats
+    set_customers_count
+    set_active_customers_count
+    set_product_revenues
+  end
+
+  def add_clearcart_specific_stats
+    set_clearcart_graph_data
+  end
+
+  def add_safetext_specific_stats
+    set_safetext_graph_data
+    set_active_customers_count
+    set_failed_orders_count
+  end
+
+  def set_safetext_graph_data
+    @safetext_graphs_array = []
+    orders = Order.where(feature: params[:feature], completed: true)
+                 .between_times(@from, @to)
+    if (@to - @from).day < 2.day
+      orders.group_by{|order| order.created_at.beginning_of_hour }.each do |hour, orders|
+        @safetext_graphs_array << {
+            period: hour,
+            successful: orders.select { |order| order.status == "successful" }.count,
+            failed: orders.select { |order| order.status == "successful" }.count
+        }
+      end
+    else
+      orders.group_by{|order| order.created_at.to_date }.each do |day, orders|
+        @safetext_graphs_array << {
+            period: day,
+            successful: orders.select { |order| order.status == "successful" }.count,
+            failed: orders.select { |order| order.status == "successful" }.count}
+      end
+    end
+    @stats[:graph] = @safetext_graphs_array
+  end
+
+  def set_clearcart_graph_data
+    @clearcart_revenues_array = []
+    if (@to - @from).day < 2.day
+      @successful_orders.group_by{|order| order.created_at.beginning_of_hour}.each do |hour, orders|
+        @clearcart_revenues_array << {
+            period: hour,
+            revenue: orders.sum(:price).to_s,
+        }
+      end
+    else
+      @successful_orders.group_by{|order| order.created_at.beginning_of_hour }.each do |day, orders|
+        @clearcart_revenues_array << {
+            period: day,
+            revenue: orders.sum(:price).to_s,
+        }
+      end
+    end
+    @stats[:graph] = @clearcart_revenues_array
+  end
+
+  def set_failed_orders_count
+    @failed_orders_count = Order.where(feature: params[:feature], status: "successful", completed: true)
+                             .between_times(@from, @to).count
+    @stats[:failed_orders] = @failed_orders_count
+  end
+
+  def set_customers_count
     @completed_opt_ins_count = OptIn.where(subscription_id: @subscription.id, completed: true)
                                    .between_times(@from, @to)
                                    .select { |opt_in| opt_in.feature_id == @feature.id }
                                    .count
+    @stats[:customers] = @completed_opt_ins_count
+  end
 
+  def set_active_customers_count
     @active_customers_count = OptIn.where(subscription_id: @subscription.id, completed: true)
                                   .between_times(@from, @to)
                                   .select { |opt_in| opt_in.has_at_least_one_successful_order? }
                                   .count
-
-    successful_orders = Order.where(feature: "keyword", status: "successful", completed: true)
-                            .between_times(@from, @to)
-
-    @successful_orders_count = successful_orders.count
-    @total_revenue = successful_orders.sum(:price)
-    set_product_revenues
+    @stats[:active_customers] = @active_customers_count
   end
 
   def set_product_revenues
     @product_revenues_array = []
-    Order.where(feature: "keyword", organization_id: @organization.id, status: "successful")
-        .between_times(@from, @to).group_by(&:description).each do |item, order|
+    Order.where(feature: params[:feature], organization_id: @organization.id, status: "successful")
+        .between_times(@from, @to).group_by(&:description).each do |item, orders|
       @product_revenues_array << {
-          product_name: order.description,
-          revenue: item.sum(:price),
+          product_name: item,
+          revenue: orders.sum(&:price).to_s,
       }
     end
+    @stats[:products] = @product_revenues_array
+  end
 
+  def set_variables
+    @to = DateTime.strptime(params[:to].to_s, '%s')
+    @from = DateTime.strptime(params[:from].to_s, '%s')
+    @feature = Feature.find_by_name(params[:feature])
+    @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
 
   def set_organization
     @organization = current_user.organization
   end
 
+
 end
+(DateTime.strptime(1455404399.to_s, '%s') - DateTime.strptime(1454799600.to_s, '%s')).day
+
+
