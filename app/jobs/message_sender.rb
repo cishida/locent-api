@@ -1,6 +1,6 @@
 class MessageSender
   extend Resque::Plugins::WaitingRoom
-  @queue = :messaging
+  def self.queue; :messaging end
 
   can_be_performed times: 1, period: 1
 
@@ -38,4 +38,13 @@ class MessageSender
   end
 
 
+end
+
+
+class CriticalPriorityMessageSender < MessageSender
+  def self.queue; :critical end
+end
+
+class HighPriorityMessageSender < MessageSender
+  def self.queue; :high end
 end
