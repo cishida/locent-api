@@ -8,7 +8,7 @@ class Dashboard::V1::StatsController < DashboardController
     @feature = Feature.find_by_name("keyword")
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
     set_values_for_response
-    render json: keyword_response.to_json, status: 204
+    respond_with keyword_response.to_json
   end
 
 
