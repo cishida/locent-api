@@ -84,7 +84,13 @@ class Dashboard::V1::CampaignsController < DashboardController
 
   def send_message_to_customers(kind)
     create_new_campaign(kind)
-    @customers.each { |customer| Resque.enqueue(MessageSender, @organization.from, customer.phone, params[:message], @campaign, @organization.id) }
+    @customers.each do |customer|
+      if @organization.has_shortcode?
+        Resque.enqueue(MessageSenderWithShortcode, @organization.from, customer.phone, params[:message], @campaign, @organization.id)
+      else
+        Resque.enqueue(MessageSender, @organization.from, customer.phone, params[:message], @campaign, @organization.id)
+      end
+    end
   end
 
   def create_new_campaign(kind)

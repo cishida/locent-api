@@ -96,7 +96,11 @@ class Api::V1::OrdersController < ApiController
     else
       initial_message = redact_message(@subscription.options.transactional_message)
     end
-    Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, initial_message, @order.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(HighPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, initial_message, @order.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, initial_message, @order.to_descriptor_hash, @organization.id)
+    end
   end
 
   def send_appropriate_message
@@ -112,7 +116,11 @@ class Api::V1::OrdersController < ApiController
 
   def send_confirmation_message
     confirmation_message = redact_message(@opt_in.subscription.options.confirmation_message)
-    Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, confirmation_message, @order.to_descriptor_hash, @organization.id)
+    end
   end
 
   def send_error_message
@@ -122,13 +130,21 @@ class Api::V1::OrdersController < ApiController
                                                                          }
                                                                      }).first.message
     redacted_error_message = redact_message(error_message)
-    Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(HighPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, redacted_error_message, @order.to_descriptor_hash, @organization.id)
+    end
   end
 
 
   def send_cancellation_message
     cancellation_message = redact_message(@opt_in.subscription.options.cancellation_message)
-    Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, cancellation_message, @order.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(HighPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, cancellation_message, @order.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, cancellation_message, @order.to_descriptor_hash, @organization.id)
+    end
   end
 
   def find_and_set_opt_in

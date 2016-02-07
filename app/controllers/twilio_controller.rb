@@ -93,7 +93,11 @@ class TwilioController < ApplicationController
 
   def send_invalid_message_response
     set_invalid_message_response
-    Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, @invalid_message_response, @purpose, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(HighPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, @invalid_message_response, @purpose, @organization.id)
+    else
+      Resque.enqueue(HighPriorityMessageSender, @organization.from, @customer.phone, @invalid_message_response, @purpose, @organization.id)
+    end
   end
 
   def set_invalid_message_response
@@ -211,12 +215,20 @@ class TwilioController < ApplicationController
 
   def send_opt_in_welcome_message
     message_body = @opt_in.subscription.options.welcome_message
-    Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(CriticalPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    end
   end
 
   def send_opt_in_cancellation_message
     message_body = @opt_in.subscription.options.opt_in_refusal_message
-    Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    if @organization.has_shortcode?
+      Resque.enqueue(CriticalPriorityMessageSenderWithShortcode, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    else
+      Resque.enqueue(CriticalPriorityMessageSender, @organization.from, @customer.phone, message_body, @opt_in.to_descriptor_hash, @organization.id)
+    end
   end
 
   def notify_organization_of_customer_intent
