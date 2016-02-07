@@ -76,7 +76,7 @@ class Dashboard::V1::StatsController < DashboardController
     @safetext_graphs_array = []
     orders = Order.where(feature: params[:feature], completed: true)
                  .between_times(@from, @to)
-    if (@to - @from).day == 1.day
+    if (@to - @from).day < 2.day
       orders.group_by{|order| order.created_at.beginning_of_hour }.each do |hour, orders|
         @safetext_graphs_array << {
             period: hour,
@@ -97,7 +97,7 @@ class Dashboard::V1::StatsController < DashboardController
 
   def set_clearcart_graph_data
     @clearcart_revenues_array = []
-    if (@to - @from).day == 1.day
+    if (@to - @from).day < 2.day
       @successful_orders.group_by{|order| order.created_at.beginning_of_hour}.each do |hour, orders|
         @clearcart_revenues_array << {
             period: hour,
@@ -144,8 +144,8 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_variables
-    @to = DateTime.strptime(params[:to], '%s')
-    @from = DateTime.strptime(params[:from], '%s')
+    @to = DateTime.strptime(params[:to].to_s, '%s')
+    @from = DateTime.strptime(params[:from].to_s, '%s')
     @feature = Feature.find_by_name(params[:feature])
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
   end
@@ -154,6 +154,8 @@ class Dashboard::V1::StatsController < DashboardController
     @organization = current_user.organization
   end
 
+
 end
+(DateTime.strptime(1455404399.to_s, '%s') - DateTime.strptime(1454799600.to_s, '%s')).day
 
 
