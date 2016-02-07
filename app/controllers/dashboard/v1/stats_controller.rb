@@ -5,8 +5,8 @@ class Dashboard::V1::StatsController < DashboardController
     param! :from, Integer, required: true
     param! :to, Integer, required: true
 
-    @to = DateTime.strptime(params[:to],'%s')
-    @from = DateTime.strptime(params[:from], '%s')
+    @to = DateTime.strptime(params[:to].to_i,'%s')
+    @from = DateTime.strptime(params[:from].to_i, '%s')
 
     @feature = Feature.find_by_name("keyword")
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
