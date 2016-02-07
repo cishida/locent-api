@@ -39,7 +39,7 @@ class Dashboard::V1::StatsController < DashboardController
 
     @completed_opt_ins_count = OptIn.where(subscription_id: @subscription.id, completed: true)
                                    .between_times(@from, @to)
-                                   .select { |message| message.purpose.feature == "keyword" }
+                                   .select { |opt_in| opt_in.feature_id == @feature.id}
                                    .count
 
     @active_customers_count = OptIn.where(subscription_id: @subscription.id, completed: true)
