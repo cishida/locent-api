@@ -2,20 +2,20 @@ class Dashboard::V1::StatsController < DashboardController
   before_action :set_organization
 
   def keyword
-    @to = DateTime.strptime(params[:to],'%s')
+    @to = DateTime.strptime(params[:to], '%s')
     @from = DateTime.strptime(params[:from], '%s')
 
     @feature = Feature.find_by_name("keyword")
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
     set_values_for_response
-    render json: keyword_response, status: 204
+    render json: keyword_response.to_json, status: 204
   end
 
 
   private
 
   def keyword_response
-    {
+    return {
         messages: @messages_count,
         customers: @completed_opt_ins_count,
         active_customers: @active_customers_count,
