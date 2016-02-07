@@ -62,7 +62,7 @@ class Dashboard::V1::StatsController < DashboardController
         .between_times(@from, @to).group_by(&:description).each do |item, order|
       @product_revenues_array << {
           product_name: order.description,
-          revenue: item.sum(:price)
+          revenue: item.sum(:price),
       }
     end
 
