@@ -76,10 +76,10 @@ class Dashboard::V1::StatsController < DashboardController
     @safetext_graphs_array = []
     orders = Order.where(feature: params[:feature], completed: true)
                  .between_times(@from, @to)
-    if (@to - @from).beginning_of_day.day == 1.day
+    if (@to - @from).day == 1.day
       orders.group_by{|order| order.created_at.beginning_of_hour }.each do |hour, orders|
         @safetext_graphs_array << {
-            hour: hour,
+            period: hour,
             successful: orders.select { |order| order.status == "successful" }.count,
             failed: orders.select { |order| order.status == "successful" }.count
         }
@@ -87,7 +87,7 @@ class Dashboard::V1::StatsController < DashboardController
     else
       orders.group_by{|order| order.created_at.to_date }.each do |day, orders|
         @safetext_graphs_array << {
-            day: day,
+            period: day,
             successful: orders.select { |order| order.status == "successful" }.count,
             failed: orders.select { |order| order.status == "successful" }.count}
       end
@@ -97,17 +97,17 @@ class Dashboard::V1::StatsController < DashboardController
 
   def set_clearcart_graph_data
     @clearcart_revenues_array = []
-    if (@to - @from).beginning_of_day.day == 1.day
+    if (@to - @from).day == 1.day
       @successful_orders.group_by{|order| order.created_at.beginning_of_hour}.each do |hour, orders|
         @clearcart_revenues_array << {
-            hour: hour,
+            period: hour,
             revenue: orders.sum(:price).to_s,
         }
       end
     else
       @successful_orders.group_by{|order| order.created_at.beginning_of_hour }.each do |day, orders|
         @clearcart_revenues_array << {
-            day: day,
+            period: day,
             revenue: orders.sum(:price).to_s,
         }
       end
