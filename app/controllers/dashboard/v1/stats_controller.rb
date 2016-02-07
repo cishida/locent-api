@@ -47,7 +47,7 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_total_revenue
-    @total_revenue = @successful_orders.sum(&:price)
+    @total_revenue = @successful_orders.sum(:price).to_s
   end
 
   def set_stats_hash
@@ -101,14 +101,14 @@ class Dashboard::V1::StatsController < DashboardController
       @successful_orders.group("DATE_TRUNC('hour', created_at)").each do |hour, orders|
         @clearcart_revenues_array << {
             hour: hour,
-            revenue: orders.sum(&:price),
+            revenue: orders.sum(:price).to_s,
         }
       end
     else
       @successful_orders.group("DATE_TRUNC('day', created_at)").each do |day, orders|
         @clearcart_revenues_array << {
             day: day,
-            revenue: orders.sum(&:price),
+            revenue: orders.sum(:price).to_s,
         }
       end
     end
@@ -137,7 +137,7 @@ class Dashboard::V1::StatsController < DashboardController
         .between_times(@from, @to).group_by(&:description).each do |item, orders|
       @product_revenues_array << {
           product_name: item,
-          revenue: orders.sum(&:price),
+          revenue: orders.sum(:price).to_s,
       }
     end
     @stats[:products] = @product_revenues_array
