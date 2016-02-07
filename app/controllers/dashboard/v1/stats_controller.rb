@@ -46,7 +46,7 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_total_revenue
-    @total_revenue = successful_orders.sum(:price)
+    @total_revenue = @successful_orders.sum(:price)
   end
 
   def set_stats_hash
