@@ -20,7 +20,8 @@ class Dashboard::V1::StatsController < DashboardController
         customers: @completed_opt_ins_count,
         active_customers: @active_customers_count,
         orders: @successful_orders_count,
-        total_revenue: @total_revenue
+        total_revenue: @total_revenue,
+        products: @product_revenues_array
     }
   end
 
@@ -39,7 +40,7 @@ class Dashboard::V1::StatsController < DashboardController
 
     @completed_opt_ins_count = OptIn.where(subscription_id: @subscription.id, completed: true)
                                    .between_times(@from, @to)
-                                   .select { |opt_in| opt_in.feature_id == @feature.id}
+                                   .select { |opt_in| opt_in.feature_id == @feature.id }
                                    .count
 
     @active_customers_count = OptIn.where(subscription_id: @subscription.id, completed: true)
@@ -52,9 +53,23 @@ class Dashboard::V1::StatsController < DashboardController
 
     @successful_orders_count = successful_orders.count
     @total_revenue = successful_orders.sum(:price)
+    set_product_revenues
+  end
+
+  def set_product_revenues
+    @product_revenues_array = []
+    Order.where(feature: "keyword", organization_id: @organization.id, status: "successful")
+        .between_times(@from, @to).group_by(&:description).each do |item, order|
+      @product_revenues_array << {
+          product_name: order.description,
+          revenue: item.sum(:price)
+      }
+    end
+
   end
 
   def set_organization
     @organization = current_user.organization
   end
+
 end
