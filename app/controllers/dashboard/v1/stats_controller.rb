@@ -77,19 +77,19 @@ class Dashboard::V1::StatsController < DashboardController
     orders = Order.where(feature: params[:feature], completed: true)
                  .between_times(@from, @to)
     if (@to - @from).beginning_of_day.day == 1.day
-      orders.group("DATE_TRUNC('hour', created_at)").each do |hour, orders|
+      orders.group_by{|order| order.created_at.beginning_of_hour }.each do |hour, orders|
         @safetext_graphs_array << {
             hour: hour,
-            successful: orders.select{|order| order.status == "successful"}.count,
-            failed: orders.select{|order| order.status == "successful"}.count
+            successful: orders.select { |order| order.status == "successful" }.count,
+            failed: orders.select { |order| order.status == "successful" }.count
         }
       end
     else
-      orders.group("DATE_TRUNC('day', created_at)").each do |day, orders|
+      orders.group_by{|order| order.created_at.to_date }.each do |day, orders|
         @safetext_graphs_array << {
             day: day,
-            successful: orders.select{|order| order.status == "successful"}.count,
-            failed: orders.select{|order| order.status == "successful"}.count        }
+            successful: orders.select { |order| order.status == "successful" }.count,
+            failed: orders.select { |order| order.status == "successful" }.count}
       end
     end
     @stats[:graph] = @safetext_graphs_array
@@ -98,14 +98,14 @@ class Dashboard::V1::StatsController < DashboardController
   def set_clearcart_graph_data
     @clearcart_revenues_array = []
     if (@to - @from).beginning_of_day.day == 1.day
-      @successful_orders.group("DATE_TRUNC('hour', created_at)").each do |hour, orders|
+      @successful_orders.group_by{|order| order.created_at.beginning_of_hour}.each do |hour, orders|
         @clearcart_revenues_array << {
             hour: hour,
             revenue: orders.sum(:price).to_s,
         }
       end
     else
-      @successful_orders.group("DATE_TRUNC('day', created_at)").each do |day, orders|
+      @successful_orders.group_by{|order| order.created_at.beginning_of_hour }.each do |day, orders|
         @clearcart_revenues_array << {
             day: day,
             revenue: orders.sum(:price).to_s,
@@ -137,7 +137,7 @@ class Dashboard::V1::StatsController < DashboardController
         .between_times(@from, @to).group_by(&:description).each do |item, orders|
       @product_revenues_array << {
           product_name: item,
-          revenue: orders.sum(:price).to_s,
+          revenue: orders.sum(&:price).to_s,
       }
     end
     @stats[:products] = @product_revenues_array
@@ -155,3 +155,5 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
 end
+
+
