@@ -42,7 +42,7 @@ class Dashboard::V1::StatsController < DashboardController
   def set_orders_count
     @successful_orders = Order.where(feature: params[:feature], status: "successful", completed: true)
                              .between_times(@from, @to)
-    @successful_orders_count = successful_orders.count
+    @successful_orders_count = @successful_orders.count
   end
 
   def set_total_revenue
