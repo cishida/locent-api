@@ -70,6 +70,8 @@ class Dashboard::V1::StatsController < DashboardController
 
   def add_safetext_specific_stats
     set_safetext_graph_data
+    set_active_customers_count
+    set_failed_orders_count
   end
 
   def set_safetext_graph_data
@@ -113,6 +115,12 @@ class Dashboard::V1::StatsController < DashboardController
       end
     end
     @stats[:graph] = @clearcart_revenues_array
+  end
+
+  def set_failed_orders_count
+    @failed_orders_count = Order.where(feature: params[:feature], status: "successful", completed: true)
+                             .between_times(@from, @to).count
+    @stats[:failed_orders] = @failed_orders_count
   end
 
   def set_customers_count
