@@ -24,7 +24,7 @@ class Dashboard::V1::StatsController < DashboardController
     }
   end
 
-  def set_values_for_response_hash
+  def set_values_for_response
     order_messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id)
                                .between_times(@from, @to)
                                .select { |message| message.purpose.feature == "keyword" }
