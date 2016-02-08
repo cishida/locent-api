@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208034911) do
+ActiveRecord::Schema.define(version: 20160208102430) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160208034911) do
     t.string   "name"
     t.datetime "deleted_at"
     t.integer  "organization_id"
+    t.text     "message"
   end
 
   add_index "campaigns", ["deleted_at"], name: "index_campaigns_on_deleted_at"

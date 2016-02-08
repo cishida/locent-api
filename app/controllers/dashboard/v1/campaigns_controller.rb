@@ -94,7 +94,7 @@ class Dashboard::V1::CampaignsController < DashboardController
   end
 
   def create_new_campaign(kind)
-    @campaign = Campaign.create(kind: kind, number_of_targets: @customers.count, name: params[:campaign_name], organization_id: @organization.id)
+    @campaign = Campaign.create(kind: kind, number_of_targets: @customers.count, name: params[:campaign_name], organization_id: @organization.id, message: params[:message])
   end
 
 end
