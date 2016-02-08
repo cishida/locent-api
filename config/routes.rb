@@ -51,8 +51,8 @@ Rails.application.routes.draw do
       delete 'products/:uid', to: 'products#destroy'
       get 'orders/:feature', to: 'orders#orders'
       resources :shortcode_applications, only: :create
-      get 'stats/:feature/:from/:to', to: 'stats#stats'
       get 'stats/dashboard/:from/:to', to: 'stats#dashboard'
+      get 'stats/:feature/:from/:to', to: 'stats#stats'
     end
   end
 
