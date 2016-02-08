@@ -237,7 +237,7 @@ class Dashboard::V1::StatsController < DashboardController
         @dashboard_graph_array << {
             period: day,
             orders: orders.count,
-            messages: @messages.select { |message| message.created_at.to_date == date }.count
+            messages: @messages.select { |message| message.created_at.to_date == day }.count
         }
       end
     end
