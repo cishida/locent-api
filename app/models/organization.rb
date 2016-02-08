@@ -81,6 +81,10 @@ class Organization < ActiveRecord::Base
     }
   end
 
+  def has_shortcode?
+    return !(self.short_code.nil?)
+  end
+
   private
   def set_auth_token
     return if auth_token.present?
