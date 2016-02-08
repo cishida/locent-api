@@ -222,6 +222,7 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_graph_data
+    @dashboard_graph_array = []
     if is_day_query?
       @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
         @dashboard_graph_array << {
