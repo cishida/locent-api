@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       get 'orders/:feature', to: 'orders#orders'
       resources :shortcode_applications, only: :create
       get 'stats/:feature/:from/:to', to: 'stats#stats'
+      get 'stats/dashboard/:from/:to', to: 'stats#dashboard'
     end
   end
 

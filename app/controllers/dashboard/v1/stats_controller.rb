@@ -1,6 +1,13 @@
 class Dashboard::V1::StatsController < DashboardController
   before_action :set_organization
 
+  def dashboard
+    set_time_constraints
+    set_dashboard_stats
+    set_dashboard_graph_data
+    respond_with @stats.to_json
+  end
+
 
   def stats
     set_variables
@@ -75,39 +82,39 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_safetext_graph_data
-    @safetext_graphs_array = []
+    @safetext_graph_array = []
     orders = Order.where(feature: params[:feature], completed: true)
                  .between_times(@from, @to)
-    if (@to - @from).day < 2.day
-      orders.group_by{|order| order.created_at.beginning_of_hour }.each do |hour, orders|
-        @safetext_graphs_array << {
+    if is_day_query?
+      orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
+        @safetext_graph_array << {
             period: hour,
             successful: orders.select { |order| order.status == "successful" }.count,
             failed: orders.select { |order| order.status == "successful" }.count
         }
       end
     else
-      orders.group_by{|order| order.created_at.to_date }.each do |day, orders|
-        @safetext_graphs_array << {
+      orders.group_by { |order| order.created_at.to_date }.each do |day, orders|
+        @safetext_graph_array << {
             period: day,
             successful: orders.select { |order| order.status == "successful" }.count,
             failed: orders.select { |order| order.status == "successful" }.count}
       end
     end
-    @stats[:graph] = @safetext_graphs_array
+    @stats[:graph] = @safetext_graph_array
   end
 
   def set_clearcart_graph_data
     @clearcart_revenues_array = []
-    if (@to - @from).day < 2.day
-      @successful_orders.group_by{|order| order.created_at.beginning_of_hour}.each do |hour, orders|
+    if is_day_query?
+      @successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
         @clearcart_revenues_array << {
             period: hour,
             revenue: orders.sum(:price).to_s,
         }
       end
     else
-      @successful_orders.group_by{|order| order.created_at.beginning_of_hour }.each do |day, orders|
+      @successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |day, orders|
         @clearcart_revenues_array << {
             period: day,
             revenue: orders.sum(:price).to_s,
@@ -119,7 +126,7 @@ class Dashboard::V1::StatsController < DashboardController
 
   def set_failed_orders_count
     @failed_orders_count = Order.where(feature: params[:feature], status: "successful", completed: true)
-                             .between_times(@from, @to).count
+                               .between_times(@from, @to).count
     @stats[:failed_orders] = @failed_orders_count
   end
 
@@ -152,18 +159,92 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_variables
-    @to = DateTime.strptime(params[:to].to_s, '%s')
-    @from = DateTime.strptime(params[:from].to_s, '%s')
+    set_time_constraints
     @feature = Feature.find_by_name(params[:feature])
     @subscription = Subscription.find_by_organization_id_and_feature_id(@organization.id, @feature.id)
+  end
+
+  def set_time_constraints
+    @to = DateTime.strptime(params[:to].to_s, '%s')
+    @from = DateTime.strptime(params[:from].to_s, '%s')
   end
 
   def set_organization
     @organization = current_user.organization
   end
 
+  def set_dashboard_stats
+    @messages = Message.where(organization_id: @organization.id)
+    set_dashboard_successful_orders
+    set_dashboard_active_customers_count
+    set_dashboard_customers_count
+    set_dashboard_opt_outs_count
+  end
+
+  def set_dashboard_stats_hash
+    @stats = {
+        messages: @messages.count,
+        orders: @dashboard_orders_count,
+        total_revenue: @dashboard_revenue,
+        opt_outs: @dashboard_opt_outs_count,
+        customers: @dashboard_customers_count,
+        active_customers: @dashboard_active_customers_count
+    }
+  end
+
+  def set_dashboard_successful_orders
+    @dashboard_successful_orders = Order.where(status: "successful", completed: true)
+                                       .between_times(@from, @to)
+    @dashboard_orders_count = @dashboard_successful_orders.count
+    @dashboard_revenue = @dashboard_successful_orders.sum(:price).to_s
+    @dashboard_average_purchase = @dashboard_successful_orders.average(:price).to_s
+  end
+
+  def set_dashboard_active_customers_count
+    @dashboard_active_customers_count = OptIn.where(completed: true)
+                                            .between_times(@from, @to)
+                                            .select { |opt_in| (opt_in.has_at_least_one_successful_order? && opt_in.subscription.organization == @organization) }
+                                            .count
+  end
+
+  def set_dashboard_customers_count
+    @dashboard_customers_count = OptIn.where(completed: true)
+                                     .between_times(@from, @to)
+                                     .select { |opt_in| opt_in.subscription.organization == @organization }
+                                     .count
+  end
+
+  def set_dashboard_opt_outs_count
+    @dashboard_opt_outs_count = OptIn.unscoped.where(active: false, deleted_at: nil)
+                                    .between_times(@from, @to)
+                                    .select { |opt_in| opt_in.subscription.organization == @organization }
+                                    .count
+  end
+
+  def set_dashboard_graph_data
+    if is_day_query?
+      @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
+        @dashboard_graph_array << {
+            period: hour,
+            orders: orders.count,
+            messages: @messages.select { |message| message.created_at.beginning_of_hour == hour }.count
+        }
+      end
+    else
+      @dashboard_successful_orders.group_by { |order| order.created_at.to_date }.each do |day, orders|
+        @dashboard_graph_array << {
+            period: day,
+            orders: orders.count,
+            messages: @messages.select { |message| message.created_at.to_date == date }.count
+        }
+      end
+    end
+    @stats[:graph] = @dashboard_graph_array
+  end
+
+
+  def is_day_query?
+    (@to - @from).days < 2.days
+  end
 
 end
-(DateTime.strptime(1455404399.to_s, '%s') - DateTime.strptime(1454799600.to_s, '%s')).day
-
-

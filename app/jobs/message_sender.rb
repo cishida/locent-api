@@ -36,8 +36,6 @@ class MessageSender
         status_callback: "http://locent-api.heroku.com/status/#{@message.id}"
     )
   end
-
-
 end
 
 
