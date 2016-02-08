@@ -179,6 +179,7 @@ class Dashboard::V1::StatsController < DashboardController
     set_dashboard_active_customers_count
     set_dashboard_customers_count
     set_dashboard_opt_outs_count
+    set_dashboard_stats_hash
   end
 
   def set_dashboard_stats_hash

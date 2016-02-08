@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98617e3d-49cf-4331-936c-76b004a7398d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="locent-api.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="stats_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3901734">
-              <caret line="224" column="30" selection-start-line="224" selection-start-column="30" selection-end-line="224" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.433526">
+              <caret line="181" column="28" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -899,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3901734">
-          <caret line="224" column="30" selection-start-line="224" selection-start-column="30" selection-end-line="224" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.433526">
+          <caret line="181" column="28" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
           <folding />
         </state>
       </provider>
