@@ -1,5 +1,7 @@
 class OptIn < ActiveRecord::Base
   acts_as_paranoid
+  default_scope { where(active: true) }
+
   before_create :set_verification_code
 
   belongs_to :subscription

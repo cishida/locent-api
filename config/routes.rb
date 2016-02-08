@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     scope module: :v1 do
       resources :opt_ins, only: [:create]
+      put '/opt_out', to: 'opt_ins#opt_out'
       post '/safetext', to: 'orders#safetext'
       post '/clearcart', to: 'orders#clearcart'
       post '/order_status', to: 'orders#order_status'

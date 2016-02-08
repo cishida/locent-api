@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205022012) do
+ActiveRecord::Schema.define(version: 20160208034911) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20160205022012) do
     t.datetime "deleted_at"
     t.string   "verification_code"
     t.integer  "feature_id"
+    t.boolean  "active",            default: true
   end
 
   add_index "opt_ins", ["deleted_at"], name: "index_opt_ins_on_deleted_at"

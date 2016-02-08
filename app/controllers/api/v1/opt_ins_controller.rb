@@ -12,6 +12,20 @@ class Api::V1::OptInsController < ApiController
     end
   end
 
+  def opt_out
+    ActiveRecord::Base.transaction do
+      validate_opt_out_params
+      set_subscription
+      customers_array = params[:customers]
+      customers_array.each do |customer|
+        customer = Customer.find_by_organization_id_and_phone(@organization.id, customer[:phone_number], customer[:uid])
+        opt_in = OptIn.find_by(subscription_id: @subscription.id, feature_id: params[:feature_id], customer_id: customer.id)
+        opt_in.update(active: false);
+      end
+      head status: 204
+    end
+  end
+
   private
 
   def validate_create_params
@@ -21,6 +35,14 @@ class Api::V1::OptInsController < ApiController
       customer.param! :phone_number, String, required: true
       customer.param! :first_name, String
       customer.param! :last_name, String
+    end
+  end
+
+  def validate_opt_out_params
+    param! :feature_id, Integer, required: true
+    param! :customers, Array, required: true do |customer|
+      customer.param! :uid, String, required: true
+      customer.param! :phone_number, String, required: true
     end
   end
 
