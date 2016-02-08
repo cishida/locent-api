@@ -174,7 +174,7 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_stats
-    @messages = Message.where(organization_id: @organization.id)
+    @messages = Message.where(organization_id: @organization.id).between_times(@from, @to)
     set_dashboard_successful_orders
     set_dashboard_active_customers_count
     set_dashboard_customers_count
