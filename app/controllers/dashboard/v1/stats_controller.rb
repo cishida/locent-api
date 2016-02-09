@@ -208,11 +208,11 @@ class Dashboard::V1::StatsController < DashboardController
         }
       end
     else
-      @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_day }.each do |day, orders|
+      @dashboard_successful_orders.group_by { |order| order.created_at.to_date }.each do |day, orders|
         dashboard_graph_array << {
             period: day,
             orders: orders.count,
-            messages: @messages.select { |message| message.created_at.beginning_of_day == day }.count
+            messages: @messages.select { |message| message.created_at.to_date == day }.count
         }
       end
     end
@@ -254,5 +254,6 @@ class Dashboard::V1::StatsController < DashboardController
     @previous_from = (@from - @time_interval)
   end
 
-
 end
+
+Message.where(organization_id: 17).between_times(Chronic.parse('feb 1'), Chronic.parse('feb 2')).select { |message| message.created_at.beginning_of_day == day }.count
