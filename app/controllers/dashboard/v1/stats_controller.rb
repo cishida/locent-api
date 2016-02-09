@@ -214,11 +214,18 @@ class Dashboard::V1::StatsController < DashboardController
                                      .select { |opt_in| opt_in.subscription.organization == @organization }
                                      .count
   end
-  
+
+  def set_dashboard_opt_ins_count
+    @dashboard_opt_ins_count = OptIn.where(completed: true)
+                                   .between_times(@from, @to)
+                                   .select { |opt_in| opt_in.subscription.organization == @organization }
+                                   .count
+  end
+
 
   def set_dashboard_opt_outs_count
     @dashboard_opt_outs_count = OptIn.unscoped.where(active: false, deleted_at: nil)
-                                    .between_times(@from, @to)
+                                    .between_times(@from, @to, field: :updated_at)
                                     .select { |opt_in| opt_in.subscription.organization == @organization }
                                     .count
   end
