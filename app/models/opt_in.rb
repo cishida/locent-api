@@ -13,7 +13,7 @@ class OptIn < ActiveRecord::Base
 
   validates_presence_of :subscription_id, :customer_id
   validates_uniqueness_of :subscription_id, :scope => :customer_id
-  
+
   private
   def set_verification_code
     return if verification_code.present?

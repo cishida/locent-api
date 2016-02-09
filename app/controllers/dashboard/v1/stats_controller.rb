@@ -49,10 +49,10 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_messages_count
-    order_messages_count = Message.includes(orders: [:feature])
+    order_messages_count = Message.includes(purpose: [:feature])
                                .where(purpose_type: "Order", organization_id: @organization.id).between_times(@from, @to)
                                .select { |message| message.purpose.feature == params[:feature] }.count
-    opt_in_messages_count = Message.includes(opt_ins: [:feature_id])
+    opt_in_messages_count = Message.includes(purpose: [:feature_id])
                                 .where(purpose_type: "OptIn", organization_id: @organization.id).between_times(@from, @to)
                                 .select { |message| message.purpose.feature_id == @feature.id }.count
     @stats[:messages] = opt_in_messages_count + order_messages_count
