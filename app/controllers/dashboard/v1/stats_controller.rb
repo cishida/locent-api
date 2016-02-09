@@ -32,10 +32,28 @@ class Dashboard::V1::StatsController < DashboardController
     set_total_revenue
   end
 
+  def add_keyword_specific_stats
+    set_customers_count
+    set_active_customers_count
+    set_product_revenues
+  end
+
+  def add_clearcart_specific_stats
+    set_clearcart_graph_data
+  end
+
+  def add_safetext_specific_stats
+    set_safetext_graph_data
+    set_active_customers_count
+    set_failed_orders_count
+  end
+
   def set_messages_count
-    order_messages_count = Message.where(purpose_type: "Order", organization_id: @organization.id).between_times(@from, @to)
+    order_messages_count = Message.includes(orders: [:feature])
+                               .where(purpose_type: "Order", organization_id: @organization.id).between_times(@from, @to)
                                .select { |message| message.purpose.feature == params[:feature] }.count
-    opt_in_messages_count = Message.where(purpose_type: "OptIn", organization_id: @organization.id).between_times(@from, @to)
+    opt_in_messages_count = Message.includes(opt_ins: [:feature_id])
+                                .where(purpose_type: "OptIn", organization_id: @organization.id).between_times(@from, @to)
                                 .select { |message| message.purpose.feature_id == @feature.id }.count
     @stats[:messages] = opt_in_messages_count + order_messages_count
   end
@@ -53,22 +71,6 @@ class Dashboard::V1::StatsController < DashboardController
     price_sum = @successful_orders.sum(:price)
     @stats[:total_revenue] = price_sum.to_s
     @stats[:total_revenue_percentage_change] = percentage_change(price_sum, @successful_orders_count_during_previous_period.sum(:price))
-  end
-
-  def add_keyword_specific_stats
-    set_customers_count
-    set_active_customers_count
-    set_product_revenues
-  end
-
-  def add_clearcart_specific_stats
-    set_clearcart_graph_data
-  end
-
-  def add_safetext_specific_stats
-    set_safetext_graph_data
-    set_active_customers_count
-    set_failed_orders_count
   end
 
   def set_safetext_graph_data
@@ -126,7 +128,7 @@ class Dashboard::V1::StatsController < DashboardController
   def set_active_customers_count
     active_customers_during_previous_period = Order.where(status: "successful", organization_id: @organization.id, feature: params[:feature])
                                                   .between_times(@previous_from, @previous_to).group_by(&:opt_in_id).count
-    
+
     @stats[:active_customers] = Order.where(status: "successful", organization_id: @organization.id, feature: params[:feature])
                                   .between_times(@from, @to).group_by(&:opt_in_id).count
     @stats[:active_customers_percentage_change] = percentage_change(stats[:active_customers], active_customers_during_previous_period)
@@ -182,16 +184,16 @@ class Dashboard::V1::StatsController < DashboardController
 
 
   def set_dashboard_customers_count
-    @stats[:customers] = OptIn.where(completed: true).select { |opt_in| opt_in.subscription.organization == @organization }.count
+    @stats[:customers] = OptIn.includes(:subscription).where(completed: true).select { |opt_in| opt_in.subscription.organization == @organization }.count
   end
 
   def set_dashboard_opt_ins_count
-    @stats[:opt_ins] = OptIn.where(completed: true).between_times(@from, @to).select { |opt_in| opt_in.subscription.organization == @organization }.count
+    @stats[:opt_ins] = OptIn.includes(:subscription).where(completed: true).between_times(@from, @to).select { |opt_in| opt_in.subscription.organization == @organization }.count
   end
 
 
   def set_dashboard_opt_outs_count
-    @stats[:opt_outs] = OptIn.unscoped.where(active: false, deleted_at: nil).between_times(@from, @to, field: :updated_at)
+    @stats[:opt_outs] = OptIn.unscoped.includes(:subscription).where(active: false, deleted_at: nil).between_times(@from, @to, field: :updated_at)
                             .select { |opt_in| opt_in.subscription.organization == @organization }.count
   end
 
