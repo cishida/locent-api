@@ -50,8 +50,9 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_total_revenue
-    @stats[:total_revenue] = @successful_orders.sum(:price).to_s
-    @stats[:total_revenue_percentage_change] = percentage_change(@stats[:total_revenue], @successful_orders_count_during_previous_period.sum(:price))
+    price_sum = @successful_orders.sum(:price)
+    @stats[:total_revenue] = price_sum.to_s
+    @stats[:total_revenue_percentage_change] = percentage_change(price_sum, @successful_orders_count_during_previous_period.sum(:price))
   end
 
   def add_keyword_specific_stats
@@ -125,6 +126,7 @@ class Dashboard::V1::StatsController < DashboardController
   def set_active_customers_count
     active_customers_during_previous_period = Order.where(status: "successful", organization_id: @organization.id, feature: params[:feature])
                                                   .between_times(@previous_from, @previous_to).group_by(&:opt_in_id).count
+    
     @stats[:active_customers] = Order.where(status: "successful", organization_id: @organization.id, feature: params[:feature])
                                   .between_times(@from, @to).group_by(&:opt_in_id).count
     @stats[:active_customers_percentage_change] = percentage_change(stats[:active_customers], active_customers_during_previous_period)
@@ -139,7 +141,7 @@ class Dashboard::V1::StatsController < DashboardController
           revenue: orders.sum(&:price).to_s,
       }
     end
-    @stats[:products] = @product_revenues_array
+    @stats[:products] = product_revenues_array
   end
 
   def set_dashboard_stats
