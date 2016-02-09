@@ -34,7 +34,7 @@ class Dashboard::V1::StatsController < DashboardController
 
   def add_keyword_specific_stats
     set_customers_count
-    set_active_customers_count
+    #set_active_customers_count
     set_product_revenues
   end
 
@@ -44,7 +44,7 @@ class Dashboard::V1::StatsController < DashboardController
 
   def add_safetext_specific_stats
     set_safetext_graph_data
-    set_active_customers_count
+    #set_active_customers_count
     set_failed_orders_count
   end
 
