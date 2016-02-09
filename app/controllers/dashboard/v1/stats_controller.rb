@@ -4,7 +4,6 @@ class Dashboard::V1::StatsController < DashboardController
   before_action :set_time_constraints
 
   def dashboard
-    set_time_constraints
     set_dashboard_stats
     respond_with @stats.to_json
   end
