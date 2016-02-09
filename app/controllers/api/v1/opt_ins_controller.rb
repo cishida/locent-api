@@ -20,7 +20,7 @@ class Api::V1::OptInsController < ApiController
       customers_array.each do |customer|
         customer = Customer.find_by_organization_id_and_phone(@organization.id, customer[:phone_number], customer[:uid])
         opt_in = OptIn.find_by(subscription_id: @subscription.id, feature_id: params[:feature_id], customer_id: customer.id)
-        opt_in.update(active: false);
+        opt_in.update(active: false)
       end
       head status: 204
     end

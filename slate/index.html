@@ -86,7 +86,7 @@ The Locent API V1 exists at locent-api.herokuapp.com/api
 <p><strong>2.</strong> Locent would then make a POST request to the Opt In Verification URL (for SafeText) provided by you/your organization via the dashboard. Your organization may have different Opt In Verification URLs for each feature. The request body would contain each customer’s Two-Factor Verification code.</p>
 
 <blockquote>
-<p>Below is an example of the body of the request:</p>
+<p>Below is an example of the body of the verification request:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -101,6 +101,26 @@ The Locent API V1 exists at locent-api.herokuapp.com/api
 </span></code></pre>
 
 <p><strong>3.</strong> The Two-Factor Verification Code(s) should be displayed to the customer(s) (e.g somewhere on the mobile application/website). A text message would automatically be sent by Locent, to the customer asking them to verify their opt in by replying their verification code or to cancel it by texting back <code class="prettyprint">NO</code>.</p>
+
+<p><strong>4.</strong> To opt out a customer a POST request to /opt_out/ should be made containing the customer(s) uid, phone number and the feature id.</p>
+
+<blockquote>
+<p>Below is an example of the body/parameters to be sent when making a bulk opt-out request:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"feature_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"uid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dwbefkwefwhjkd3221e3eekwfw"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"phone_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+18*********"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"uid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"fefyyefeuf33u9i39ir4r4f"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"phone_number"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"+17*********"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h1 id="safetext">Safetext</h1>
 
@@ -207,6 +227,102 @@ The Locent API V1 exists at locent-api.herokuapp.com/api
 <p><em>Note that <code class="prettyprint">&quot;status&quot;</code> can also have a value of <code class="prettyprint">&quot;cancelled&quot;</code>.</em></p>
 
 <p>Upon getting above information from Locent about the customer’s intention, your application should now proceed to either process the order or cancel it the way it usually would. Locent would need to be notified once this is done, so as to send the user a corresponding “Your order is on it’s way…” or “Your order has successfully been cancelled…” text message. To do this, send a POST request to <code class="prettyprint">/order_status</code> with the following parameters.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">order_uid</code></td>
+<td>Unique identifier of the order that’s being placed by the customer</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">order_success</code></td>
+<td>true or false</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">error_code</code></td>
+<td>1001, 1002 or 1003</td>
+<td>would be ignored if order_success isn&rsquo;t false</td>
+</tr>
+</tbody></table>
+
+<p>Locent can send an error message to your customer depending on what kind of error it is. You can customize these messages in your Dashboard settings.</p>
+
+<p>Error codes and description:</p>
+
+<ul>
+<li>1001: Server Error</li>
+<li>1002: Product out of stock</li>
+<li>1003: Insufficient funds</li>
+</ul>
+
+<h1 id="clearcart">Clearcart</h1>
+
+<p>The flow for initiating and handling Clearcart instances is as follows:</p>
+
+<p><strong>1.</strong> To set off Clearcart, a POST request to /clearcart should be made with the following parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">customer_uid</code></td>
+<td>(Globally unique) universal ID of the customer.</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">customer_phone_number</code></td>
+<td>The full phone number of the customer.</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">order_uid</code></td>
+<td>Unique identifier of the order that’s being placed by the customer.</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">description</code></td>
+<td>Text description of customer&rsquo;s cart.</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">price</code></td>
+<td>The new price of the items in the customer&rsquo;s cart. Without the currency sign.</td>
+<td>true</td>
+</tr>
+<tr>
+<td><code class="prettyprint">percentage_discount</code></td>
+<td>The percentage discount being offered on the customer&rsquo;s cart items.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<p><strong>2.</strong> Locent would SMS your customer, asking if they want to proceed with the order. The customer is to reply with either BUY or NO to confirm/cancel the order respectively. Once this reply is recieved, Locent would send a POST request to the Clearcart <code class="prettyprint">Purchase Request URL</code> you provided via your dashboard.</p>
+
+<p><strong>3.</strong> Additionally, Locent would send SMS reminders to the customer. You can customize the number of times the reminders are sent and the (hour) interval between them via your dashboard.</p>
+
+<blockquote>
+<p>An example of the request is below:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"confirmed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"order_uid"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"unique-order-id"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><em>Note that <code class="prettyprint">&quot;status&quot;</code> can also have a value of <code class="prettyprint">&quot;cancelled&quot;</code>.</em></p>
+
+<p><strong>4.</strong> Upon getting above information from Locent about the customer’s intention, your application should now proceed to either process the order or cancel it the way it usually would. Locent would need to be notified once this is done, so as to send the user a corresponding “Your order is on it’s way…” or “Your order has successfully been cancelled…” text message. To do this, send a POST request to <code class="prettyprint">/order_status</code> with the following parameters.</p>
 
 <table><thead>
 <tr>

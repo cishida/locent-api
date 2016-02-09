@@ -1,4 +1,4 @@
 class CampaignsSerializer < ActiveModel::Serializer
-  attributes :kind, :number_of_targets, :name
+  attributes :kind, :number_of_targets, :name, :message
 
 end

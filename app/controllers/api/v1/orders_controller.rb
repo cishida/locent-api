@@ -87,7 +87,7 @@ class Api::V1::OrdersController < ApiController
   def validate_order_status_params
     param! :order_uid, String, required: true
     param! :order_success, :boolean, required: true
-    param :error_code, Integer
+    param! :error_code, Integer
   end
 
   def send_initial_message
