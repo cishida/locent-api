@@ -46,8 +46,8 @@
       <file leaf-file-name="stats_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.713881">
-              <caret line="133" column="135" selection-start-line="133" selection-start-column="135" selection-end-line="133" selection-end-column="135" />
+            <state vertical-scroll-proportion="0.33144477">
+              <caret line="127" column="6" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -966,8 +966,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.713881">
-          <caret line="133" column="135" selection-start-line="133" selection-start-column="135" selection-end-line="133" selection-end-column="135" />
+        <state vertical-scroll-proportion="0.33144477">
+          <caret line="127" column="6" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
           <folding />
         </state>
       </provider>
