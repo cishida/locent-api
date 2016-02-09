@@ -248,7 +248,7 @@ class Dashboard::V1::StatsController < DashboardController
     @from = DateTime.strptime(params[:from].to_s, '%s')
     @time_interval = @from - @to
     @previous_to = @from
-    @previous_from = @from - time_interval;
+    @previous_from = @from - @time_interval;
   end
 
 
