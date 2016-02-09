@@ -211,10 +211,10 @@ class Dashboard::V1::StatsController < DashboardController
 
   def set_dashboard_customers_count
     @dashboard_customers_count = OptIn.where(completed: true)
-                                     .between_times(@from, @to)
                                      .select { |opt_in| opt_in.subscription.organization == @organization }
                                      .count
   end
+  
 
   def set_dashboard_opt_outs_count
     @dashboard_opt_outs_count = OptIn.unscoped.where(active: false, deleted_at: nil)
