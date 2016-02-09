@@ -203,10 +203,11 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_active_customers_count
-    @dashboard_active_customers_count = Order.where(status: "successful", organization_id: @organization.id)
-                                            .between_times(@from, @to)
-                                            .group_by(:opt_in_id)
-                                            .count
+    count = 0
+    Order.where(status: "successful", organization_id: @organization.id)
+        .between_times(@from, @to)
+        .group_by(:opt_in_id).each { |customer, orders| count = count + 1 }
+    @dashboard_active_customers_count = count
   end
 
   def set_dashboard_customers_count
