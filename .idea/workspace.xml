@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98617e3d-49cf-4331-936c-76b004a7398d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/serializers/campaigns_serializer.rb" afterPath="$PROJECT_DIR$/app/serializers/campaigns_serializer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/slate/index.html" afterPath="$PROJECT_DIR$/slate/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/v1/opt_ins_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/v1/opt_ins_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" />
     </list>
     <ignored path="locent-api.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stats_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="stats_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="176" column="90" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.33248731">
+              <caret line="189" column="54" selection-start-line="189" selection-start-column="54" selection-end-line="189" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -97,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63182896">
-              <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+            <state vertical-scroll-proportion="-4.851852">
+              <caret line="157" column="86" selection-start-line="157" selection-start-column="82" selection-end-line="157" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -153,12 +149,12 @@
         <option value="$PROJECT_DIR$/app/jobs/message_sender.rb" />
         <option value="$PROJECT_DIR$/app/serializers/organization_serializer.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20160208102430_add_message_to_campaign.rb" />
         <option value="$PROJECT_DIR$/app/controllers/dashboard/v1/campaigns_controller.rb" />
         <option value="$PROJECT_DIR$/app/serializers/campaigns_serializer.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/opt_ins_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb" />
       </list>
     </option>
   </component>
@@ -971,18 +967,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="176" column="90" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="90" />
+        <state vertical-scroll-proportion="-4.851852">
+          <caret line="157" column="86" selection-start-line="157" selection-start-column="82" selection-end-line="157" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/orders_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard/v1/stats_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63182896">
-          <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.33248731">
+          <caret line="189" column="54" selection-start-line="189" selection-start-column="54" selection-end-line="189" selection-end-column="54" />
           <folding />
         </state>
       </provider>

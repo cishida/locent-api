@@ -187,6 +187,7 @@ class Dashboard::V1::StatsController < DashboardController
         messages: @messages.count,
         orders: @dashboard_orders_count,
         total_revenue: @dashboard_revenue,
+        average_purchase: @dashboard_average_purchase,
         opt_outs: @dashboard_opt_outs_count,
         customers: @dashboard_customers_count,
         active_customers: @dashboard_active_customers_count
