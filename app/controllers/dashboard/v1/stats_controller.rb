@@ -61,7 +61,7 @@ class Dashboard::V1::StatsController < DashboardController
   def set_orders_count
     @successful_orders = Order.where(feature: params[:feature], status: "successful", completed: true).between_times(@from, @to)
     @successful_orders_count_during_previous_period = Order.where(feature: params[:feature], status: "successful", completed: true)
-                                                         .between_times(@previous_from, @previous_to)
+                                                          .between_times(@previous_from, @previous_to)
 
     @stats[:orders] = @successful_orders.count
     @stats[:orders_percentage_change] = percentage_change(@stats[:orders], @successful_orders_count_during_previous_period.count)
@@ -117,12 +117,12 @@ class Dashboard::V1::StatsController < DashboardController
 
   def set_failed_orders_count
     @stats[:failed_orders] = Order.where(feature: params[:feature], status: "successful", completed: true)
-                               .between_times(@from, @to).count
+                                 .between_times(@from, @to).count
   end
 
   def set_customers_count
     @stats[:customers] = OptIn.where(subscription_id: @subscription.id, completed: true)
-                                   .select { |opt_in| opt_in.feature_id == @feature.id }.count
+                             .select { |opt_in| opt_in.feature_id == @feature.id }.count
   end
 
   def set_active_customers_count
@@ -130,8 +130,8 @@ class Dashboard::V1::StatsController < DashboardController
                                                   .between_times(@previous_from, @previous_to).group_by(&:opt_in_id).count
 
     @stats[:active_customers] = Order.where(status: "successful", organization_id: @organization.id, feature: params[:feature])
-                                  .between_times(@from, @to).group_by(&:opt_in_id).count
-    @stats[:active_customers_percentage_change] = percentage_change(stats[:active_customers], active_customers_during_previous_period)
+                                    .between_times(@from, @to).group_by(&:opt_in_id).count
+    @stats[:active_customers_percentage_change] = percentage_change(@stats[:active_customers], active_customers_during_previous_period)
   end
 
   def set_product_revenues
