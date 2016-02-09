@@ -208,11 +208,11 @@ class Dashboard::V1::StatsController < DashboardController
         }
       end
     else
-      @dashboard_successful_orders.group_by { |order| order.created_at.to_date }.each do |day, orders|
+      @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_day }.each do |day, orders|
         dashboard_graph_array << {
             period: day,
             orders: orders.count,
-            messages: @messages.select { |message| message.created_at.to_date == day }.count
+            messages: @messages.select { |message| message.created_at.beginning_of_day == day }.count
         }
       end
     end
