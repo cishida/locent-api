@@ -245,9 +245,9 @@ class Dashboard::V1::StatsController < DashboardController
   def set_time_constraints
     @to = DateTime.strptime(params[:to].to_s, '%s')
     @from = DateTime.strptime(params[:from].to_s, '%s')
-    @time_interval = @from - @to
+    @time_interval = (@from - @to).days
     @previous_to = @from
-    @previous_from = @from - @time_interval;
+    @previous_from = (@from - @time_interval)
   end
 
 
