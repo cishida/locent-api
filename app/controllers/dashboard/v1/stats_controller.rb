@@ -178,6 +178,7 @@ class Dashboard::V1::StatsController < DashboardController
     set_dashboard_successful_orders
     set_dashboard_active_customers_count
     set_dashboard_customers_count
+    set_dashboard_opt_ins_count
     set_dashboard_opt_outs_count
     set_dashboard_stats_hash
   end
@@ -188,6 +189,7 @@ class Dashboard::V1::StatsController < DashboardController
         orders: @dashboard_orders_count,
         total_revenue: @dashboard_revenue,
         average_purchase: @dashboard_average_purchase,
+        opt_ins: @dashboard_opt_ins_count,
         opt_outs: @dashboard_opt_outs_count,
         customers: @dashboard_customers_count,
         active_customers: @dashboard_active_customers_count
