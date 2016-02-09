@@ -203,9 +203,9 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_active_customers_count
-    @dashboard_active_customers_count = OptIn.where(completed: true)
+    @dashboard_active_customers_count = Order.where(status: "successful", organization_id: @organization.id)
                                             .between_times(@from, @to)
-                                            .select { |opt_in| (opt_in.has_at_least_one_successful_order? && opt_in.subscription.organization == @organization) }
+                                            .group_by(:opt_in_id)
                                             .count
   end
 
