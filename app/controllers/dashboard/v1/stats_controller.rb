@@ -175,7 +175,7 @@ class Dashboard::V1::StatsController < DashboardController
                                                   .between_times(@previous_from, @previous_to).group_by(&:opt_in_id).count
 
     @stats[:active_customers] = Order.where(status: "successful", organization_id: @organization.id).between_times(@from, @to).group_by(&:opt_in_id).count
-    @stats[:active_customers_percentage_change] = percentage_change(stats[:active_customers], active_customers_during_previous_period)
+    @stats[:active_customers_percentage_change] = percentage_change(@stats[:active_customers], active_customers_during_previous_period)
   end
 
 
