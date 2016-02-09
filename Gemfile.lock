@@ -63,6 +63,7 @@ GEM
     erubis (2.7.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    hirefire-resource (0.3.9)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -186,6 +187,7 @@ DEPENDENCIES
   by_star
   chronic
   devise_token_auth
+  hirefire-resource
   kaminari
   paranoia (~> 2.0)
   pg

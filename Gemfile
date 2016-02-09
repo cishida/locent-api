@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'hirefire-resource'
   gem 'rails_12factor'
   gem 'pg'
 end
