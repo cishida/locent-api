@@ -233,7 +233,7 @@ class Dashboard::V1::StatsController < DashboardController
         }
       end
     else
-      @dashboard_successful_orders.group_by { |message| message.created_at.to_date }.each do |day, messages|
+      @messages.group_by { |message| message.created_at.to_date }.each do |day, messages|
         @dashboard_graph_hash[:messages] << {
             period: day,
             count: messages.count
