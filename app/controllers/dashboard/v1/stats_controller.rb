@@ -198,28 +198,49 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_graph_data
-    messages = Message.where(organization_id: @organization.id).between_times(@from, @to)
-    dashboard_graph_array = []
+    @dashboard_graph_hash = {}
+    @dashboard_graph_hash[:orders] = []
+    @dashboard_graph_hash[:messages] = []
+    add_dashboard_orders_data
+    add_dashboard_messages_data
+    @stats[:graph] = @dashboard_graph_hash
+  end
+
+  def add_dashboard_orders_data
     if is_day_query?
       @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
-        dashboard_graph_array << {
+        @dashboard_graph_hash[:orders] << {
             period: hour,
-            orders: orders.count,
-            messages: messages.select { |message| message.created_at.beginning_of_hour == hour }.count
+            count: orders.count
         }
       end
     else
       @dashboard_successful_orders.group_by { |order| order.created_at.to_date }.each do |day, orders|
-        dashboard_graph_array << {
+        @dashboard_graph_hash[:orders] << {
             period: day,
-            orders: orders.count,
-            messages: messages.select { |message| message.created_at.to_date == day }.count
+            count: orders.count
         }
       end
     end
-    @stats[:graph] = dashboard_graph_array
   end
 
+  def add_dashboard_messages_data
+    if is_day_query?
+      @messages.group_by { |message| message.created_at.beginning_of_hour }.each do |hour, messages|
+        @dashboard_graph_hash[:messages] << {
+            period: hour,
+            count: messages.count
+        }
+      end
+    else
+      @dashboard_successful_orders.group_by { |message| message.created_at.to_date }.each do |day, messages|
+        @dashboard_graph_hash[:messages] << {
+            period: day,
+            count: messages.count
+        }
+      end
+    end
+  end
 
   def is_day_query?
     (@to - @from).days < 2.days
