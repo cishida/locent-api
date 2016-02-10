@@ -198,13 +198,14 @@ class Dashboard::V1::StatsController < DashboardController
   end
 
   def set_dashboard_graph_data
+    messages = Message.where(organization_id: @organization.id).between_times(@from, @to)
     dashboard_graph_array = []
     if is_day_query?
       @dashboard_successful_orders.group_by { |order| order.created_at.beginning_of_hour }.each do |hour, orders|
         dashboard_graph_array << {
             period: hour,
             orders: orders.count,
-            messages: @messages.select { |message| message.created_at.beginning_of_hour == hour }.count
+            messages: messages.select { |message| message.created_at.beginning_of_hour == hour }.count
         }
       end
     else
@@ -212,7 +213,7 @@ class Dashboard::V1::StatsController < DashboardController
         dashboard_graph_array << {
             period: day,
             orders: orders.count,
-            messages: @messages.select { |message| message.created_at.to_date == day }.count
+            messages: messages.select { |message| message.created_at.to_date == day }.count
         }
       end
     end
