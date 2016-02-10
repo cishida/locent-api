@@ -86,7 +86,7 @@ class Dashboard::V1::CampaignsController < DashboardController
     create_new_campaign(kind)
     @customers.each do |customer|
       if @organization.has_shortcode?
-        Resque.enqueue(MessageSenderWithShortcode, @organization.from, customer.phone, params[:message], @campaign, @organization.id)
+        Resque.enqueue(MessageSenderWithShortcode, @organization.from, customer.phone, params[:message], @campaign.to_descriptor_hash, @organization.id)
       else
         Resque.enqueue(MessageSender, @organization.from, customer.phone, params[:message], @campaign, @organization.id)
       end
