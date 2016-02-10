@@ -22,6 +22,8 @@ gem 'yard-restful'
 gem 'active_record_union'
 gem 'by_star'
 gem 'chronic'
+gem 'newrelic_rpm'
+
 
 group :development, :test do
   gem 'spring'
@@ -29,7 +31,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'newrelic_rpm'
   gem 'hirefire-resource'
   gem 'rails_12factor'
   gem 'pg'
