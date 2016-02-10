@@ -6,7 +6,7 @@ class Dashboard::V1::CustomersController < DashboardController
   before_action :authenticate_user!
   before_action :set_organization
 
-  # @url /customers/:feature
+  # @url /dashboard/customers/:feature
   # @action GET
   #
   # Get a paginated list of all of an organization's customers subscribed to a feature
@@ -20,7 +20,7 @@ class Dashboard::V1::CustomersController < DashboardController
     paginate json: @customers
   end
 
-  # @url /customers/:uid/messages/:feature
+  # @url /dashboard/customers/:uid/messages/:feature
   # @action GET
   #
   # Get a list of all the messages that have been sent and received to/from this customer

@@ -1,5 +1,26 @@
+# @restful_api 1.0
+#
+# ShortcodeApplications
+#
 class Dashboard::V1::ShortcodeApplicationsController < DashboardController
 
+  # @url /dashboard/shortcode_applications
+  # @action POST
+  #
+  # Submits organization's shorcode application
+  #
+  # @required [String] vanity_or_random The type of shortcode e.g 'vanity'
+  # @required [String] payment_frequency The frequency of payment e.g "$3000/quarter"
+  # @required [String] company_name The name of the company
+  # @required [String] company_mailing_address The company's mailing address
+  # @required [String] city The company's city
+  # @required [String] state_or_province The company's province
+  # @required [String] primary_contact_name
+  # @required [String] primary_contact_number
+  # @required [String] support_email_address
+  # @required [String] support_toll_free_number
+  #
+  # @response_field [ShortcodeApplication] application The newly created/submitted application
   def create
     validate_shortcode_application_params
     @application = ShortcodeApplication.new(params)
@@ -11,6 +32,8 @@ class Dashboard::V1::ShortcodeApplicationsController < DashboardController
     end
   end
 
+
+  private
 
   def validate_shortcode_application_params
     param! :vanity_or_random, String, required: true

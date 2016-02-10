@@ -8,7 +8,7 @@ class Dashboard::V1::OrganizationsController < DashboardController
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
-  # @url /organizations
+  # @url /dashboard/organizations
   # @action GET
   #
   # Get a list of all of Locent's organizations
@@ -18,8 +18,8 @@ class Dashboard::V1::OrganizationsController < DashboardController
     respond_with Organization.all
   end
 
-  # @url /organizations/:id
-  # @action GET
+  # @url /dashboard/organizations/:id
+  # @action POST
   #
   # Gets one organization
   #
@@ -30,6 +30,19 @@ class Dashboard::V1::OrganizationsController < DashboardController
     respond_with Organization.find(params[:id])
   end
 
+  # @url /dashboard/organizations
+  # @action POST
+  #
+  # Creates new organization
+  #
+  # @required [String] name The organization name
+  # @required [String] email The organization's email address
+  # @required [String] phone The organization's contact phone number
+  # @required [String] first_name The organization's primary user's first name
+  # @required [String] last_name The organization's primary user's last name
+  # @required [String] password The organization's primary user's password
+  #
+  # @response_field [Organization] organization Newly created organization
   def create
     ActiveRecord::Base.transaction do
       @organization = Organization.new(organization_params)
@@ -42,6 +55,16 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  # @url /dashboard/organizations
+  # @action PUT
+  #
+  # Updates organization of signed in user
+  #
+  # @required [String] name The organization name
+  # @required [String] email The organization's email address
+  # @required [String] phone The organization's contact phone number
+  #
+  # @response_field [Organization] organization Updated organization
   def update
     if @organization.update(organization_params)
       render json: @organization, status: 201
@@ -50,6 +73,14 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  # @url  /dashboard/error_message/:code
+  # @action PUT
+  #
+  # Updates organization's error messages
+  #
+  # @required [String] message The error message
+  # @required [String] code The error code
+  #
   def update_error_message
     param! :message, String, required: true
     param! :code, String, required: true
@@ -60,10 +91,24 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  # @url /dashboard/organizations/users
+  # @action GET
+  #
+  # Get a paginated list of the organization's users
+  #
+  # @response_field [Array<Users>] users List of organization's users
   def users
     paginate json: @organization.users
   end
 
+  # @url /dashboard/organizations/create_users
+  # @action POST
+  #
+  # Creates new users for organization (can only be done when logged in user is admin)
+  #
+  # @required [Array<Users>] users The users to be added to the organization
+  #
+  # @response_field [Array<Users>] users The newly created users
   def create_users
     ActiveRecord::Base.transaction do
       if current_user.is_admin?
@@ -80,6 +125,15 @@ class Dashboard::V1::OrganizationsController < DashboardController
     end
   end
 
+  # @url /dashboard/organizations/update_user_admin_status
+  # @action PUT
+  #
+  # Change status of user from admin to normal or vice versa
+  #
+  # @required [String] uid The unique identifier of the user whose status is to be changed
+  # @required [boolean] admin The user's admin status
+  #
+  # @response_field [User] user The updated user
   def update_user_admin_status
     param! :uid, String, required: true
     param! :admin, :boolean
@@ -90,6 +144,13 @@ class Dashboard::V1::OrganizationsController < DashboardController
     respond_with @user
   end
 
+  # @url /dashboard/organizations/destroy_user/:id
+  # @action DELETE
+  #
+  # Delete user
+  #
+  # @required [String] id The unique identifier of the user to be deleted
+  #
   def destroy_user
     param! :id, String, required: true
     @user = User.find(params[:id])

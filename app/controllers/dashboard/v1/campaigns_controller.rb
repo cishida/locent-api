@@ -1,8 +1,22 @@
+# @restful_api 1.0
+#
+# Campaigns
+#
 class Dashboard::V1::CampaignsController < DashboardController
   before_action :authenticate_user!
   before_action :set_organization
 
 
+  # @url /dashboard/campaigns/alert/:feature
+  # @action POST
+  #
+  # Sends a message to all customers opt-ed in to a feature
+  #
+  # @required [String] feature The feature e.g 'keyword'
+  # @required [String] message The message to be sent
+  # @required [String] campaign_name The name of the campaign
+  #
+  # @response_field [Campaign] campaign Newly created campaign
   def alert
     ActiveRecord::Base.transaction do
       validate_alert_params
@@ -12,6 +26,18 @@ class Dashboard::V1::CampaignsController < DashboardController
     end
   end
 
+  # @url /dashboard/campaigns/import
+  # @action POST
+  #
+  # Sends a message to all imported customers that are opted-in to any of the organization's features
+  #
+  # @required [Array<Customer>] customers The customers to be texted
+  # @required [String] message The message to be sent
+  # @required [String] campaign_name The name of the campaign
+  #
+  # @response_field [Campaign] campaign Newly created campaign
+  # @response_field [failed_count] failed_count The amount of customers that couldn't be sent to because they're not opted-in to any of the organization's features
+  #
   def import
     ActiveRecord::Base.transaction do
       validate_import_params
@@ -23,6 +49,13 @@ class Dashboard::V1::CampaignsController < DashboardController
     end
   end
 
+  # @url /dashboard/campaigns
+  # @action GET
+  #
+  # Get a paginated list of organization's campaigns
+  #
+  # @response_field [Array<Campaigns>] campaigns All organizations campaigns
+  #
   def index
     @campaigns = Campaign.where(organization_id: @organization.id)
     paginate json: @campaigns

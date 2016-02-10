@@ -1,7 +1,24 @@
+# @restful_api 1.0
+#
+# Products
+#
 class Dashboard::V1::ProductsController < DashboardController
   before_action :authenticate_user!
   before_action :set_variables, except: [:destroy, :update]
 
+
+  # @url /dashboard/products
+  # @action POST
+  #
+  # Creates new product
+  #
+  # @required [String] name The product name
+  # @required [String] uid The product's unique identifier
+  # @required [String] feature The feature the product is being added to
+  # @required [String] keyword The product's keyword
+  # @required [BigDecimal] price The product's price
+  #
+  # @response_field [Product] product Newly created product
   def create
     validate_create_params
     @product = Product.new(product_create_params)
@@ -22,12 +39,23 @@ class Dashboard::V1::ProductsController < DashboardController
   #
   # @required [String] feature The feature e.g 'keyword'
   #
-  # @response_field [Array<Products>] messages List of products that have been added by this organization to the specified feature
+  # @response_field [Array<Products>] products List of products that have been added by this organization to the specified feature
   def show
     param! :feature, String, required: true
     paginate json: @subscription.products.order("id DESC")
   end
 
+  # @url /dashboard/products/:uid
+  # @action PUT
+  #
+  # Updates product
+  #
+  # @required [String] name The product name
+  # @required [String] uid The product's unique identifier
+  # @required [String] keyword The product's keyword
+  # @required [BigDecimal] price The product's price
+  #
+  # @response_field [Product] product Updated product
   def update
     validate_update_params
     @product = Product.find_by_uid(params[:uid])
@@ -38,7 +66,13 @@ class Dashboard::V1::ProductsController < DashboardController
     end
   end
 
-
+  # @url /dashboard/products/:uid
+  # @action DELETE
+  #
+  # Deletes product
+  #
+  # @required [String] uid The product's unique identifier
+  #
   def destroy
     param! :uid, String, required: true
     @product = Product.find_by_uid(params[:uid])

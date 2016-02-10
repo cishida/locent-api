@@ -1,8 +1,20 @@
+# @restful_api 1.0
+#
+# Subscriptions
+#
 class Dashboard::V1::SubscriptionsController < DashboardController
   before_action :authenticate_user!
   before_action :set_variables, only: [:show, :options, :update_options]
 
 
+  # @url /dashboard/subscriptions
+  # @action POST
+  #
+  # Subscribes organization to chosen features
+  #
+  # @required [Array<Integer>] feature_ids The ids of the features the organization is to be subscribed to.
+  #
+  # @response_field [Campaign] campaign Newly created campaign
   def create
     param! :feature_ids, Array, required: true
     ActiveRecord::Base.transaction do

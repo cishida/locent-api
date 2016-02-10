@@ -1,7 +1,11 @@
+# @restful_api 1.0
+#
+# Orders
+#
 class Dashboard::V1::OrdersController < DashboardController
 
 
-  # @url orders/:feature
+  # @url /dashboard/orders/:feature
   # @action GET
   #
   # Get a paginated list of all the orders made from this organization with specified feature

@@ -1,14 +1,35 @@
+# @restful_api 1.0
+#
+# Stats
+#
 class Dashboard::V1::StatsController < DashboardController
   before_action :set_organization
   before_action :set_stats
   before_action :set_time_constraints
 
+  # @url /dashboard/stats/dashboard/:from/:to
+  # @action GET
+  #
+  # Gets stats for dashboard analytics page
+  #
+  # @required [DateTime] from The lower boundary of the timeframe to get stats for. (in milliseconds since Epoch)
+  # @required [DateTime] to The upper boundary of the timeframe to get stats for. (in milliseconds since Epoch)
+  #
   def dashboard
     set_dashboard_stats
     respond_with @stats.to_json
   end
 
 
+  # @url /dashboard/stats/:feature/:from/:to
+  # @action GET
+  #
+  # Gets stats for any feature's analytics page
+  #
+  # @required [String] feature The feature e.g 'keyword'
+  # @required [DateTime] from The lower boundary of the timeframe to get stats for. (in milliseconds since Epoch)
+  # @required [DateTime] to The upper boundary of the timeframe to get stats for. (in milliseconds since Epoch)
+  #
   def stats
     set_feature_and_subscription
     set_common_stats
