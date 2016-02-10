@@ -5,6 +5,7 @@
 class Dashboard::V1::CustomersController < DashboardController
   before_action :authenticate_user!
   before_action :set_organization
+
   # @url /customers/:feature
   # @action GET
   #
@@ -12,14 +13,22 @@ class Dashboard::V1::CustomersController < DashboardController
   #
   # @required [String] feature The feature e.g 'keyword'
   #
-  # @response_field [Array<Customer>] customers List of customers on this page
+  # @response_field [Array<Customer>] customers List of customers on this page that have opted in to this feature
   def show
     param! :feature, String, required: true
     set_variables
     paginate json: @customers
   end
 
-
+  # @url /customers/:uid/messages/:feature
+  # @action GET
+  #
+  # Get a list of all the messages that have been sent and received to/from this customer
+  #
+  # @required [String] feature The feature e.g 'keyword'
+  # @required [String] uid The customer's unique identifier
+  #
+  # @response_field [Array<Message>] messages List of messages that have been sent and received to/from this customer
   def messages
     param! :uid, String, required: true
     param! :feature, String, required: true

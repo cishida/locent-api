@@ -23,6 +23,8 @@ gem 'active_record_union'
 gem 'by_star'
 gem 'chronic'
 gem 'newrelic_rpm'
+gem 'hirefire-resource'
+
 
 
 group :development, :test do
@@ -31,7 +33,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'hirefire-resource'
   gem 'rails_12factor'
   gem 'pg'
 end

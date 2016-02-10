@@ -20,10 +20,24 @@ class Dashboard::V1::SubscriptionsController < DashboardController
     end
   end
 
+  # @url /dashboard/subscriptions/:id
+  # @action GET
+  #
+  # Get subscription
+  #
+  # @required [Integer] id The subscription id
+  #
+  # @response_field [Subscription] subscription
   def show
     respond_with @subscription
   end
 
+  # @url /dashboard/subscriptions/:id/options
+  # @action GET
+  #
+  # Get subscription's options
+  #
+  # @required [Integer] id The subscription id
   def options
     respond_with @options
   end

@@ -14,6 +14,15 @@ class Dashboard::V1::ProductsController < DashboardController
     end
   end
 
+
+  # @url /products/:feature
+  # @action GET
+  #
+  # Get a paginated list of all the products that have been added by this organization to the specified feature
+  #
+  # @required [String] feature The feature e.g 'keyword'
+  #
+  # @response_field [Array<Products>] messages List of products that have been added by this organization to the specified feature
   def show
     param! :feature, String, required: true
     paginate json: @subscription.products.order("id DESC")
