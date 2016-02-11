@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Superadmin::V1::ShortcodeApplicationsController
+  
+    &mdash; My API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Superadmin/V1/ShortcodeApplicationsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">My API Documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>ShortcodeApplications [1.0]</h2>
+    <div class="description">
+  
+<p>Superadmin::ShortcodeApplications</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>index</h3>
+			<p class="method_desc">Gets paginated list of all shortcode application</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">/superadmin/shortcode_applications</span>
+        </div>
+      
+
+      
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">applications</span>
+					<span class="type"><tt>Array&lt;ShortcodeApplications&gt;</tt></span>
+					<span class="text">
+<p>All shortcode applications</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>update_status</h3>
+			<p class="method_desc">Updates status of shortcode application</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">PUT</span>
+          <span class="url">/superadmin/shortcode_applications/:id/update_status</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text">
+<p>The application id.</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">status</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The application status. It could be “pending”, “approved” or “rejected”.</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">application</span>
+					<span class="type"><tt><span class='object_link'><a href="../../ShortcodeApplication.html" title="ShortcodeApplication (class)">ShortcodeApplication</a></span></tt></span>
+					<span class="text">
+<p>The updated application</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>assign_shortcode_to_organization</h3>
+			<p class="method_desc">Assign a shortcode to an organization</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/superadmin/shortcode_applications/:id/assign_shortcode_to_organization</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text">
+<p>The organization id.</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">shortcode</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The shortcode.</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">organization</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Organization.html" title="Organization (class)">Organization</a></span></tt></span>
+					<span class="text">
+<p>The updated organization</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Thu Feb 11 16:41:07 2016 with ruby-2.2.3
+</div>
+
+  </body>
+</html>

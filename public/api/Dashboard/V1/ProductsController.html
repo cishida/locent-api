@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Dashboard::V1::ProductsController
+  
+    &mdash; My API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Dashboard/V1/ProductsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">My API Documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>Products [1.0]</h2>
+    <div class="description">
+  
+<p>Products</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>create</h3>
+			<p class="method_desc">Creates new product</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/products</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">uid</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product&#39;s unique identifier</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">feature</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The feature the product is being added to</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">keyword</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product&#39;s keyword</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">price</span>
+					<span class="type"><tt>BigDecimal</tt></span>
+					<span class="text">
+<p>The product&#39;s price</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">product</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Product.html" title="Product (class)">Product</a></span></tt></span>
+					<span class="text">
+<p>Newly created product</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Get a paginated list of all the products that have been added by this organization to the specified feature</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">/products/:feature</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">feature</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The feature e.g &#39;keyword&#39;</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">products</span>
+					<span class="type"><tt>Array&lt;Products&gt;</tt></span>
+					<span class="text">
+<p>List of products that have been added by this organization to the specified
+feature</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>update</h3>
+			<p class="method_desc">Updates product</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">PUT</span>
+          <span class="url">/dashboard/products/:uid</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">uid</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product&#39;s unique identifier</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">keyword</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product&#39;s keyword</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">price</span>
+					<span class="type"><tt>BigDecimal</tt></span>
+					<span class="text">
+<p>The product&#39;s price</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">product</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Product.html" title="Product (class)">Product</a></span></tt></span>
+					<span class="text">
+<p>Updated product</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>destroy</h3>
+			<p class="method_desc">Deletes product</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">DELETE</span>
+          <span class="url">/dashboard/products/:uid</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">uid</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The product&#39;s unique identifier</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Thu Feb 11 16:41:07 2016 with ruby-2.2.3
+</div>
+
+  </body>
+</html>

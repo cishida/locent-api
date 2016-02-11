@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Dashboard::V1::CampaignsController
+  
+    &mdash; My API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Dashboard/V1/CampaignsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">My API Documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>Campaigns [1.0]</h2>
+    <div class="description">
+  
+<p>Campaigns</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>alert</h3>
+			<p class="method_desc">Sends a message to all customers opt-ed in to a feature</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/campaigns/alert/:feature</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">feature</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The feature e.g &#39;keyword&#39;</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">message</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The message to be sent</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">campaign_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The name of the campaign</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">campaign</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Campaign.html" title="Campaign (class)">Campaign</a></span></tt></span>
+					<span class="text">
+<p>Newly created campaign</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>import</h3>
+			<p class="method_desc">Sends a message to all imported customers that are opted-in to any of the organization's features</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/campaigns/import</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">customers</span>
+					<span class="type"><tt>Array&lt;<span class='object_link'><a href="../../Customer.html" title="Customer (class)">Customer</a></span>&gt;</tt></span>
+					<span class="text">
+<p>The customers to be texted</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">message</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The message to be sent</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">campaign_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The name of the campaign</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">campaign</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Campaign.html" title="Campaign (class)">Campaign</a></span></tt></span>
+					<span class="text">
+<p>Newly created campaign</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">failed_count</span>
+					<span class="type"><tt>failed_count</tt></span>
+					<span class="text">
+<p>The amount of customers that couldn&#39;t be sent to because they&#39;re
+not opted-in to any of the organization&#39;s features</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>index</h3>
+			<p class="method_desc">Get a paginated list of organization's campaigns</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">/dashboard/campaigns</span>
+        </div>
+      
+
+      
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">campaigns</span>
+					<span class="type"><tt>Array&lt;Campaigns&gt;</tt></span>
+					<span class="text">
+<p>All organizations campaigns</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Thu Feb 11 16:41:07 2016 with ruby-2.2.3
+</div>
+
+  </body>
+</html>

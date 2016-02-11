@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Dashboard::V1::OrganizationsController
+  
+    &mdash; My API Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/custom.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Dashboard/V1/OrganizationsController.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/rest_plugin.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="search">
+  
+    <a class="full_list_link" id="resource_list_link"
+        href="../../resource_list.html">
+      Resources
+    </a>
+  
+    <a class="full_list_link" id="object_list_link"
+        href="../../object_list.html">
+      Objects
+    </a>
+  
+</div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content" style="padding-top: 12px;">
+		<div class="service">
+  <h1 class="noborder title">My API Documentation</h1>
+    <a class="back" href="../../index.html" title="back to the overview">&laquo; back to overview</a>
+    <h2>Organizations [1.0]</h2>
+    <div class="description">
+  
+<p>Organizations</p>
+
+</div>
+
+
+  <div id="Services" class="method_details_list">
+    
+		<div class="method">
+      <h3>index</h3>
+			<p class="method_desc">Get a list of all of Locent's organizations</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">/dashboard/organizations</span>
+        </div>
+      
+
+      
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name"></span>
+					<span class="type"><tt>Array&lt;<span class='object_link'><a href="../../Organization.html" title="Organization (class)">Organization</a></span>&gt;</tt></span>
+					<span class="text"></span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>show</h3>
+			<p class="method_desc">Gets one organization</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/organizations/:id</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">id</span>
+					<span class="type"><tt>Integer</tt></span>
+					<span class="text">
+<p>ID of the organization</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name"></span>
+					<span class="type"><tt><span class='object_link'><a href="../../Organization.html" title="Organization (class)">Organization</a></span></tt></span>
+					<span class="text"></span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>create</h3>
+			<p class="method_desc">Creates new organization</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/organizations</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">email</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s email address</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">phone</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s contact phone number</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">first_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s primary user&#39;s first name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">last_name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s primary user&#39;s last name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">password</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s primary user&#39;s password</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">organization</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Organization.html" title="Organization (class)">Organization</a></span></tt></span>
+					<span class="text">
+<p>Newly created organization</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>update</h3>
+			<p class="method_desc">Updates organization of signed in user</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">PUT</span>
+          <span class="url">/dashboard/organizations</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">name</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization name</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">email</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s email address</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">phone</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The organization&#39;s contact phone number</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">organization</span>
+					<span class="type"><tt><span class='object_link'><a href="../../Organization.html" title="Organization (class)">Organization</a></span></tt></span>
+					<span class="text">
+<p>Updated organization</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>update_error_message</h3>
+			<p class="method_desc">Updates organization's error messages</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">PUT</span>
+          <span class="url">/dashboard/error_message/:code</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">message</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The error message</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">code</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The error code</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>users</h3>
+			<p class="method_desc">Get a paginated list of the organization's users</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">GET</span>
+          <span class="url">/dashboard/organizations/users</span>
+        </div>
+      
+
+      
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">users</span>
+					<span class="type"><tt>Array&lt;Users&gt;</tt></span>
+					<span class="text">
+<p>List of organization&#39;s users</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>create_users</h3>
+			<p class="method_desc">Creates new users for organization (can only be done when logged in user is admin)</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">POST</span>
+          <span class="url">/dashboard/organizations/create_users</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">users</span>
+					<span class="type"><tt>Array&lt;Users&gt;</tt></span>
+					<span class="text">
+<p>The users to be added to the organization</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters odd">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">users</span>
+					<span class="type"><tt>Array&lt;Users&gt;</tt></span>
+					<span class="text">
+<p>The newly created users</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>update_user_admin_status</h3>
+			<p class="method_desc">Change status of user from admin to normal or vice versa</p>
+
+      
+        <div class="resource_url even">
+          <h4>URL</h4>
+          <span class="action">PUT</span>
+          <span class="url">/dashboard/organizations/update_user_admin_status</span>
+        </div>
+      
+
+      
+
+  <div class="parameters odd">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">uid</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The unique identifier of the user whose status is to be changed</p>
+</span>
+				</li>
+  		
+				<li>
+					<span class="name">admin</span>
+					<span class="type"><tt>boolean</tt></span>
+					<span class="text">
+<p>The user&#39;s admin status</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+  <div class="parameters even">
+    
+      <h4>Response Fields</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">user</span>
+					<span class="type"><tt><span class='object_link'><a href="../../User.html" title="User (class)">User</a></span></tt></span>
+					<span class="text">
+<p>The updated user</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+			
+		</div>
+    
+		<div class="method">
+      <h3>destroy_user</h3>
+			<p class="method_desc">Delete user</p>
+
+      
+        <div class="resource_url odd">
+          <h4>URL</h4>
+          <span class="action">DELETE</span>
+          <span class="url">/dashboard/organizations/destroy_user/:id</span>
+        </div>
+      
+
+      
+
+  <div class="parameters even">
+    
+      <h4>Required Parameters</h4>
+    
+		<ul>
+  		
+				<li>
+					<span class="name">id</span>
+					<span class="type"><tt>String</tt></span>
+					<span class="text">
+<p>The unique identifier of the user to be deleted</p>
+</span>
+				</li>
+  		
+	  </ul>
+	</div>
+
+
+      
+
+
+      
+        
+
+
+      
+
+			
+		</div>
+    
+  </div>
+
+
+</div>
+
+
+	</div>
+
+    <div id="footer">
+  Generated on Thu Feb 11 16:41:07 2016 with ruby-2.2.3
+</div>
+
+  </body>
+</html>
