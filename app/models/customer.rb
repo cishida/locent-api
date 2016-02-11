@@ -17,7 +17,6 @@ class Customer < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :organization
-  belongs_to :subscription
 
   has_many :opt_ins, dependent: :destroy
 

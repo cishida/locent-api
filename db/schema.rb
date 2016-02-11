@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208102430) do
+ActiveRecord::Schema.define(version: 20160211090359) do
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "kind"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "campaigns", ["deleted_at"], name: "index_campaigns_on_deleted_at"
+  add_index "campaigns", ["organization_id"], name: "index_campaigns_on_organization_id"
 
   create_table "clearcart_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at"
+  add_index "customers", ["organization_id"], name: "index_customers_on_organization_id"
 
   create_table "error_messages", force: :cascade do |t|
     t.integer  "error_id"
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "error_messages", ["deleted_at"], name: "index_error_messages_on_deleted_at"
+  add_index "error_messages", ["error_id"], name: "index_error_messages_on_error_id"
+  add_index "error_messages", ["organization_id"], name: "index_error_messages_on_organization_id"
 
   create_table "errors", force: :cascade do |t|
     t.integer  "code"
@@ -135,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "messages", ["deleted_at"], name: "index_messages_on_deleted_at"
+  add_index "messages", ["purpose_id", "purpose_type"], name: "index_messages_on_purpose_id_and_purpose_type"
 
   create_table "opt_ins", force: :cascade do |t|
     t.integer  "subscription_id"
@@ -148,7 +153,10 @@ ActiveRecord::Schema.define(version: 20160208102430) do
     t.boolean  "active",            default: true
   end
 
+  add_index "opt_ins", ["customer_id"], name: "index_opt_ins_on_customer_id"
   add_index "opt_ins", ["deleted_at"], name: "index_opt_ins_on_deleted_at"
+  add_index "opt_ins", ["feature_id"], name: "index_opt_ins_on_feature_id"
+  add_index "opt_ins", ["subscription_id"], name: "index_opt_ins_on_subscription_id"
 
   create_table "orders", force: :cascade do |t|
     t.string   "uid"
@@ -168,6 +176,8 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
+  add_index "orders", ["opt_in_id"], name: "index_orders_on_opt_in_id"
+  add_index "orders", ["organization_id"], name: "index_orders_on_organization_id"
 
   create_table "organizations", force: :cascade do |t|
     t.string   "organization_name"
@@ -198,6 +208,8 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "products", ["deleted_at"], name: "index_products_on_deleted_at"
+  add_index "products", ["organization_id"], name: "index_products_on_organization_id"
+  add_index "products", ["subscription_id"], name: "index_products_on_subscription_id"
 
   create_table "reminders", force: :cascade do |t|
     t.integer  "number_of_times"
@@ -211,6 +223,7 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "reminders", ["deleted_at"], name: "index_reminders_on_deleted_at"
+  add_index "reminders", ["order_id"], name: "index_reminders_on_order_id"
 
   create_table "safetext_options", force: :cascade do |t|
     t.text     "opt_in_message"
@@ -250,6 +263,8 @@ ActiveRecord::Schema.define(version: 20160208102430) do
     t.string   "status"
   end
 
+  add_index "shortcode_applications", ["organization_id"], name: "index_shortcode_applications_on_organization_id"
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "organization_id"
     t.integer  "feature_id"
@@ -261,6 +276,9 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "subscriptions", ["deleted_at"], name: "index_subscriptions_on_deleted_at"
+  add_index "subscriptions", ["feature_id"], name: "index_subscriptions_on_feature_id"
+  add_index "subscriptions", ["options_id", "options_type"], name: "index_subscriptions_on_options_id_and_options_type"
+  add_index "subscriptions", ["organization_id"], name: "index_subscriptions_on_organization_id"
 
   create_table "super_admins", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -320,6 +338,7 @@ ActiveRecord::Schema.define(version: 20160208102430) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
 

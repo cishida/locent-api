@@ -1,7 +1,6 @@
 class Error < ActiveRecord::Base
   acts_as_paranoid
   has_many :error_messages, dependent: :destroy
-  belongs_to :organization
 
   validates_presence_of :code
   validates_presence_of :description
