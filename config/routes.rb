@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   mount Resque::Server.new, at: '/resque'
   post 'status/:id', to: 'twilio#status'
   post 'receive', to: 'twilio#receive'
+  get '/loaderio-a66a73220a536ac28c97331e21e21523', to: 'loader#index'
 
 
   namespace :api, defaults: {format: :json} do
