@@ -1,6 +1,8 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
+  root to: "loader#homepage"
+
 
   mount Resque::Server.new, at: '/resque'
   post 'status/:id', to: 'twilio#status'
