@@ -1,3 +1,21 @@
+# @restful_api 1.0
+#
+# @property [String] uid
+# @property [String] description Order description, could be the item name or a description of a customer's cart
+# @property [String] price
+# @property [String] status Can be 'successful', 'failed', 'pending', 'awaiting customer confirmation'
+# @property [DateTime] created_at
+#
+# @example
+#   ```json
+#   {
+#     "uid": "xxxx-3e333s0xxee0x"
+#     "decription": "iPhone 6 (64GB)",
+#     "price": "749.99",
+#     "status": "pending",
+#     "created_at": "...",
+#   }
+#   ```
 class Order < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :opt_in

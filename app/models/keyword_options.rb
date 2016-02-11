@@ -1,3 +1,14 @@
+# @restful_api 1.0
+#
+# @property [String] opt_in_message
+# @property [String] opt_in_refusal_message
+# @property [String] welcome_message
+# @property [String] initial_cart_abandonment_message
+# @property [String] follow_up_message
+# @property [String] confirmation_message
+# @property [String] cancellation_message
+# @property [String] opt_in_invalid_message_response
+#
 class KeywordOptions < ActiveRecord::Base
   acts_as_paranoid
   has_one  :subscription, as: :options, dependent: :destroy

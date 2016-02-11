@@ -3,16 +3,17 @@
 # @property [String] first_name First Name of the customer
 # @property [String] last_name Last Name of the customer
 # @property [String] phone Phone Number of the customer
+# @property [String] uid Unique identifier for customer
 #
 # @example
 #   ```json
 #   {
 #     "first_name": "Jon",
 #     "last_name": "Snow",
-#     "phone": "+12025550197"
+#     "phone": "+12025550197",
+#     "uid": "xxxx-3e333s0xxee0x"
 #   }
 #   ```
-
 class Customer < ActiveRecord::Base
   acts_as_paranoid
 
@@ -22,5 +23,4 @@ class Customer < ActiveRecord::Base
 
   validates_uniqueness_of :organization_id, :scope => :phone
   validates_uniqueness_of :organization_id, :scope => :uid
-
 end

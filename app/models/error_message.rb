@@ -1,3 +1,9 @@
+# @restful_api 1.0
+#
+# @property [Error] error The error it belongs to
+# @property [String] message
+#
+#
 class ErrorMessage < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :error

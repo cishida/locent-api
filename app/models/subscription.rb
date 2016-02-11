@@ -1,3 +1,12 @@
+# @restful_api 1.0
+#
+# @property [Integer] id
+# @property [Integer] organization_id
+# @property [Integer] feature_id
+# @property [Integer] options_id
+# @property [String] options_type
+# @property [Boolean] are_options_urls_complete?
+#
 class Subscription < ActiveRecord::Base
   acts_as_paranoid
 
