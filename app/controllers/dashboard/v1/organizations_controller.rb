@@ -4,7 +4,7 @@
 #
 class Dashboard::V1::OrganizationsController < DashboardController
   before_action :authenticate_user!, only: [:update, :users]
-  before_action :set_organization, except: [:create]
+  before_action :set_organization, except: [:create, :index]
   before_action :validate_create_params, only: :create
   before_action :validate_update_params, only: :update
 
